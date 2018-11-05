@@ -340,7 +340,7 @@ End Sub
 调用`Sub`的方法有三种，使用`Call`、直接调用和`Application.Run`
 
 举个栗子：
-![Alt text](./1505555701907.png)
+![Alt text](/doc/source/images/1505555701907.png)
 
 **Function**
 
@@ -352,7 +352,7 @@ vba内部提供了大量的函数，也可以通过`Function`来定义函数，�
 End Function
 ```
 使用函数完成上面的栗子：
-![Alt text](./1505556598033.png)
+![Alt text](/doc/source/images/1505556598033.png)
 
 **参数传递**
 
@@ -405,7 +405,7 @@ Set rg = Range("A1")   '这种情况下,rg将会是Range对象
 在这个栗子中，首先定义一个`Sub`过程来随机生成`A1:A20`区域的内容。
 代码如下:
 
-![Alt text](./demo1.1.gif)
+![Alt text](/doc/source/images/demo1.1.gif)
 
 ```vba
 '创建随机整数，并赋值
@@ -501,7 +501,7 @@ End Sub
 
 ## 0x02 VBA界面介绍
 
-![Alt text](./1505749555407.png)
+![Alt text](/doc/source/images/1505749555407.png)
 
 
 ## 0x03 对象操作说明
@@ -509,13 +509,13 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 
 在Excel中，对象有不同的层级关系:
 
-![Alt text](./1505548045994.png)
+![Alt text](/doc/source/images/1505548045994.png)
 
 实际上Excel中可操作的对象远不止这些，具体的可以参考 [Excel 对象模型](https://msdn.microsoft.com/zh-cn/library/office/ff194068.aspx)
 
 类似于数组，将各种类型的对象封装到一块可以组成集合。
 一个集合中调用对象的例子：
-![Alt text](./1505548422147.png)
+![Alt text](/doc/source/images/1505548422147.png)
 
 
 
@@ -557,9 +557,9 @@ vba中有很多对象，常用的对象如下:
 
 
 ### 3.3 Range对象
-![Alt text](./1505548886377.png)
+![Alt text](/doc/source/images/1505548886377.png)
 
-![Alt text](./1505549069568.png)
+![Alt text](/doc/source/images/1505549069568.png)
 
 
 ## 0x04 示例
