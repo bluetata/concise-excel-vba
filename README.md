@@ -7,8 +7,8 @@
 - [x] 0x01 语法说明
 - [x] 0x02 VBA界面介绍
 - [x] 0x03 对象操作说明
-- [ ] 0X04 Excel 常用相关操作
-- [ ] 0X04 Trouble shooting
+- [ ] 0x04 Excel 相关常用操作
+- [ ] 0x04 Trouble shooting
 - [ ] 参考资料
 - [x] Change log
 
@@ -17,7 +17,7 @@
 - [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
 - [Excel宏教程 (宏的介绍与基本使用)](http://blog.csdn.net/lyhdream/article/details/9060801)
 - [Excel2010中的VBA入门,官方文档](https://msdn.microsoft.com/zh-cn/library/office/ee814737(v=office.14).aspx)
-- [Excel VBA的一些书籍资源,百度网盘](https://pan.baidu.com/s/1i5QSIX3)
+- [Excel VBA的一些书籍资源,百度网盘](https://pan.baidu.com/s/1ktVmW63s8utBpAdcGnJfJA)  提取码: `j92n`
 - [Excel 函数速查手册](https://support.office.com/zh-cn/article/Excel-%E5%87%BD%E6%95%B0%EF%BC%88%E6%8C%89%E7%B1%BB%E5%88%AB%E5%88%97%E5%87%BA%EF%BC%89-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb?ui=zh-CN&rs=zh-CN&ad=CN)
 - [VBA的一些使用心得](http://www.cnblogs.com/techyc/p/3355054.html)
 - [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
@@ -83,7 +83,7 @@ Const PI As Single = 3.14 '定义一个浮点常量为PI,值为3.14
 
 变量名，必须字母或汉字开头，不能包含空格、句号、感叹号等。
 
-数据类型，对应上面👆表1.1里的那些
+数据类型，对应上面 ↑　表1.1里的那些
 
 更多的声明方法，跟`Dim`声明的区别是作用范围不同：
 ```vba
@@ -103,7 +103,7 @@ public v2$  '与 Public v2 As String 效果一样
 Dim v4
 ```
 
-使用数组和对象时，也要声明，这里说下数组的声明
+使用数组和对象时，也要声明，这里说下数组的声明：
 ```vba
 '确定范围的数组，可以存储b-a+1个数，a、b为整数
 Dim 数组名称(a To b) As 数据类型
@@ -497,8 +497,22 @@ End Sub
 ```
 
 ## 0x02 VBA界面介绍
-
+### 2.1 VBA界面描述
 ![Alt text](/doc/source/images/1505749555407.png)
+
+### 2.2 设置VBA Macro Project 密码保护
+在VBA界面依次点击：<u>T</u>ools -> VBAProject Prop<u>e</u>rties -> Projection 界面设置
+![Alt text](/doc/source/images/password_protect_setting.png)
+
+### 2.3 常用快捷栏及窗口设置
+默认情况下某些常用的窗口VBA界面是不显示的，比如立即窗口，编辑操作捷栏（批量注释取消等）
+
+#### 2.3.1 显示编辑栏
+鼠标右键点击空白的快捷栏位置，勾选 `Edit` 选项会显示出如下快捷栏
+![Alt text](/doc/source/images/toolbars_edit_setting.png)
+
+#### 2.3.2 显示立即窗口(Immediate window)
+快捷键是 `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示
 
 
 ## 0x03 对象操作说明
@@ -559,7 +573,7 @@ vba中有很多对象，常用的对象如下:
 ![Alt text](/doc/source/images/1505549069568.png)
 
 
-## 0x04 Excel 常用相关操作
+## 0x04 Excel 相关常用操作
 
 ### 4.1 打开Excel两种方式
 
@@ -617,7 +631,7 @@ Sub GetWorkbook()
 End Sub
 ```
 
-- OpenWorkbook
+- OpenWorkbook封装方法，可以作为共通function
 ```vba
 Function OpenWorkbook(ByVal strWorkbookFilePath As String)
     Dim wb As Workbook
@@ -639,6 +653,7 @@ End Function
 
 ## Change log
 
-- 2017/09/22  fix对象的一些表述错误
+- 2017/09/22  Fix对象操作说明的一些表述；补充追加 界面介绍及Excel相关常用操作
+- 2017/09/22  Fix对象的一些表述错误
 - 2017/09/18  补充`Set`&`Dim`;VBA界面介绍
 - 2017/09/16  VBA语法说明
