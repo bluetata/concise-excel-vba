@@ -1,22 +1,19 @@
 
 # 简明Excel VBA :dolphin:
 
-## TODO
-- [x] 提纲
-- [x] 文档列表
-- [x] 语法说明
-- [ ] VBA界面介绍
-- [ ] 对象操作说明
+## 目录
+
+- [x] 0x00 文档列表
+- [x] 0x01 语法说明
+- [x] 0x02 VBA界面介绍
+- [x] 0x03 对象操作说明
+- [ ] 0X04 Excel 常用相关操作
+- [ ] 0X04 Trouble shooting
 - [ ] 参考资料
-- [ ] 若雨化
-
-## Change log
-
-- 2017/09/22  fix对象的一些表述错误
-- 2017/09/18  补充`Set`&`Dim`;VBA界面介绍
-- 2017/09/16  VBA语法说明
+- [x] Change log
 
 ## 0x00 文档列表
+- [Excel-vba coding规约/开发规范](/doc/source/Excel-vba%20Language%20Specification.md)
 - [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
 - [Excel宏教程 (宏的介绍与基本使用)](http://blog.csdn.net/lyhdream/article/details/9060801)
 - [Excel2010中的VBA入门,官方文档](https://msdn.microsoft.com/zh-cn/library/office/ee814737(v=office.14).aspx)
@@ -375,7 +372,7 @@ End SUb
 - 在vba中使用 `'`进行代码注释
 - 在很长的语句中使用`_`来分割成多行
 - 在有很多嵌套判断中，代码的可读性会变得很差，一般讲需要返回的内容及时返回，减少嵌套
-- `Sub`中默认按引用传递参数，所以注意使用，一般不要对外面的变量进行修改，讲封装保留在内部
+- `Sub`中默认按引用传递参数，所以注意使用，一般不要对外面的变量进行修改，将封装保留在内部
 
 
 - `Dim`和`Set`的区别  [参考](http://blog.csdn.net/nctu_to_prove_safety/article/details/53148962)
@@ -562,4 +559,86 @@ vba中有很多对象，常用的对象如下:
 ![Alt text](/doc/source/images/1505549069568.png)
 
 
-## 0x04 示例
+## 0x04 Excel 常用相关操作
+
+### 4.1 打开Excel两种方式
+
+- 利用 `GetObject` 方法打开excel
+```vba
+    Sub GetWorkbook()
+        Dim wbWorkFile As Workbook
+        Set wbWorkFile = GetObject("D:\test.xlsx")
+        ' wbWorkFile.Windows(1).Visible = True ' 这种方法打开的文件是隐藏的，如果需要显示，则设置Visible值为ture
+        wbWorkFile.Close False
+        Set wbWorkFile = Nothing
+    End Sub
+```
+
+- 利用 `Open` 方法打开excel
+```vba
+Sub OpenWorkbook()
+    Dim wbWorkFile As Workbook
+    Set wbWorkFile = Workbooks.Open("D:\test.xlsx")
+    wbWorkFile.Windows(1).Visible = False
+    wbWorkFile.Close False
+    Set wbWorkFile = Nothing
+End Sub
+```
+
+延伸其扩展方法：
+- GetObject
+```vba
+Sub GetWorkbook()
+    Dim objExcel                As Object       ' 用于存放Microsoft Excel 引用的变量。
+    Dim blnExcelWasNotRunning   As Boolean      ' 用于最后释放的标记。
+
+    ' 测试 Microsoft Excel 的副本是否在运行。
+    On Error Resume Next                        ' 延迟错误捕获。
+    ' 不带第一个参数调用 Getobject 函数将返回对该应用程序的实例的引用。如果该应用程序不在运行，则会产生错误。
+    Set objExcel = Getobject(, "Excel.Application")
+    If Err.Number <> 0 Then blnExcelWasNotRunning = True
+    Err.Clear                                   ' 如果发生错误则要清除 Err 对象。
+
+    Set objExcel = Getobject("C:\excel.xlsx")   ' 将对象变量设为对要看的文件的引用。
+
+    ' 设置其 Application 属性，显示 Microsoft Excel。然后使用 objExcel 对象引用的 Windows 集合显示包含该文件的实际窗口。
+    objExcel.Application.Visible = True
+    objExcel.Parent.Windows(1).Visible = True
+    ' 在此处对文件进行操作。
+    ' ...
+    ' 如果在启动时，Microsoft Excel 的这份副本不在运行中，则使用 Application 属性的 Quit 方法来关闭它。
+    ' 注意，当试图退出 Microsoft Excel 时，标题栏会闪烁，并显示一条消息询问是否保存所加载的文件。
+    If blnExcelWasNotRunning = True Then
+        objExcel.Application.Quit
+    End IF
+
+    Set objExcel = Nothing   '释放对该应用程序
+
+End Sub
+```
+
+- OpenWorkbook
+```vba
+Function OpenWorkbook(ByVal strWorkbookFilePath As String)
+    Dim wb As Workbook
+    Dim fileName As String
+    fileName = Dir(strWorkbookFilePath)
+
+    On Error Resume Next
+    Set wb = Workbooks(fileName)
+    On Error GoTo 0
+    If wb Is Nothing Then
+        Set wb = Workbooks.Open(strWorkbookFilePath)
+    End If
+
+    Set OpenWorkbook = wb
+
+End Function
+```
+
+
+## Change log
+
+- 2017/09/22  fix对象的一些表述错误
+- 2017/09/18  补充`Set`&`Dim`;VBA界面介绍
+- 2017/09/16  VBA语法说明
