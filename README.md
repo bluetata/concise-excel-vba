@@ -13,7 +13,7 @@
 - [x] Change log
 
 ## 0x00 文档列表
-- [Excel-vba coding规约/开发规范](/doc/source/Excel-vba%20Language%20Specification.md)
+- [Excel-vba coding规约/开发规范](https://github.com/Youchien/development-specification/blob/master/doc/source/Excel-vba%20Language%20Specification.md)
 - [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
 - [Excel宏教程 (宏的介绍与基本使用)](http://blog.csdn.net/lyhdream/article/details/9060801)
 - [Excel2010中的VBA入门,官方文档](https://msdn.microsoft.com/zh-cn/library/office/ee814737(v=office.14).aspx)
@@ -563,7 +563,7 @@ vba中有很多对象，常用的对象如下:
 
 ### 4.1 打开Excel两种方式
 
-- 利用 `GetObject` 方法打开excel
+- 利用 `GetObject` 方法打开Excel文档
 ```vba
     Sub GetWorkbook()
         Dim wbWorkFile As Workbook
@@ -574,7 +574,7 @@ vba中有很多对象，常用的对象如下:
     End Sub
 ```
 
-- 利用 `Open` 方法打开excel
+- 利用 `Open` 方法打开Excel文档
 ```vba
 Sub OpenWorkbook()
     Dim wbWorkFile As Workbook
@@ -586,7 +586,7 @@ End Sub
 ```
 
 延伸其扩展方法：
-- GetObject
+- GetObject封装方法，可以作为共通function
 ```vba
 Sub GetWorkbook()
     Dim objExcel                As Object       ' 用于存放Microsoft Excel 引用的变量。
