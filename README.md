@@ -21,7 +21,7 @@
 - [Excel 函数速查手册](https://support.office.com/zh-cn/article/Excel-%E5%87%BD%E6%95%B0%EF%BC%88%E6%8C%89%E7%B1%BB%E5%88%AB%E5%88%97%E5%87%BA%EF%BC%89-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb?ui=zh-CN&rs=zh-CN&ad=CN)
 - [VBA的一些使用心得](http://www.cnblogs.com/techyc/p/3355054.html)
 - [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
-- [VBA入门参考,英文](http://analystcave.com/vba-cheat-sheet/)
+- [VBA入门参考，英文](http://analystcave.com/vba-cheat-sheet/)
 
 ## 0x01 语法说明
 
@@ -497,22 +497,68 @@ End Sub
 ```
 
 ## 0x02 VBA界面介绍
-### 2.1 VBA界面描述
+### 2.1 整体界面说明
 ![Alt text](/doc/source/images/1505749555407.png)
 
-### 2.2 设置VBA Macro Project 密码保护
-在VBA界面依次点击：<u>T</u>ools -> VBAProject Prop<u>e</u>rties -> Projection 界面设置
+### 2.2 工程资源管理器（Project Explore）说明
+
+显示快捷键：`Ctrl + R`，也可以点击菜单栏 View -> <u>P</u>roject Explore 显示。
+在一个VBA项目中，实际可以在5个代码模块中书写VBA代码，如下图所示：
+
+![Alt text](/doc/source/images/vba_code_modules.png)
+
+1. Code Modules – Code Modules是我们存储宏的最常见的地方。模块位于工作簿中的 `Modules` 文件夹中。
+
+2. Sheet Modules – 工作簿中的每个工作表在Microsoft Excel Objects文件夹中都有一个工作表对象。双击sheet对象就会打开它的代码模块，我们可以在其中添加事件过程(宏)。这些宏在用户执行表单中的特定操作时运行。比如如下code：
+如果在该sheet中的选择位置发生改变，就会*自动执行* `Worksheet_SelectionChange` 方法，选择所选单元格的整个行和列。
+```VBA
+Private Sub Worksheet_SelectionChange(ByVal Target As Range) 'Worksheet_SelectionChange
+    Application.EnableEvents = False
+
+    With Target
+        Union(.EntireRow, .EntireColumn).Select
+        .Activate
+    End With
+
+    Application.EnableEvents = True
+End Sub
+```
+
+3. ThisWorkbook Module – 每个工作簿都包含一个 `ThisWorkbook` 对象， 其总是位于和工作表对象相同的文件夹(Microsoft Excel Objects)内的最底部。 我们可以在这个工作簿中运行基于事件的宏。
+
+4. Userforms – 做过VB项目的人对这个应该不会陌生。在这个模块下我们可以创建Windows窗体，进行图形化交互。在这个模块写的code大部分都是和win窗体相关的代码。
+
+5. Class Modules – 在`Class Modules`文件夹中，允许我们编写宏来创建对象、属性和方法。当我们想要创建对象库中不存在的自定义对象或集合时，可以使用该类模块。
+
+**总结**：`Modules`、 `ThisWorkbook`、 `Sheet` 三者区别：
+
+`Modules` 是相似功能和子程序的集合，通常根据功能进行分组。
+
+`ThisWorkbook` 是Workbook对象的私有模块。
+例如， Workbook_Open()， Workbook_Close() 例程驻留在此模块中。 （[工作簿对象参考](https://docs.microsoft.com/zh-cn/office/vba/api/excel.workbook)）
+
+`Sheet1`，`Sheet2` 是单个工作表的私有模块。在它们中，您将会放入该表的特定功能。例如：`Worksheet_Activate` ， `Worksheet_Deactivate` ， `Workbook_SheetChange` 是提供给的默认事件，这样你就可以在各自的私有工作表模块中处理它们。 （[工作表对象参考](https://msdn.microsoft.com/en-us/library/office/ff847327.aspx)）
+
+
+
+
+### 2.3 设置VBA Macro Project 密码保护
+
 ![Alt text](/doc/source/images/password_protect_setting.png)
 
-### 2.3 常用快捷栏及窗口设置
+在VBA界面依次点击：<u>T</u>ools -> VBAProject Prop<u>e</u>rties -> Projection 界面设置
+
+
+### 2.4 常用快捷栏及窗口设置
 默认情况下某些常用的窗口VBA界面是不显示的，比如立即窗口，编辑操作捷栏（批量注释取消等）
 
-#### 2.3.1 显示编辑栏
+#### 2.4.1 显示编辑栏
 鼠标右键点击空白的快捷栏位置，勾选 `Edit` 选项会显示出如下快捷栏
+
 ![Alt text](/doc/source/images/toolbars_edit_setting.png)
 
-#### 2.3.2 显示立即窗口(Immediate window)
-快捷键是 `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示
+#### 2.4.2 显示立即窗口(Immediate window)
+显示快捷键： `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。
 
 
 ## 0x03 对象操作说明
@@ -530,7 +576,7 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 
 
 
-### 3.1对象简述
+### 3.1 对象简述
 
 对象一般包含下面三种特性：
 
@@ -626,7 +672,7 @@ Sub GetWorkbook()
         objExcel.Application.Quit
     End IF
 
-    Set objExcel = Nothing   '释放对该应用程序
+    Set objExcel = Nothing   ' 释放对该应用程序
 
 End Sub
 ```
