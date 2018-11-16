@@ -25,18 +25,25 @@
 
 ## 0x01 语法说明
 
-都知道学会了英语语法，再加上大量的词汇基础，就算基本掌握了英语了。类似的要使用vba，也要入乡随俗，了解他的构成，简单的说vba包含`数据类型`、`变量&常量`、`对象`和常用的`语句结构`。
+都知道学会了英语语法，再加上大量的词汇基础，就算基本掌握了英语了。
+类似的要使用vba，也要入乡随俗，了解他的构成，简单的说vba包含`数据类型`、
+`变量&常量`、`对象`和常用的`语句结构`。
 
-不过呢在量和复杂度上远低于英语，不用那么痛苦的记单词了，所以vba其实很简单的。熟悉了规则之后剩下就是查官方函数啦，查Excel提供的可操作对象啦。
+不过呢在量和复杂度上远低于英语，不用那么痛苦的记单词了，所以vba其实很简单的。
+熟悉了规则之后剩下就是查官方函数啦，查Excel提供的可操作对象啦。
 
-顺带一提的是，函数其实也很容易理解，方便使用。拿到一个函数，例如`sum`，只要知道它是求多个数的和就够了，剩下的就是用了。例如`sum(1000,9)`结果就是`1009`了。函数的一大好处就是隐藏具体实现细节，提供简洁的使用方法。
+顺带一提的是，函数其实也很容易理解，方便使用。拿到一个函数，例如`sum`，
+只要知道它是求多个数的和就够了，剩下的就是用了。例如`sum(1000,9)`结果就是`1009`了。
+函数的一大好处就是隐藏具体实现细节，提供简洁的使用方法。
 
 
 ### 1.1 数据和数据类型
 
-Excel里的每一个单元格都是一个`数据`，无论是数字、字母或标点都是数据。对数据排排队，吃果果，对不同的数据扔到不同的篮子里归类，篮子就是`数据类型`了。
+Excel里的每一个单元格都是一个`数据`，无论是数字、字母或标点都是数据。
+对数据排排队，吃果果，对不同的数据扔到不同的篮子里归类，篮子就是`数据类型`了。
 
-在Excele里面吧，`数据类型`只有`数值`、`文本`、`日期`、`逻辑`或`错误`五种类型。前四种就是最常用的了。数据范围呢也不记，知道多大的数用啥类型就足够了。
+在Excele里面吧，`数据类型`只有`数值`、`文本`、`日期`、`逻辑`或`错误`五种类型。
+前四种就是最常用的了。数据范围呢也不记，知道多大的数用啥类型就足够了。
 
 
 | 类型 | 类型名称 | 范围 | 占用空间|声明符号 | 备注|
@@ -62,7 +69,8 @@ Excel里的每一个单元格都是一个`数据`，无论是数字、字母或�
 
 表1.1 VBA数据类型
 
-补充一点是，数组就像一筐水果，里面可以存不止一个数据。他不是一个具体的数据类型，叫数据结构更合适些。
+补充一点是，数组就像一筐水果，里面可以存不止一个数据。
+他不是一个具体的数据类型，叫数据结构更合适些。
 
 ### 1.2 常量和变量
 
@@ -301,7 +309,9 @@ Do
 Loop Util i<1  
 ```
 
-`选择`和`循环`提供了多种实现同一目的的语句结构，他们都能实现同样的作用，差别一般是初始条件。还有书写的复杂度。正确的选择要使用的语句结构，代码逻辑上会更清楚，方便人的阅读。
+`选择`和`循环`提供了多种实现同一目的的语句结构，他们都能实现同样的作用，
+差别一般是初始条件。还有书写的复杂度。正确的选择要使用的语句结构，
+代码逻辑上会更清楚，方便人的阅读。
 
 **简写**
 
@@ -397,7 +407,8 @@ Set rg = Range("A1")   '这种情况下,rg将会是Range对象
 
 ### 1.7示例
 
-举个排序的栗子，要对`A1:A20`的单元格区域进行排序，区域内的内容为1-100的随机整数，规则是大于50的倒序排列，小于50的正序排列。将结果显示在`B1:B20`的区域里。
+举个排序的栗子，要对`A1:A20`的单元格区域进行排序，区域内的内容为1-100的随机整数，
+规则是大于50的倒序排列，小于50的正序排列。将结果显示在`B1:B20`的区域里。
 
 在这个栗子中，首先定义一个`Sub`过程来随机生成`A1:A20`区域的内容。
 代码如下:
@@ -507,10 +518,15 @@ End Sub
 
 ![Alt text](/doc/source/images/vba_code_modules.png)
 
-1. Code Modules – Code Modules是我们存储宏的最常见的地方。模块位于工作簿中的 `Modules` 文件夹中。
+1. Code Modules – Code Modules是我们存储宏的最常见的地方。
+模块位于工作簿中的 `Modules` 文件夹中。
 
-2. Sheet Modules – 工作簿中的每个工作表在Microsoft Excel Objects文件夹中都有一个工作表对象。双击sheet对象就会打开它的代码模块，我们可以在其中添加事件过程(宏)。这些宏在用户执行表单中的特定操作时运行。比如如下code：
-如果在该sheet中的选择位置发生改变，就会*自动执行* `Worksheet_SelectionChange` 方法，选择所选单元格的整个行和列。
+2. Sheet Modules – 工作簿中的每个工作表在Microsoft Excel Objects文件夹中
+都有一个工作表对象。双击sheet对象就会打开它的代码模块，我们可以在其中添加事件过程(宏)。
+这些宏在用户执行表单中的特定操作时运行。比如如下code：
+如果在该sheet中的选择位置发生改变，就会*自动执行* `Worksheet_SelectionChange` 方法，
+选择所选单元格的整个行和列。
+
 ```VBA
 Private Sub Worksheet_SelectionChange(ByVal Target As Range) 'Worksheet_SelectionChange
     Application.EnableEvents = False
@@ -524,37 +540,48 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range) 'Worksheet_Selectio
 End Sub
 ```
 
-3. ThisWorkbook Module – 每个工作簿都包含一个 `ThisWorkbook` 对象， 其总是位于和工作表对象相同的文件夹(Microsoft Excel Objects)内的最底部。 我们可以在这个工作簿中运行基于事件的宏。
+3. ThisWorkbook Module – 每个工作簿都包含一个 `ThisWorkbook` 对象，
+其总是位于和工作表对象相同的文件夹(Microsoft Excel Objects)内的最底部。
+我们可以在这个工作簿中运行基于事件的宏。
 
-4. Userforms – 做过VB项目的人对这个应该不会陌生。在这个模块下我们可以创建Windows窗体，进行图形化交互。在这个模块写的code大部分都是和win窗体相关的代码。
+4. Userforms – 做过VB项目的人对这个应该不会陌生。在这个模块下我们可以创建Windows窗体，
+进行图形化交互。在这个模块写的code大部分都是和win窗体相关的代码。
 
-5. Class Modules – 在`Class Modules`文件夹中，允许我们编写宏来创建对象、属性和方法。当我们想要创建对象库中不存在的自定义对象或集合时，可以使用该类模块。
+5. Class Modules – 在`Class Modules`文件夹中，允许我们编写宏来创建对象、属性和方法。
+当我们想要创建对象库中不存在的自定义对象或集合时，可以使用该类模块。
 
 **总结**：`Modules`、 `ThisWorkbook`、 `Sheet` 三者区别：
 
 `Modules` 是相似功能和子程序的集合，通常根据功能进行分组。
 
 `ThisWorkbook` 是Workbook对象的私有模块。
-例如， Workbook_Open()， Workbook_Close() 例程驻留在此模块中。 （[工作簿对象参考](https://docs.microsoft.com/zh-cn/office/vba/api/excel.workbook)）
+例如， Workbook_Open()， Workbook_Close() 例程驻留在此模块中。
+（[工作簿对象参考](https://docs.microsoft.com/zh-cn/office/vba/api/excel.workbook)）
 
-`Sheet1`，`Sheet2` 是单个工作表的私有模块。在它们中，您将会放入该表的特定功能。例如：`Worksheet_Activate` ， `Worksheet_Deactivate` ， `Workbook_SheetChange` 是提供给的默认事件，这样你就可以在各自的私有工作表模块中处理它们。 （[工作表对象参考](https://msdn.microsoft.com/en-us/library/office/ff847327.aspx)）
+`Sheet1`，`Sheet2` 是单个工作表的私有模块。在它们中，您将会放入该表的特定功能。
+例如：`Worksheet_Activate` ， `Worksheet_Deactivate` ， `Workbook_SheetChange`
+是提供给的默认事件，这样你就可以在各自的私有工作表模块中处理它们。
+（[工作表对象参考](https://msdn.microsoft.com/en-us/library/office/ff847327.aspx)）
 
-在模块里使用Cells、range等时表示的是当前激活的工作表；而在sheet里面写的话，为当前工作表里的cells，如果你在sheet1代码里要引用其他工作表的话，不能这样
+在模块里使用Cells、range等时表示的是当前激活的工作表；而在sheet里面写的话，
+为当前工作表里的cells，如果你在sheet1代码里要引用其他工作表的话，不能这样
 
-sheet2.select
-cells(1,1) = 1
+sheet2.select cells(1,1) = 1
 
 因为你的代码在sheet1下，cells就一定是sheet1的
 另外，在sheet下面可以使用Me，表示自身
 如sheet1.visible = false，可以简化为me.visible = false
 
-如果一个Funtion是在`Modules`里定义的，那么就可以在任意的Worksheet里调用，但如果只是在Worksheet里定义的Funtion，其他的Worksheet是调用不了的。也就是说，模块（Modules）是公共的地方。
+如果一个Funtion是在`Modules`里定义的，那么就可以在任意的Worksheet里调用，
+但如果只是在Worksheet里定义的Funtion，其他的Worksheet是调用不了的。
+也就是说，模块（Modules）是公共的地方。
 
 ### 2.3 设置VBA Macro Project 密码保护
 
 ![Alt text](/doc/source/images/password_protect_setting.png)
 
-在VBA界面依次点击：<u>T</u>ools -> VBAProject Prop<u>e</u>rties -> Projection 界面设置
+在VBA界面依次点击：<u>T</u>ools -> VBAProject Prop<u>e</u>rties ->
+Projection 界面设置
 
 
 ### 2.4 常用快捷栏及窗口设置
@@ -570,13 +597,15 @@ cells(1,1) = 1
 
 
 ## 0x03 对象操作说明
-Excel中的每个单元格，工作簿都是可以操作的对象；可以对对象进行复制、粘贴、删除等，也可操作对象的各种属性，来控制其展示和行为。
+Excel中的每个单元格，工作簿都是可以操作的对象；可以对对象进行复制、粘贴、删除等，
+也可操作对象的各种属性，来控制其展示和行为。
 
 在Excel中，对象有不同的层级关系:
 
 ![Alt text](/doc/source/images/1505548045994.png)
 
-实际上Excel中可操作的对象远不止这些，具体的可以参考 [Excel 对象模型](https://msdn.microsoft.com/zh-cn/library/office/ff194068.aspx)
+实际上Excel中可操作的对象远不止这些，具体的可以参考
+[Excel 对象模型](https://msdn.microsoft.com/zh-cn/library/office/ff194068.aspx)
 
 类似于数组，将各种类型的对象封装到一块可以组成集合。
 一个集合中调用对象的例子：
@@ -590,13 +619,18 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 
 - 属性
 
-属性表示对象的特征，一般为名词。例如`Workbook.ActiveSheet`表示工作簿当前处于激活状态的工作表对象。
+属性表示对象的特征，一般为名词。例如`Workbook.ActiveSheet`表示工作簿当前
+处于激活状态的工作表对象。
+
 - 方法
 
-方法表示对象可用的操作或可执行的动作。例如`Workbook.Activate`表示激活工作簿的第一个工作表。
+方法表示对象可用的操作或可执行的动作。例如`Workbook.Activate`表示
+激活工作簿的第一个工作表。
+
 - 事件
 
-事件表示对象可以被触发的行为，一般触发后会执行对应的代码。例如`Workbook.Activate`表示工作簿中的工作表被激活了，然后执行对应的方法。
+事件表示对象可以被触发的行为，一般触发后会执行对应的代码。
+例如`Workbook.Activate`表示工作簿中的工作表被激活了，然后执行对应的方法。
 
 下面的代码就是在`Workbook`被打开时，将工作簿最大化的例子。
 
