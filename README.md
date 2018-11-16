@@ -564,13 +564,16 @@ End Sub
 （[工作表对象参考](https://msdn.microsoft.com/en-us/library/office/ff847327.aspx)）
 
 在模块里使用Cells、range等时表示的是当前激活的工作表；而在sheet里面写的话，
-为当前工作表里的cells，如果你在sheet1代码里要引用其他工作表的话，不能这样
+为当前工作表里的cells，如果你在sheet1代码里要引用其他工作表的话，不能这样。
 
-sheet2.select cells(1,1) = 1
+```vba
+sheet2.select
+cells(1,1) = 1
+```
 
 因为你的代码在sheet1下，cells就一定是sheet1的
 另外，在sheet下面可以使用Me，表示自身
-如sheet1.visible = false，可以简化为me.visible = false
+如sheet1.visible = False，可以简化为: Me.visible = False
 
 如果一个Funtion是在`Modules`里定义的，那么就可以在任意的Worksheet里调用，
 但如果只是在Worksheet里定义的Funtion，其他的Worksheet是调用不了的。
