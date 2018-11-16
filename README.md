@@ -1,5 +1,5 @@
 
-# 简明Excel VBA :dolphin:
+# 简明Excel VBA
 
 ## 目录
 
@@ -27,13 +27,13 @@
 
 都知道学会了英语语法，再加上大量的词汇基础，就算基本掌握了英语了。
 类似的要使用vba，也要入乡随俗，了解他的构成，简单的说vba包含`数据类型`、
-`变量&常量`、`对象`和常用的`语句结构`。
+`变量`/`常量`、`对象`和常用的`语句结构`。
 
 不过呢在量和复杂度上远低于英语，不用那么痛苦的记单词了，所以vba其实很简单的。
 熟悉了规则之后剩下就是查官方函数啦，查Excel提供的可操作对象啦。
 
-顺带一提的是，函数其实也很容易理解，方便使用。拿到一个函数，例如`sum`，
-只要知道它是求多个数的和就够了，剩下的就是用了。例如`sum(1000,9)`结果就是`1009`了。
+顺带一提的是，函数其实也很容易理解，方便使用。拿到一个函数，例如`Sum`，
+只要知道它是求多个数的和就够了，剩下的就是用了。例如`Sum(1000,9)`结果就是`1009`了。
 函数的一大好处就是隐藏具体实现细节，提供简洁的使用方法。
 
 
@@ -42,8 +42,8 @@
 Excel里的每一个单元格都是一个`数据`，无论是数字、字母或标点都是数据。
 对数据排排队，吃果果，对不同的数据扔到不同的篮子里归类，篮子就是`数据类型`了。
 
-在Excele里面吧，`数据类型`只有`数值`、`文本`、`日期`、`逻辑`或`错误`五种类型。
-前四种就是最常用的了。数据范围呢也不记，知道多大的数用啥类型就足够了。
+在Excel-vba中，`数据类型`只有`数值`、`文本`、`日期`、`逻辑`或`错误`五种类型。
+前四种最为常用。具体描述参见下表：
 
 
 | 类型 | 类型名称 | 范围 | 占用空间|声明符号 | 备注|
@@ -79,74 +79,74 @@ Excel里的每一个单元格都是一个`数据`，无论是数字、字母或�
 在vba里，使用一个`变量`/`常量`要先声明。
 
 `常量`声明方法如下:
-`Const 常量名称 As 数据类型 = 存储在常量中的数据`
+` Const 常量名称 As 数据类型 = 存储在常量中的数据`
 例如:
 ```vba
-Const PI As Single = 3.14 '定义一个浮点常量为PI,值为3.14
+Const PI As Single = 3.14 ' 定义一个浮点常量为PI，值为3.14
 ```
 
-`变量`声明方法如下：
-
-`Dim 变量名 As 数据类型`
-
+变量声明方法如下：
+```vba
+Dim 变量名 As 数据类型
+```
 变量名，必须字母或汉字开头，不能包含空格、句号、感叹号等。
 
 数据类型，对应上面 ↑　表1.1里的那些
 
 更多的声明方法，跟`Dim`声明的区别是作用范围不同：
 ```vba
-Private v1 As Integer   'v1为私有整形变量
-Public v2 As String  'v2为共有字符串变量
-Static v3 As Integer  'v3为静态变量,程序结束后值不变
+Private v1 As Integer   ' v1为私有整形变量
+Public v2 As String     ' v2为共有字符串变量
+Static v3 As Integer    ' v3为静态变量，程序结束后值不变
 
-'变量声明之后，就可以赋值和使用了
+' 变量声明之后，就可以赋值和使用了
 v1 = 1009
 v2 = "1009"
 v3 = 1009
 
-'使用类型声明符，可以达到跟上面同样的效果
-public v2$  '与 Public v2 As String 效果一样
+' 使用类型声明符，可以达到跟上面同样的效果
+public v2$  ' 与 Public v2 As String 效果一样
 
-'声明变量时，不指定具体的类型就变成了Variant类型，根据需要转换数据类型
+' 声明变量时，不指定具体的类型就变成了Variant类型，根据需要转换数据类型
 Dim v4
 ```
 
 使用数组和对象时，也要声明，这里说下数组的声明：
 ```vba
-'确定范围的数组，可以存储b-a+1个数，a、b为整数
+' 确定范围的数组，可以存储b-a+1个数，a、b为整数
 Dim 数组名称(a To b) As 数据类型
 
-Dim arr(1 TO 100) As Integer '表示arr可以存储100个整数
+Dim arr(1 TO 100) As Integer ' 表示arr可以存储100个整数
 arr(100) '表示arr中第100个数据
 
-'不指定a，直接声明时，默认a为0
-Dim arr2(100) As Integer '表示arr可以存储101个整数,从0数
+' 不指定a，直接声明时，默认a为0
+Dim arr2(100) As Integer ' 表示arr可以存储101个整数,从0数
 arr2(100) '表示arr2中第101个数据
 
-'多维数组
-Dim arr3(1 To 3,1 To 3,1 To 3) As Integer '定义了一个三维数组，可以存储3*3*3=27个整数
+' 多维数组
+Dim arr3(1 To 3,1 To 3,1 To 3) As Integer ' 定义了一个三维数组，可以存储3*3*3=27个整数
 
-'动态数组，不确定数组大小时使用
-Dim arr4() As Integer '定义arr4为整形动态数组
-ReDim arr4(1 To v1)  '设定arr4的大小，不能重新设定arr4的类型
+' 动态数组，不确定数组大小时使用
+Dim arr4() As Integer   ' 定义arr4为整形动态数组
+ReDim arr4(1 To v1)     ' 设定arr4的大小，不能重新设定arr4的类型
 
 ```
 
 除了用`Dim`做常规的数组的声明，还有下面这些声明数组的方式:
 ```vba
-'使用Array函数将已知的数据常量放到数组里
-Dim arr As Variant        '定义arr为变体类型
-arr = Array(1,1,2,3,5,8,13,21) '将整数存储到arr中,索引默认从0开始
+' 使用Array函数将已知的数据常量放到数组里
+Dim arr As Variant        ' 定义arr为变体类型
+arr = Array(1,1,2,3,5,8,13,21) ' 将整数存储到arr中,索引默认从0开始
 
-'使用Split函数分隔字符串创建数组
+' 使用Split函数分隔字符串创建数组
 Dim arr2 As Variant
-arr2 = Split("hello,world",",") '按,分隔字符串 hello,world 并赋值给arr2
+arr2 = Split("hello,world",",") ' 按,分隔字符串 hello,world 并赋值给arr2
 
-'使用Excel单元格区域创建数组
-'这种方式创建的数组，索引默认从1开始
+' 使用Excel单元格区域创建数组
+' 这种方式创建的数组，索引默认从1开始
 Dim arr3 As Variant
-arr3 = Range("A1:C3").Value   '将A1:C3中的数组存储到arr3中
-Range("A4:C6").Value= arr3    '将arr3中的数据写入到A4:C6中的区域
+arr3 = Range("A1:C3").Value   ' 将A1:C3中的数组存储到arr3中
+Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 
 ```
 
@@ -206,8 +206,8 @@ Range("A4:C6").Value= arr3    '将arr3中的数据写入到A4:C6中的区域
 |Imp|逻辑蕴含|
 
 ```vba
-'Like是个比较有用的运算符，常用来做匹配或模糊匹配。
-'在模糊匹配的时候，有一些通配符能方便模糊匹配规则的书写
+' Like是个比较有用的运算符，常用来做匹配或模糊匹配。
+' 在模糊匹配的时候，有一些通配符能方便模糊匹配规则的书写
 "这是一个demo1" Like "*demo1" = True '*号表示匹配任意多个字符
 "这是一个demo2" Like "????demo2" = True '?号表示匹配任意单个字符
 "这是一个demo3" Like "*demo#" = True '#号表示匹配任意数字
@@ -220,92 +220,95 @@ Range("A4:C6").Value= arr3    '将arr3中的数据写入到A4:C6中的区域
 **选择**
 `选择`用来判断程序执行那一部分代码
 ```vba
-'If...Then...End If
-'If选择可以嵌套使用
-'常用的三种形式
-'普通模式
+'-----------------------------------
+' If...Then...End If
+' If选择可以嵌套使用
+' 常用的三种形式
+'-----------------------------------
+
+' 普通模式
 If 10>3 Then
-  操作1'执行这一步
+    操作1'执行这一步
 End If
 
-'增加Else
+' 增加Else
 If 1>2 Then
-  操作1
+      操作1
 Else
-  操作2'执行这一步
+    操作2'执行这一步
 End If
 
 '嵌套If
-If 10>3 Then
-  If 1>2 Then
-    操作1
-  Else
-    操作2'执行这一步
-  End If
+If 10 > 3 Then
+    If 1 > 2 Then
+        操作1
+    Else
+        操作2    ' 执行这一步
+    End If
 Else
-  操作3
+    操作3
 End If
 
-'Select...Case..多选一
+' Select...Case... 多选一
 Dim Length As Integer
 Length=10
 Select Length
-  Case Is >=8
-    操作1 '执行这一步
-  Case Is >20
-    操作2
-  Case Else
-    操作3
+    Case Is >=8
+        操作1 '执行这一步
+    Case Is >20
+        操作2
+    Case Else
+        操作3
 End Select
 ```
 
 **循环**
 `循环`用来让程序重复执行某段代码
 ```vba
-'For...Next循环
-'For 循环变量 = 初始值 To 终值 Step 步长
+' For...Next循环
+' For 循环变量 = 初始值 To 终值 Step 步长
 Dim i As Integer
-For i = 1 To 10 Step 2 '设定i从1到10，每次增加2，总共执行5次
-  操作1   '可以通过设定 Exit For 退出循环
+For i = 1 To 10 Step 2 ' 设定i从1到10，每次增加2，总共执行5次
+    操作1   ' 可以通过设定 Exit For 退出循环
 Next i
 
-'For Each..循环，又称遍历
-'For Each 变量 In 集合或数组
+' For Each..循环，又称遍历
+' For Each 变量 In 集合或数组
 Dim arr
 Dim i As Integer
-arr = Array(1,2,3,4,5)
-For Each i In arr '定义变量i，遍历arr数组
-  操作1
+arr = Array(1, 2, 3, 4, 5)
+For Each i In arr ' 定义变量i，遍历arr数组
+    操作1
 Next i
 
-'Do..While循环
-'Do While 表达式   表达式为假时跳出循环
+' Do...While循环
+' Do While 表达式   表达式为假时跳出循环
 Dim i As Integer
-i=1
-Do While i<5  '循环5次
-  i=i+1
+i = 1
+Do While i < 5  ' 循环5次
+    i = i + 1
 Loop
 
 '将判断条件后置的Do..While
 Dim i As Integer
-i=1
+i = 1
 Do
-  i=i+1
+    i = i + 1
 Loop While i<5 '循环4次
 
-'Do Until 直到..循环
-'Do Until 表达式    表达式为真时跳出循环
+' Do Until 直到..循环
+' Do Until 表达式    表达式为真时跳出循环
 Dim i As Integer
-i=5
-Do Util i<1  
-  i=i-1
+i = 5
+Do Util i < 1  
+    i = i - 1
 Loop
 
-'后置的Do Until
+' 后置的Do Until
 Dim i As Integer
-i=5
+i = 5
 Do
-  i=i-1
+    i = i - 1
 Loop Util i<1  
 ```
 
@@ -317,16 +320,16 @@ Loop Util i<1
 
 在操作对象的属性时常常要先把对象调用路径都写出来，用`with`可以简化这一操作
 ```vba
-'简化前
+' 简化前
 WorkSheets("表1").Range("A1").Font.Name="仿宋"
 WorkSheets("表1").Range("A1").Font.Size=12
 WorkSheets("表1").Range("A1").Font.ColorIndex=3
 
-'使用with
+' 使用`With`
 With WorkSheets("表1").Range("A1").Font
-        .Name = "仿宋"
-	.Size = 12
-	.ColorIndex =3
+    .Name = "仿宋"
+    .Size = 12
+    .ColorIndex =3
 End With
 ```
 
@@ -340,9 +343,9 @@ End With
 [Private|Public] [Static] Sub 过程名([参数列表 [As 数据类型]])
     [语句块]
 End Sub
-'[Private|Public]定义过程的作用范围
-'[Static]定义过程是否为静态
-'[参数列表]定义需要传入的参数
+' [Private|Public]定义过程的作用范围
+' [Static]定义过程是否为静态
+' [参数列表]定义需要传入的参数
 ```
 调用`Sub`的方法有三种，使用`Call`、直接调用和`Application.Run`
 
@@ -372,7 +375,7 @@ End Function
 也可以使用`ByRef`关键字显示的声明按引用传参。
 ```vba
 Sub St1(ByVal n As Integer,ByRef range)
-	...
+	...Other code
 End SUb
 ```
 
@@ -388,20 +391,20 @@ End SUb
 - `Dim`和`Set`的区别  [参考](http://blog.csdn.net/nctu_to_prove_safety/article/details/53148962)
 
 ```vba
-'vba中使用Dim设定变量类型，Set将对象引用赋值给变量
+' vba中使用Dim设定变量类型，Set将对象引用赋值给变量
 
-'栗子
-'将Range对象赋值给变量rg
-Dim rg As Range  '声明rg为Range对象
-Set rg = Range("A1") '设定rg为Range("A1")的引用，之后操作rg和操作Range("A1")一样了
+' 栗子
+' 将Range对象赋值给变量rg
+Dim rg As Range  ' 声明rg为Range对象
+Set rg = Range("A1") ' 设定rg为Range("A1")的引用，之后操作rg和操作Range("A1")一样了
 
-'如果不使用Set，下面的代码将报错
+' 如果不使用Set，下面的代码将报错
 Dim rg As Range
-rg = Range("A1")   '这段代码将报错
+rg = Range("A1")   ' 这段代码将报错
 
-'在非显示声明rg的前提下，下面的代码将会得到不一样的结果
-rg = Range("A1")  'rg将会是Range("A1")的内容,rg的类型将会是一种基本类型,Integer/String等
-Set rg = Range("A1")   '这种情况下,rg将会是Range对象
+' 在非显示声明rg的前提下，下面的代码将会得到不一样的结果
+rg = Range("A1")  ' rg将会是Range("A1")的内容，rg的类型将会是一种基本类型，Integer/String等
+Set rg = Range("A1")   ' 这种情况下，rg将会是Range对象
 ```
 
 
@@ -416,20 +419,20 @@ Set rg = Range("A1")   '这种情况下,rg将会是Range对象
 ![Alt text](/doc/source/images/demo1.1.gif)
 
 ```vba
-'创建随机整数，并赋值
+' 创建随机整数，并赋值
 Sub createRandom(times As Integer)
-  Dim num As Integer
-  Dim arr() As Integer
-  ReDim arr(times)
+    Dim num As Integer
+    Dim arr() As Integer
+    ReDim arr(times)
 
-  For num = 1 To times
-    Randomize (1) '初始化随机数
-    arr(num) = Rnd(1) * 10000 \ 100 'Rnd随机数函数生成0~1的浮点数
-    '上面使用了运算符进行取整，也可以根据需求使用vba内部的取整函数达到同样的效果
-    'arr(num) = Int(Rnd(1) * 100)
-    'arr(num) = Round(Rnd(1) * 100)
-    range("A" & num) = arr(num)
-  Next num
+    For num = 1 To times
+        Randomize (1) ' 初始化随机数
+        arr(num) = Rnd(1) * 10000 \ 100 ' Rnd随机数函数生成0~1的浮点数
+        ' 上面使用了运算符进行取整，也可以根据需求使用vba内部的取整函数达到同样的效果
+        ' arr(num) = Int(Rnd(1) * 100)
+        ' arr(num) = Round(Rnd(1) * 100)
+        Range("A" & num) = arr(num)
+    Next num
 End Sub
 
 '自定义排序
@@ -639,12 +642,12 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 
 ```vba
 Private Sub Workbook_Open()
- Application.WindowState = xlMaximized
+    Application.WindowState = xlMaximized
 End Sub
 ```
 
 
-vba中有很多对象，常用的对象如下:
+VBA中有很多对象，常用的对象如下:
 
 |对象|对象说明| 文档地址|
 |----|----|----|
