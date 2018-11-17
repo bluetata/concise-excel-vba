@@ -156,10 +156,10 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 
 |函数|函数说明|参数说明|示例|
 |----|----|----|----|
-|`UBound(Array arr,[Integer i])`|数组最大的索引值|`arr`:数组;`i`:整形,数组维数|
-|`LBound(Array arr,[Integer i])`|数组最小的索引值|同上|
-|`Join(Array arr,[String s])`|合并字符串|`arr`:数组;`s`:合并的分隔符|
-|`Split(String str,[String s])`|分割字符串|`str`:待分割的字符串;`s`:分割字符串的分隔符|
+|`UBound(Array arr, [Integer i])`|数组最大的索引值|`arr`： 数组;`i`: 整形，数组维数|
+|`LBound(Array arr, [Integer i])`|数组最小的索引值|同上|
+|`Join(Array arr, [String s])`|合并字符串|`arr`： 数组;`s`： 合并的分隔符|
+|`Split(String str, [String s])`|分割字符串|`str`： 待分割的字符串；`s`: 分割字符串的分隔符|
 
 > 函数说明
 >
