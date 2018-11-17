@@ -227,23 +227,23 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 '-----------------------------------
 
 ' 普通模式
-If 10>3 Then
-    操作1'执行这一步
+If 10 > 3 Then
+    操作1  ' 执行这一步
 End If
 
 ' 增加Else
-If 1>2 Then
+If 1 > 2 Then
       操作1
 Else
-    操作2'执行这一步
+    操作2  ' 执行这一步
 End If
 
-'嵌套If
+' 嵌套If
 If 10 > 3 Then
     If 1 > 2 Then
         操作1
     Else
-        操作2    ' 执行这一步
+        操作2  ' 执行这一步
     End If
 Else
     操作3
@@ -251,11 +251,11 @@ End If
 
 ' Select...Case... 多选一
 Dim Length As Integer
-Length=10
+Length = 10
 Select Length
-    Case Is >=8
-        操作1 '执行这一步
-    Case Is >20
+    Case Is >= 8
+        操作1  ' 执行这一步
+    Case Is > 20
         操作2
     Case Else
         操作3
@@ -309,7 +309,7 @@ Dim i As Integer
 i = 5
 Do
     i = i - 1
-Loop Util i<1  
+Loop Util i < 1  
 ```
 
 `选择`和`循环`提供了多种实现同一目的的语句结构，他们都能实现同样的作用，
@@ -374,7 +374,7 @@ End Function
 默认情况下，过程是按引用方式传递参数的。在这个过程中对参数的修改会影响到原有的变量。
 也可以使用`ByRef`关键字显示的声明按引用传参。
 ```vba
-Sub St1(ByVal n As Integer,ByRef range)
+Sub St1(ByVal n As Integer, ByRef range)
 	...Other code
 End SUb
 ```
@@ -435,78 +435,78 @@ Sub createRandom(times As Integer)
     Next num
 End Sub
 
-'自定义排序
+' 自定义排序
 Function defSort(rgs) As Variant
-  Dim arr() As Integer
-  Dim total As Integer
-  Dim rg
-  Dim st As Integer '数组开始标记
-  Dim ed As Integer '数组结束标记
+    Dim arr() As Integer
+    Dim total As Integer
+    Dim rg
+    Dim st As Integer  ' 数组开始标记
+    Dim ed As Integer  ' 数组结束标记
 
-  Debug.Print "rgs类型:"; TypeName(rgs)
-  total = UBound(rgs)
-  ReDim arr(total)
-  st = 1
-  ed = total
+    Debug.Print "rgs类型:"; TypeName(rgs)
+    total = UBound(rgs)
+    ReDim arr(total)
+    st = 1
+    ed = total
 
-  '对数组分区
-  For Each rg In rgs
-    If rg > 50 Then
-      arr(ed) = rg
-      ed = ed - 1
-    Else
-      arr(st) = rg
-      st = st + 1
-    End If
-  Next rg
-
-  Dim i As Integer
-  Dim j As Integer
-  Dim tmp As Integer
-
-  '冒泡排序
-  For i = 1 To total
-    For j = i To total
-      If arr(i) > 50 And arr(j) > 50 Then '大于50的倒序排列
-        If arr(i) < arr(j) Then
-          tmp = arr(i)
-          arr(i) = arr(j)
-          arr(j) = tmp
-
-          Debug.Print "大于50的"; i; j; tmp '程序运行过程中在立即窗口显示执行内容，用于调试程序
+    ' 对数组分区
+    For Each rg In rgs
+        If rg > 50 Then
+            arr(ed) = rg
+            ed = ed - 1
+        Else
+            arr(st) = rg
+            st = st + 1
         End If
-      ElseIf arr(i) <= 50 And arr(j) <= 50 Then '小于50的正序排列
-        If arr(i) > arr(j) Then
-          tmp = arr(i)
-          arr(i) = arr(j)
-          arr(j) = tmp
+    Next rg
 
-          Debug.Print "不大于50的"; i; j; tmp
+    Dim i As Integer
+    Dim j As Integer
+    Dim tmp As Integer
+
+    ' 冒泡排序
+    For i = 1 To total
+        For j = i To total
+            If arr(i) > 50 And arr(j) > 50 Then '大于50的倒序排列
+                If arr(i) < arr(j) Then
+                    tmp = arr(i)
+                    arr(i) = arr(j)
+                    arr(j) = tmp
+
+                    Debug.Print "大于50的"; i; j; tmp ' 程序运行过程中在立即窗口显示执行内容，用于调试程序
+                    End If
+                Else If arr(i) <= 50 And arr(j) <= 50 Then ' 小于50的正序排列
+                    If arr(i) > arr(j) Then
+                        tmp = arr(i)
+                        arr(i) = arr(j)
+                        arr(j) = tmp
+
+                        Debug.Print "不大于50的"; i; j; tmp
+                    End If
+                Else
+            Exit For
         End If
-      Else
-        Exit For
-      End If
     Next j
   Next i
   defSort = arr
 End Function
 
 
-'程序入口
+' 程序入口
 Sub main()
-  Const SORT_NUM = 20
-  Dim rgs
-  Dim arr
+    Const SORT_NUM = 20
+    Dim rgs
+    Dim arr
 
-  createRandom SORT_NUM '初始化待排序区域
+    createRandom SORT_NUM ' 初始化待排序区域
 
-  rgs = range("A1:A" & SORT_NUM)
-  arr = defSort(rgs)
+    rgs = range("A1:A" & SORT_NUM)
+    arr = defSort(rgs)
 
-  '循环赋值
-  For i = 1 To SORT_NUM
-    range("B" & i) = arr(i)
-  Next i
+    ' 循环赋值
+    For i = 1 To SORT_NUM
+        range("B" & i) = arr(i)
+    Next i
 End Sub
 ```
 
@@ -531,7 +531,7 @@ End Sub
 选择所选单元格的整个行和列。
 
 ```VBA
-Private Sub Worksheet_SelectionChange(ByVal Target As Range) 'Worksheet_SelectionChange
+Private Sub Worksheet_SelectionChange(ByVal Target As Range) ' Worksheet_SelectionChange
     Application.EnableEvents = False
 
     With Target
