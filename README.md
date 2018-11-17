@@ -474,21 +474,21 @@ Function defSort(rgs) As Variant
                     arr(j) = tmp
 
                     Debug.Print "大于50的"; i; j; tmp ' 程序运行过程中在立即窗口显示执行内容，用于调试程序
-                    End If
-                Else If arr(i) <= 50 And arr(j) <= 50 Then ' 小于50的正序排列
-                    If arr(i) > arr(j) Then
-                        tmp = arr(i)
-                        arr(i) = arr(j)
-                        arr(j) = tmp
+                End If
+            Else If arr(i) <= 50 And arr(j) <= 50 Then ' 小于50的正序排列
+                If arr(i) > arr(j) Then
+                    tmp = arr(i)
+                    arr(i) = arr(j)
+                    arr(j) = tmp
 
-                        Debug.Print "不大于50的"; i; j; tmp
-                    End If
-                Else
-            Exit For
-        End If
-    Next j
-  Next i
-  defSort = arr
+                    Debug.Print "不大于50的"; i; j; tmp
+                End If
+            Else
+                Exit For
+            End If
+        Next j
+    Next i
+    defSort = arr
 End Function
 
 
