@@ -693,7 +693,8 @@ End Sub
 ```
 
 延伸其扩展方法：
-- GetObject封装方法，可以作为共通function
+- GetObject封装方法，可以作为共通Function
+
 ```vba
 Sub GetWorkbook()
     Dim objExcel                As Object       ' 用于存放Microsoft Excel 引用的变量。
@@ -724,7 +725,8 @@ Sub GetWorkbook()
 End Sub
 ```
 
-- OpenWorkbook封装方法，可以作为共通function
+- OpenWorkbook封装方法，可以作为共通Function
+
 ```vba
 Function OpenWorkbook(ByVal strWorkbookFilePath As String)
     Dim wb As Workbook
@@ -746,15 +748,17 @@ End Function
 
 ### 4.2 操作Excel工作表（Worksheet）
 
-1. 移动工作表
+#### 4.2.1 移动工作表
 
-移动工作表是指将工作表移到工作簿中的其他位置。在VBA中，可以使用WorkSheet.Move方法来移动工作表。
+移动工作表是指将工作表移到工作簿中的其他位置。
+在VBA中，可以使用WorkSheet.Move方法来移动工作表。
 
 语法：表达式.Move(Before, After)
 其中，在Move方法中，主要包含两个参数，其功能如下：
 
-Before 在其之前放置移动工作表的工作表。如果指定了After，则不能指定Before。 
-After 在其之后放置移动工作表的工作表。如果指定了Before，则不能指定After。 例如，移动 "工资表" 至Sheet3工作表之后，可以输入以下代码： 
+Before 在其之前放置移动工作表的工作表。如果指定了After，则不能指定Before。
+After 在其之后放置移动工作表的工作表。如果指定了Before，则不能指定After。
+例如：移动 "工资表" 至Sheet3工作表之后，可以输入以下代码：
 
 ```vba
 Sub 移动工作表()
@@ -763,7 +767,9 @@ Sub 移动工作表()
 End Sub
 ```
 
-另外，如果既不指定Before也不指定After，Microsoft Excel将新建一个工作簿，其中包含所移动的工作表。例如，输入以下代码，即可新建一个工作簿，且该工作表中包含有 "工资表" 工作表。
+另外，如果既不指定Before也不指定After，Microsoft Excel将新建一个工作簿，
+其中包含所移动的工作表。例如，输入以下代码，即可新建一个工作簿，
+且该工作表中包含有 "工资表" 工作表。
 
 ```vba
 Sub A()
@@ -771,20 +777,30 @@ Sub A()
 End Sub
 ```
 
-2． 复制工作表
+#### 4.2.2 复制工作表
 
-复制工作表是指将工作表进行备份，以便于用户对备份文件进行操作时，不会损坏原有文件。在VBA中，使用Sheets.Copy方法可以将工作表复制到工作簿的另一位置。 语法：表达式.Copy(Before, After)
+复制工作表是指将工作表进行备份，以便于用户对备份文件进行操作时，不会损坏原有文件。
+在VBA中，使用Sheets.Copy方法可以将工作表复制到工作簿的另一位置。
+语法：
 
-其中，在Copy方法中，包含的两个参数与在Move方法中的参数相似，其参数功能如下： Before 将要在其之前放置所复制工作表的工作表。如果指定了After，则不能指定Before。After 将要在其之后放置所复制工作表的工作表。如果指定了Before，则不能指定After。 例如，复制 "工资表" 表格至Sheet3工作表之后，可以输入以下代码：
+```vba
+表达式.Copy(Before, After)
+```
+
+其中，在Copy方法中，包含的两个参数与在Move方法中的参数相似，其参数功能如下：
+Before 将要在其之前放置所复制工作表的工作表。如果指定了After，则不能指定Before。
+After 将要在其之后放置所复制工作表的工作表。如果指定了Before，则不能指定After。
+例如：复制 "工资表" 表格至Sheet3工作表之后，可以输入以下代码：
 
 ```vba
 Sub 复制工作表()
     Sheets("工资表").Select
     Sheets("工资表").Copy After:=Sheets(3)
-End Sub 
+End Sub
 ```
 
-另外，用户还可以在不同的工作簿之间进行复制。例如，将当前工作簿中的“工资表”工作表复制到打开的Book1工作表中，可以输入以下代码：
+另外，用户还可以在不同的工作簿之间进行复制。
+例如：将当前工作簿中的“工资表”工作表复制到打开的Book1工作表中，可以输入以下代码：
 
 ```vba
 Sub 复制工作表至Book1中()
