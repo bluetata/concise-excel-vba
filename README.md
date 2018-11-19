@@ -112,7 +112,7 @@ Dim v4
 
 使用数组和对象时，也要声明，这里说下数组的声明：
 ```vba
-' 确定范围的数组，可以存储b-a+1个数，a、b为整数
+' 确定范围的数组，可以存储b - a + 1个数，a、b为整数
 Dim 数组名称(a To b) As 数据类型
 
 Dim arr(1 TO 100) As Integer ' 表示arr可以存储100个整数
@@ -135,11 +135,11 @@ ReDim arr4(1 To v1)     ' 设定arr4的大小，不能重新设定arr4的类型
 ```vba
 ' 使用Array函数将已知的数据常量放到数组里
 Dim arr As Variant        ' 定义arr为变体类型
-arr = Array(1,1,2,3,5,8,13,21) ' 将整数存储到arr中,索引默认从0开始
+arr = Array(1, 1, 2, 3, 5, 8, 13, 21) ' 将整数存储到arr中,索引默认从0开始
 
 ' 使用Split函数分隔字符串创建数组
 Dim arr2 As Variant
-arr2 = Split("hello,world",",") ' 按,分隔字符串 hello,world 并赋值给arr2
+arr2 = Split("hello, world", ", ") ' 按,分隔字符串 hello,world 并赋值给arr2
 
 ' 使用Excel单元格区域创建数组
 ' 这种方式创建的数组，索引默认从1开始
@@ -149,7 +149,6 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 
 ```
 
-//TODO 补充操作excel赋值的动图
 
 **数组常用的函数**
 
@@ -207,9 +206,9 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 ```vba
 ' Like是个比较有用的运算符，常用来做匹配或模糊匹配。
 ' 在模糊匹配的时候，有一些通配符能方便模糊匹配规则的书写
-"这是一个demo1" Like "*demo1" = True '*号表示匹配任意多个字符
-"这是一个demo2" Like "????demo2" = True '?号表示匹配任意单个字符
-"这是一个demo3" Like "*demo#" = True '#号表示匹配任意数字
+"这是一个demo1" Like "*demo1" = True    ' *号表示匹配任意多个字符
+"这是一个demo2" Like "????demo2" = True ' ?号表示匹配任意单个字符
+"这是一个demo3" Like "*demo#" = True    ' #号表示匹配任意数字
 ```
 
 ### 1.4 语句结构
@@ -288,7 +287,7 @@ Do While i < 5  ' 循环5次
     i = i + 1
 Loop
 
-'将判断条件后置的Do..While
+' 将判断条件后置的Do...While
 Dim i As Integer
 i = 1
 Do
@@ -348,7 +347,7 @@ End Sub
 ```
 调用`Sub`的方法有三种，使用`Call`、直接调用和`Application.Run`
 
-举个栗子：
+举个例子：
 ![Alt text](/doc/source/images/1505555701907.png)
 
 **Function**
@@ -387,12 +386,11 @@ End SUb
 - `Sub`中默认按引用传递参数，所以注意使用，一般不要对外面的变量进行修改，将封装保留在内部
 
 
-- `Dim`和`Set`的区别  [参考](http://blog.csdn.net/nctu_to_prove_safety/article/details/53148962)
+- `Dim`和`Set`的关系及区分
+
+很明显的是 vba中使用Dim设定变量类型，Set将对象引用赋值给变量
 
 ```vba
-' vba中使用Dim设定变量类型，Set将对象引用赋值给变量
-
-' 栗子
 ' 将Range对象赋值给变量rg
 Dim rg As Range  ' 声明rg为Range对象
 Set rg = Range("A1") ' 设定rg为Range("A1")的引用，之后操作rg和操作Range("A1")一样了
@@ -404,6 +402,27 @@ rg = Range("A1")   ' 这段代码将报错
 ' 在非显示声明rg的前提下，下面的代码将会得到不一样的结果
 rg = Range("A1")  ' rg将会是Range("A1")的内容，rg的类型将会是一种基本类型，Integer/String等
 Set rg = Range("A1")   ' 这种情况下，rg将会是Range对象
+```
+
+- VBA中变量用Dim定义和不用Dim定义而直接使用有何区别？
+
+用Dim语句声明变量就是定义该变量应存储的数据类型；
+如果不指定数据类型或对象类型，也就是不用Dim定义，且在模块中没有 `Deftype` 语句，
+则该变量按缺省设置是 `Variant` 类型。
+
+- VBA中用Set赋值和不用Set赋值有什么区别？
+
+给普通变量赋值使用`LET`，LET 可以**省略**。</br>
+给对象变量赋值使用`SET`，SET 不能省略。
+
+```vba
+Sub AssignString()
+    Dim strA As String
+    Dim strB As String
+
+    strA = "hello"      ' 本句也可写成 LET strA = "hello"
+    Set strB = "hello"  ' 错误写法/Compile error
+EndSub
 ```
 
 
