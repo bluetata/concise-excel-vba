@@ -154,10 +154,10 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 
 |函数|函数说明|参数说明|示例|
 |----|----|----|----|
-|`UBound(Array arr, [Integer i])`|数组最大的索引值|`arr`： 数组;`i`: 整形，数组维数|
+|`UBound(Array arr, [Integer i])`|数组最大的索引值|`arr`：数组；`i`: 整形，数组维数|
 |`LBound(Array arr, [Integer i])`|数组最小的索引值|同上|
-|`Join(Array arr, [String s])`|合并字符串|`arr`： 数组;`s`： 合并的分隔符|
-|`Split(String str, [String s])`|分割字符串|`str`： 待分割的字符串；`s`: 分割字符串的分隔符|
+|`Join(Array arr, [String s])`|合并字符串|`arr`：数组；`s`：合并的分隔符|
+|`Split(String str, [String s])`|分割字符串|`str`：待分割的字符串；`s`：分割字符串的分隔符|
 
 > 函数说明
 >
@@ -206,9 +206,9 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 ```vba
 ' Like是个比较有用的运算符，常用来做匹配或模糊匹配。
 ' 在模糊匹配的时候，有一些通配符能方便模糊匹配规则的书写
-"这是一个demo1" Like "*demo1" = True    ' *号表示匹配任意多个字符
-"这是一个demo2" Like "????demo2" = True ' ?号表示匹配任意单个字符
-"这是一个demo3" Like "*demo#" = True    ' #号表示匹配任意数字
+"这是一个demo1" Like "*demo1" = True    ' * 号表示匹配任意多个字符
+"这是一个demo2" Like "????demo2" = True ' ? 号表示匹配任意单个字符
+"这是一个demo3" Like "*demo#" = True    ' # 号表示匹配任意数字
 ```
 
 ### 1.4 语句结构
@@ -333,7 +333,7 @@ End With
 
 ### 1.5 过程和函数
 
-`Sub`和`Function`是VBA提供的两种封装体，利用宏录制器得到的就是`Sub`。
+**Sub**和**Function**是VBA提供的两种封装体，利用宏录制器得到的就是`Sub`。
 两者的区别不大，`Sub`不需要返回值，`Function`可以定义返回值和返回的类型。
 
 **Sub**
@@ -373,7 +373,7 @@ End Function
 也可以使用`ByRef`关键字显示的声明按引用传参。
 ```vba
 Sub St1(ByVal n As Integer, ByRef range)
-	...Other code
+    ...Other code
 End SUb
 ```
 
@@ -392,15 +392,15 @@ End SUb
 
 ```vba
 ' 将Range对象赋值给变量rg
-Dim rg As Range  ' 声明rg为Range对象
-Set rg = Range("A1") ' 设定rg为Range("A1")的引用，之后操作rg和操作Range("A1")一样了
+Dim rg As Range         ' 声明rg为Range对象
+Set rg = Range("A1")    ' 设定rg为Range("A1")的引用，之后操作rg和操作Range("A1")一样了
 
 ' 如果不使用Set，下面的代码将报错
 Dim rg As Range
 rg = Range("A1")   ' 这段代码将报错
 
 ' 在非显示声明rg的前提下，下面的代码将会得到不一样的结果
-rg = Range("A1")  ' rg将会是Range("A1")的内容，rg的类型将会是一种基本类型，Integer/String等
+rg = Range("A1")       ' rg将会是Range("A1")的内容，rg的类型将会是一种基本类型，Integer/String等
 Set rg = Range("A1")   ' 这种情况下，rg将会是Range对象
 ```
 
@@ -412,8 +412,8 @@ Set rg = Range("A1")   ' 这种情况下，rg将会是Range对象
 
 - VBA中用Set赋值和不用Set赋值有什么区别？
 
-给普通变量赋值使用`LET`，LET 可以**省略**。</br>
-给对象变量赋值使用`SET`，SET 不能省略。
+给普通变量赋值使用`Let`，Let 可以**省略**。</br>
+给对象变量赋值使用`Set`，Set 不能省略。
 
 ```vba
 Sub AssignString()
@@ -576,7 +576,7 @@ End Sub
 `Modules` 是相似功能和子程序的集合，通常根据功能进行分组。
 
 `ThisWorkbook` 是Workbook对象的私有模块。
-例如， Workbook_Open()， Workbook_Close() 例程驻留在此模块中。
+例如，Workbook_Open()，Workbook_Close() 例程驻留在此模块中。
 （[工作簿对象参考](https://docs.microsoft.com/zh-cn/office/vba/api/excel.workbook)）
 
 `Sheet1`，`Sheet2` 是单个工作表的私有模块。在它们中，您将会放入该表的特定功能。
@@ -826,10 +826,3 @@ Sub 复制工作表至Book1中()
     Sheets("工资表").Copy After:=Workbooks("Book1").Sheets(1)
 End Sub
 ```
-
-## Change log
-
-- 2017/09/22  Fix对象操作说明的一些表述；补充追加 界面介绍及Excel相关常用操作
-- 2017/09/22  Fix对象的一些表述错误
-- 2017/09/18  补充`Set`&`Dim`;VBA界面介绍
-- 2017/09/16  VBA语法说明
