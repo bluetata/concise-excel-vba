@@ -3,13 +3,13 @@
 
 ## 目录
 
-- [x] 0x00 文档列表
-- [x] 0x01 语法说明
-- [x] 0x02 VBA界面介绍
-- [x] 0x03 对象操作说明
-- [ ] 0x04 Excel 相关常用操作
-- [ ] 0x05 Trouble shooting
-- [x] Change log
+- [x] 0x00 文档列表 (done)
+- [x] 0x01 语法说明 (done)
+- [x] 0x02 VBA界面介绍 (done)
+- [x] 0x03 对象操作说明 (done)
+- [ ] 0x04 Excel 相关常用操作 (ding)
+- [ ] 0x05 Trouble shooting (ding )
+
 
 ## 0x00 文档列表
 - [Excel-vba coding规约/开发规范](https://github.com/Youchien/development-specification/blob/master/doc/source/Excel-vba%20Language%20Specification.md)
