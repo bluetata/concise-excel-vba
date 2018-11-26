@@ -3,25 +3,14 @@
 
 ## 目录
 
-- [x] [0x00 文档列表](#docslist) (done)
 - [x] [0x01 语法说明](#explanation) (done)
 - [x] [0x02 VBA界面介绍](#layout) (done)
 - [x] [0x03 对象操作说明](#object-option) (done)
 - [ ] [0x04 字符串 String 相关常用操作](#string-option) (ding)
 - [ ] [0x04 Excel 相关常用操作](#excel-option) (ding)
 - [ ] 0x05 Trouble shooting (ding )
+- [x] [0xFF 学习资源列表](#docslist) (done)
 
-<a name="docslist"></a>
-## 0x00 文档列表
-- [Excel-vba coding规约/开发规范](https://github.com/Youchien/development-specification/blob/master/doc/source/Excel-vba%20Language%20Specification.md)
-- [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
-- [Excel宏教程 (宏的介绍与基本使用)](http://blog.csdn.net/lyhdream/article/details/9060801)
-- [Excel2010中的VBA入门,官方文档](https://docs.microsoft.com/zh-cn/previous-versions/office/ee814737(v=office.14))
-- [Excel VBA的一些书籍资源,百度网盘](https://pan.baidu.com/s/1ktVmW63s8utBpAdcGnJfJA)  （提取码: `j92n`）
-- [Excel 函数速查手册](https://support.office.com/zh-cn/article/Excel-%E5%87%BD%E6%95%B0%EF%BC%88%E6%8C%89%E7%B1%BB%E5%88%AB%E5%88%97%E5%87%BA%EF%BC%89-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb?ui=zh-CN&rs=zh-CN&ad=CN)
-- [VBA的一些使用心得](http://www.cnblogs.com/techyc/p/3355054.html)
-- [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
-- [VBA入门参考，英文](http://analystcave.com/vba-cheat-sheet/)
 
 <a name="explanation"></a>
 ## 0x01 语法说明
@@ -679,19 +668,22 @@ VBA中有很多对象，常用的对象如下:
 ### 3.2 Application对象
 
 
-
 ### 3.3 Range对象
 ![Alt text](/doc/source/images/1505548886377.png)
 
 ![Alt text](/doc/source/images/1505549069568.png)
 
+
+
 <a name="string-option"></a>
 ## 0x04 字符串String相关常用操作
+
+
 
 <a name="excel-option"></a>
 ## 0x05 Excel 相关常用操作
 
-### 4.1 打开Excel两种方式
+### 5.1 打开Excel两种方式
 
 - 利用 `GetObject` 方法打开Excel文档
 ```vba
@@ -769,9 +761,9 @@ End Function
 ```
 
 
-### 4.2 操作Excel工作表（Worksheet）
+### 5.2 操作Excel工作表（Worksheet）
 
-#### 4.2.1 移动工作表
+#### 5.2.1 移动工作表
 
 移动工作表是指将工作表移到工作簿中的其他位置。
 在VBA中，可以使用WorkSheet.Move方法来移动工作表。
@@ -800,7 +792,7 @@ Sub A()
 End Sub
 ```
 
-#### 4.2.2 复制工作表
+#### 5.2.2 复制工作表
 
 复制工作表是指将工作表进行备份，以便于用户对备份文件进行操作时，不会损坏原有文件。
 在VBA中，使用Sheets.Copy方法可以将工作表复制到工作簿的另一位置。
@@ -830,3 +822,17 @@ Sub 复制工作表至Book1中()
     Sheets("工资表").Copy After:=Workbooks("Book1").Sheets(1)
 End Sub
 ```
+
+
+
+<a name="docslist"></a>
+## 0xFF VBA学习资源列表
+- [Excel-vba coding规约/开发规范](https://github.com/Youchien/development-specification/blob/master/doc/source/Excel-vba%20Language%20Specification.md)
+- [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
+- [Excel宏教程 (宏的介绍与基本使用)](http://blog.csdn.net/lyhdream/article/details/9060801)
+- [Excel2010中的VBA入门,官方文档](https://docs.microsoft.com/zh-cn/previous-versions/office/ee814737(v=office.14))
+- [Excel VBA的一些书籍资源,百度网盘](https://pan.baidu.com/s/1ktVmW63s8utBpAdcGnJfJA)  （提取码: `j92n`）
+- [Excel 函数速查手册](https://support.office.com/zh-cn/article/Excel-%E5%87%BD%E6%95%B0%EF%BC%88%E6%8C%89%E7%B1%BB%E5%88%AB%E5%88%97%E5%87%BA%EF%BC%89-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb?ui=zh-CN&rs=zh-CN&ad=CN)
+- [VBA的一些使用心得](http://www.cnblogs.com/techyc/p/3355054.html)
+- [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
+- [VBA入门参考，英文](http://analystcave.com/vba-cheat-sheet/)
