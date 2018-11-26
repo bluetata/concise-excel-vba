@@ -3,14 +3,15 @@
 
 ## 目录
 
-- [x] 0x00 文档列表 (done)
-- [x] 0x01 语法说明 (done)
-- [x] 0x02 VBA界面介绍 (done)
-- [x] 0x03 对象操作说明 (done)
-- [ ] 0x04 Excel 相关常用操作 (ding)
+- [x] [0x00 文档列表](#docslist) (done)
+- [x] [0x01 语法说明](#explanation) (done)
+- [x] [0x02 VBA界面介绍](#layout) (done)
+- [x] [0x03 对象操作说明](#object-option) (done)
+- [ ] [0x04 字符串 String 相关常用操作](#string-option) (ding)
+- [ ] [0x04 Excel 相关常用操作](#excel-option) (ding)
 - [ ] 0x05 Trouble shooting (ding )
 
-
+<a name="docslist"></a>
 ## 0x00 文档列表
 - [Excel-vba coding规约/开发规范](https://github.com/Youchien/development-specification/blob/master/doc/source/Excel-vba%20Language%20Specification.md)
 - [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
@@ -22,6 +23,7 @@
 - [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
 - [VBA入门参考，英文](http://analystcave.com/vba-cheat-sheet/)
 
+<a name="explanation"></a>
 ## 0x01 语法说明
 
 都知道学会了英语语法，再加上大量的词汇基础，就算基本掌握了英语了。
@@ -527,7 +529,7 @@ Sub main()
     Next i
 End Sub
 ```
-
+<a name="layout"></a>
 ## 0x02 VBA界面介绍
 ### 2.1 整体界面说明
 ![Alt text](/doc/source/images/1505749555407.png)
@@ -619,7 +621,7 @@ Projection 界面设置
 #### 2.4.2 显示立即窗口(Immediate window)
 显示快捷键： `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。
 
-
+<a name="object-option"></a>
 ## 0x03 对象操作说明
 Excel中的每个单元格，工作簿都是可以操作的对象；可以对对象进行复制、粘贴、删除等，
 也可操作对象的各种属性，来控制其展示和行为。
@@ -634,7 +636,6 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 类似于数组，将各种类型的对象封装到一块可以组成集合。
 一个集合中调用对象的例子：
 ![Alt text](/doc/source/images/1505548422147.png)
-
 
 
 ### 3.1 对象简述
@@ -684,8 +685,11 @@ VBA中有很多对象，常用的对象如下:
 
 ![Alt text](/doc/source/images/1505549069568.png)
 
+<a name="string-option"></a>
+## 0x04 字符串String相关常用操作
 
-## 0x04 Excel 相关常用操作
+<a name="excel-option"></a>
+## 0x05 Excel 相关常用操作
 
 ### 4.1 打开Excel两种方式
 
