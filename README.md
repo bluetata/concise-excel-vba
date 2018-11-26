@@ -1,5 +1,7 @@
 
 # 简明Excel VBA
+Last update date：11/26/2018 22:48
+
 
 ## 目录
 
@@ -7,8 +9,8 @@
 - [x] [0x02 VBA界面介绍](#layout) (done)
 - [x] [0x03 对象操作说明](#object-option) (done)
 - [ ] [0x04 字符串 String 相关常用操作](#string-option) (ding)
-- [ ] [0x04 Excel 相关常用操作](#excel-option) (ding)
-- [ ] 0x05 Trouble shooting (ding )
+- [ ] [0x05 Excel 相关常用操作](#excel-option) (ding)
+- [ ] 0x06 Trouble shooting (ding )
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 
@@ -368,7 +370,6 @@ Sub St1(ByVal n As Integer, ByRef range)
 End SUb
 ```
 
-
 ### 1.6 补充
 
 - 在vba中使用 `'`进行代码注释
@@ -415,7 +416,6 @@ Sub AssignString()
     Set strB = "hello"  ' 错误写法/Compile error
 EndSub
 ```
-
 
 ### 1.7示例
 
@@ -518,8 +518,11 @@ Sub main()
     Next i
 End Sub
 ```
+
+
 <a name="layout"></a>
 ## 0x02 VBA界面介绍
+
 ### 2.1 整体界面说明
 ![Alt text](/doc/source/images/1505749555407.png)
 
@@ -610,6 +613,7 @@ Projection 界面设置
 #### 2.4.2 显示立即窗口(Immediate window)
 显示快捷键： `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。
 
+
 <a name="object-option"></a>
 ## 0x03 对象操作说明
 Excel中的每个单元格，工作簿都是可以操作的对象；可以对对象进行复制、粘贴、删除等，
@@ -625,7 +629,6 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 类似于数组，将各种类型的对象封装到一块可以组成集合。
 一个集合中调用对象的例子：
 ![Alt text](/doc/source/images/1505548422147.png)
-
 
 ### 3.1 对象简述
 
@@ -654,7 +657,6 @@ Private Sub Workbook_Open()
 End Sub
 ```
 
-
 VBA中有很多对象，常用的对象如下:
 
 |对象|对象说明| 文档地址|
@@ -664,20 +666,15 @@ VBA中有很多对象，常用的对象如下:
 |Worksheet|代表Excel的工作表|[文档](https://msdn.microsoft.com/zh-cn/library/ff194464.aspx)|
 |Range|代表Excel的单元格，可以是单个单元格或单元格区域|[文档](https://msdn.microsoft.com/zh-cn/library/office/ff838238.aspx)|
 
-
 ### 3.2 Application对象
-
 
 ### 3.3 Range对象
 ![Alt text](/doc/source/images/1505548886377.png)
 
 ![Alt text](/doc/source/images/1505549069568.png)
 
-
-
 <a name="string-option"></a>
 ## 0x04 字符串String相关常用操作
-
 
 
 <a name="excel-option"></a>
@@ -824,7 +821,6 @@ End Sub
 ```
 
 
-
 <a name="docslist"></a>
 ## 0xFF VBA学习资源列表
 - [Excel-vba coding规约/开发规范](https://github.com/Youchien/development-specification/blob/master/doc/source/Excel-vba%20Language%20Specification.md)
@@ -836,3 +832,8 @@ End Sub
 - [VBA的一些使用心得](http://www.cnblogs.com/techyc/p/3355054.html)
 - [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
 - [VBA入门参考，英文](http://analystcave.com/vba-cheat-sheet/)
+
+
+<a name="license"></a>
+## 开源许可
+本Repository除特殊注明外，均采用 Creative Commons [BY-NC-ND 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)（自由转载-保持署名-非商用-禁止演绎）协议发布。
