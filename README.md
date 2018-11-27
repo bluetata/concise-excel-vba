@@ -221,10 +221,8 @@ If选择可以嵌套使用</br>
 If 10 > 3 Then
     操作1  ' 执行这一步
 End If
-```
 
-增加Else逻辑
-```vba
+' 增加Else逻辑
 If 1 > 2 Then
     操作1
 Else
@@ -244,7 +242,6 @@ Else
     操作3
 End If
 ```
-
 
 3. Select...Case... 多选一
 ```vba
@@ -292,10 +289,9 @@ i = 1
 Do While i < 5  ' 循环5次
     i = i + 1
 Loop
-```
 
+' ===============================================
 ' 将判断条件后置的Do...While
-```vba
 Dim i As Integer
 i = 1
 Do
@@ -311,10 +307,9 @@ i = 5
 Do Util i < 1  
     i = i - 1
 Loop
-```
 
-后置的Do Until
-```vba
+' ===============================================
+' 后置的Do Until
 Dim i As Integer
 i = 5
 Do
