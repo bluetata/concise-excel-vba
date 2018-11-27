@@ -222,11 +222,13 @@ If 10 > 3 Then
     操作1  ' 执行这一步
 End If
 
-' 增加Else逻辑
+' 增加Else和Else If逻辑
 If 1 > 2 Then
     操作1
+ElseIf 1 = 2 Then
+    操作2
 Else
-    操作2  ' 执行这一步
+    操作3  ' 执行这一步
 End If
 ```
 
@@ -304,7 +306,7 @@ Loop While i < 5 '循环4次
 ```vba
 Dim i As Integer
 i = 5
-Do Util i < 1  
+Do Until i < 1  
     i = i - 1
 Loop
 
@@ -314,7 +316,7 @@ Dim i As Integer
 i = 5
 Do
     i = i - 1
-Loop Util i < 1  
+Loop Until i < 1  
 ```
 
 **CONTINUE**
@@ -391,7 +393,7 @@ vba内部提供了大量的函数，也可以通过`Function`来定义函数，�
     [函数名=过程结果]
 End Function
 ```
-使用函数完成上面的栗子：
+使用函数完成上面的例子：
 ![Alt text](/doc/source/images/1505556598033.png)
 
 **参数传递**
@@ -458,10 +460,10 @@ EndSub
 
 ### 1.7示例
 
-举个排序的栗子，要对`A1:A20`的单元格区域进行排序，区域内的内容为1-100的随机整数，
+举个排序的例子，要对`A1:A20`的单元格区域进行排序，区域内的内容为1-100的随机整数，
 规则是大于50的倒序排列，小于50的正序排列。将结果显示在`B1:B20`的区域里。
 
-在这个栗子中，首先定义一个`Sub`过程来随机生成`A1:A20`区域的内容。
+在这个例子中，首先定义一个`Sub`过程来随机生成`A1:A20`区域的内容。
 代码如下:
 
 ![Alt text](/doc/source/images/demo1.1.gif)
@@ -622,7 +624,7 @@ End Sub
 
 ```vba
 sheet2.select
-cells(1,1) = 1
+cells(1, 1) = 1
 ```
 
 因为你的代码在sheet1下，cells就一定是sheet1的
@@ -650,8 +652,8 @@ Projection 界面设置
 ![Alt text](/doc/source/images/toolbars_edit_setting.png)
 
 #### 2.4.2 显示立即窗口(Immediate window)
-显示快捷键： `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。
-
+显示快捷键： `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。</br>
+当在调试debug的时候，可以使用`Debug.Print "xxxlog"`的时候可以在该窗口直接显示打印结果
 
 <a name="object-option"></a>
 ## 0x03 对象操作说明
@@ -715,6 +717,78 @@ VBA中有很多对象，常用的对象如下:
 <a name="string-option"></a>
 ## 0x04 字符串String相关常用操作
 
+1. Trim
+`Trim`函数删除给定输入字符串的前导空格和尾随空格。</br>
+语法：Trim(String)
+
+2. Instr
+`InStr`函数返回一个字符串第一次出现在一个字符串，从左到右搜索。返回搜索到的字符索引位置。
+
+语法：InStr([start, ]string1, string2[, compare])
+
+   - Start   - 一个可选参数。指定搜索的起始位置。搜索从第一个位置开始，从左到右。
+   - String1 - 必需的参数。要搜索的字符串。
+   - String2 - 必需的参数。要在String1中搜索的字符串。
+   - Compare - 一个可选参数。指定要使用的字符串比较。它可以采取以下提到的值：
+        - 0 = vbBinaryCompare - 执行二进制比较(默认)
+        - 1 = vbTextCompare - 执行文本比较
+
+```vba
+Private Sub Constant_demo_Click()
+    Dim Var As Variant
+    Var = "Microsoft VBScript"
+    Debug.Print InStr(1, Var, "s")        ' 6
+    Debug.Print InStr(7, Var, "s")        ' 0
+    Debug.Print InStr(1, Var, "f", 1)     ' 8
+    Debug.Print InStr(1, Var, "t", 0)     ' 9
+    Debug.Print InStr(1, Var, "i")        ' 2
+    Debug.Print InStr(7, Var, "i")        ' 16
+    Debug.Print InStr(Var, "VB")          ' 11
+End Sub
+```
+
+3. Mid
+`Mid`函数返回给定输入字符串中指定数量的字符。</br>
+语法：Mid(String, start[, Length])</br>
+参数：
+   - String - 必需的参数。输入从中返回指定数量的字符的字符串。
+   - Start - 必需的参数。一个整数，它指定了字符串的起始位置。
+   - Length - 必需的参数。一个整数，指定要返回的字符数。
+
+```vba
+    Private Sub Constant_demo_Click()
+        Dim var as Variant
+        var = "Microsoft VBScript"
+        Debug.Print Mid(var,2)      ' icrosoft VBScript
+        Debug.Print Mid(var,2,5)    ' icros
+        Debug.Print Mid(var,5,7)    ' osoft V
+    End Sub
+```
+
+4. Left 和 Right
+语法：Left(String, Length)</br>
+参数
+   - String - 必需的参数。 输入从左侧返回指定数量的字符的字符串。
+   - Length - 必需的参数。 一个整数，指定要返回的字符数。
+```vba
+Private Sub Constant_demo_Click()
+    Dim var as Variant
+
+    var = "Microsoft VBScript"
+    Debug.Print Left(var,2)     ' Mi
+
+    var = "MS VBSCRIPT"
+    Debug.Print Left(var,5)     ' MS VB
+
+    var = "microsoft"
+    Debug.Print Left(var,9)     ' microsoft
+End Sub
+```
+5. 其他字符串函数
+- Ltrim(string) 去掉 string 左端空白
+- Rtrim(string) 去掉 string 右端空白
+- Len(string) 计算 string 长度
+- Ucase(string) 转换为大写
 
 <a name="excel-option"></a>
 ## 0x05 Excel 相关常用操作
