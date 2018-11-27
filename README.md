@@ -717,15 +717,15 @@ VBA中有很多对象，常用的对象如下:
 <a name="string-option"></a>
 ## 0x04 字符串String相关常用操作
 
-1. Trim
+### 1. Trim
 `Trim`函数删除给定输入字符串的前导空格和尾随空格。</br>
 语法：Trim(String)
 
-2. Instr
+### 2. Instr
 `InStr`函数返回一个字符串第一次出现在一个字符串，从左到右搜索。返回搜索到的字符索引位置。
 
 语法：InStr([start, ]string1, string2[, compare])
-
+参数：
    - Start   - 一个可选参数。指定搜索的起始位置。搜索从第一个位置开始，从左到右。
    - String1 - 必需的参数。要搜索的字符串。
    - String2 - 必需的参数。要在String1中搜索的字符串。
@@ -747,7 +747,7 @@ Private Sub Constant_demo_Click()
 End Sub
 ```
 
-3. Mid
+### 3. Mid
 `Mid`函数返回给定输入字符串中指定数量的字符。</br>
 语法：Mid(String, start[, Length])</br>
 参数：
@@ -765,9 +765,9 @@ End Sub
     End Sub
 ```
 
-4. Left 和 Right
+### 4. Left 和 Right
 语法：Left(String, Length)</br>
-参数
+参数：
    - String - 必需的参数。 输入从左侧返回指定数量的字符的字符串。
    - Length - 必需的参数。 一个整数，指定要返回的字符数。
 ```vba
@@ -784,7 +784,7 @@ Private Sub Constant_demo_Click()
     Debug.Print Left(var,9)     ' microsoft
 End Sub
 ```
-5. 其他字符串函数
+### 5. 其他字符串函数
 - Ltrim(string) 去掉 string 左端空白
 - Rtrim(string) 去掉 string 右端空白
 - Len(string) 计算 string 长度
