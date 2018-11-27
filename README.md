@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：11/26/2018 22:48
+Last update date：*11/27/2018 10:20*
 
 
 ## 目录
@@ -208,8 +208,9 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 
 程序通常都是顺序依次执行的。语句结构用来控制程序执行的步骤，一般有`选择`语句、`循环`语句。
 
-**选择**
-`选择`用来判断程序执行那一部分代码
+**选择语句**
+
+`选择语句`用来判断程序执行那一部分代码
 ```vba
 '-----------------------------------
 ' If...Then...End If
@@ -253,54 +254,89 @@ Select Length
 End Select
 ```
 
-**循环**
-`循环`用来让程序重复执行某段代码
+**循环语句**
+
+`循环语句`用来让程序重复执行某段代码
+
+1. 普通For...Next循环</br>
+语法：For 循环变量 = 初始值 To 终值 Step 步长
 ```vba
-' For...Next循环
-' For 循环变量 = 初始值 To 终值 Step 步长
 Dim i As Integer
 For i = 1 To 10 Step 2 ' 设定i从1到10，每次增加2，总共执行5次
     操作1   ' 可以通过设定 Exit For 退出循环
 Next i
+```
 
-' For Each..循环，又称遍历
-' For Each 变量 In 集合或数组
+2. For Each...循环</br>
+语法：For Each 变量 In 集合或数组
+```vba
 Dim arr
 Dim i As Integer
 arr = Array(1, 2, 3, 4, 5)
 For Each i In arr ' 定义变量i，遍历arr数组
     操作1
 Next i
+```
 
-' Do...While循环
-' Do While 表达式   表达式为假时跳出循环
+3. Do...While循环</br>
+语法：Do While 表达式   表达式为假时跳出循环
+```vba
 Dim i As Integer
 i = 1
 Do While i < 5  ' 循环5次
     i = i + 1
 Loop
+```
 
 ' 将判断条件后置的Do...While
+```vba
 Dim i As Integer
 i = 1
 Do
     i = i + 1
-Loop While i<5 '循环4次
+Loop While i < 5 '循环4次
+```
 
-' Do Until 直到..循环
-' Do Until 表达式    表达式为真时跳出循环
+4. Do Until 直到...循环
+语法：Do Until 表达式    表达式为真时跳出循环
+```vba
 Dim i As Integer
 i = 5
 Do Util i < 1  
     i = i - 1
 Loop
+```
 
-' 后置的Do Until
+后置的Do Until
+```vba
 Dim i As Integer
 i = 5
 Do
     i = i - 1
 Loop Util i < 1  
+```
+
+循环的continue操作，类似java语言的continue直接跳出本次循环
+```vba
+Sub continueTest()
+    Dim i
+
+    For i = 0 To 5
+        If i = 1 Then
+            '// 跳转到CONTINUE部分
+            GoTo CONTINUE
+        ElseIf i = 3 Then
+            '// 跳转到CONTINUE部分
+            GoTo CONTINUE
+        End If
+
+        '//没有GoTo语句的时候打印counter: i
+        Debug.Print i
+
+CONTINUE:   '// countinue跳转块，可以写逻辑，如果没有逻辑就直接进行下次循环
+    Next
+
+End Sub
 ```
 
 `选择`和`循环`提供了多种实现同一目的的语句结构，他们都能实现同样的作用，
