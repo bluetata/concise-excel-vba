@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：*11/27/2018 10:20*
+Last update date：*11/27/2018 19:02*
 
 
 ## 目录
@@ -726,12 +726,12 @@ VBA中有很多对象，常用的对象如下:
 
 语法：InStr([start, ]string1, string2[, compare])
 参数：
-    - Start   - 一个可选参数。指定搜索的起始位置。搜索从第一个位置开始，从左到右。
-    - String1 - 必需的参数。要搜索的字符串。
-    - String2 - 必需的参数。要在String1中搜索的字符串。
-    - Compare - 一个可选参数。指定要使用的字符串比较。它可以采取以下提到的值：
-        - 0 = vbBinaryCompare - 执行二进制比较(默认)
-        - 1 = vbTextCompare - 执行文本比较
+   * Start   - 一个可选参数。指定搜索的起始位置。搜索从第一个位置开始，从左到右。
+   * String1 - 必需的参数。要搜索的字符串。
+   * String2 - 必需的参数。要在String1中搜索的字符串。
+   * Compare - 一个可选参数。指定要使用的字符串比较。它可以采取以下提到的值：
+       - 0 = vbBinaryCompare - 执行二进制比较(默认)
+       - 1 = vbTextCompare - 执行文本比较
 
 ```vba
 Private Sub Constant_demo_Click()
@@ -751,9 +751,9 @@ End Sub
 `Mid`函数返回给定输入字符串中指定数量的字符。</br>
 语法：Mid(String, start[, Length])</br>
 参数：
-    - String - 必需的参数。输入从中返回指定数量的字符的字符串。
-    - Start - 必需的参数。一个整数，它指定了字符串的起始位置。
-    - Length - 必需的参数。一个整数，指定要返回的字符数。
+   - String - 必需的参数。输入从中返回指定数量的字符的字符串。
+   - Start - 必需的参数。一个整数，它指定了字符串的起始位置。
+   - Length - 必需的参数。一个整数，指定要返回的字符数。
 
 ```vba
     Private Sub Constant_demo_Click()
@@ -768,8 +768,8 @@ End Sub
 ### 4. Left 和 Right
 语法：Left(String, Length)</br>
 参数：
-    - String - 必需的参数。 输入从左侧返回指定数量的字符的字符串。
-    - Length - 必需的参数。 一个整数，指定要返回的字符数。
+   - String - 必需的参数。 输入从左侧返回指定数量的字符的字符串。
+   - Length - 必需的参数。 一个整数，指定要返回的字符数。
 ```vba
 Private Sub Constant_demo_Click()
     Dim var as Variant
