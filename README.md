@@ -922,7 +922,7 @@ VBA中有很多对象，常用的对象如下:
 
 <a name="3.2"></a>
 ### 3.2 Application对象
-
+    参照Application对象[官方文档](https://docs.microsoft.com/zh-CN/office/vba/api/Excel.Application(object))
 ### 3.3 Range对象
 ![Alt text](/doc/source/images/1505548886377.png)
 
@@ -933,12 +933,12 @@ VBA中有很多对象，常用的对象如下:
 
 
 <a name="4.1"></a>
-### 1. Trim
+### 4.1 Trim
 `Trim`函数删除给定输入字符串的前导空格和尾随空格。</br>
 语法：Trim(String)
 
 <a name="4.2"></a>
-### 2. Instr
+### 4.2 Instr
 `InStr`函数返回一个字符串第一次出现在一个字符串，从左到右搜索。返回搜索到的字符索引位置。
 
 语法：InStr([start, ]string1, string2[, compare])
@@ -965,7 +965,7 @@ End Sub
 ```
 
 <a name="4.3"></a>
-### 3. Mid
+### 4.3 Mid
 `Mid`函数返回给定输入字符串中指定数量的字符。</br>
 语法：Mid(String, start[, Length])</br>
 参数：
@@ -984,7 +984,7 @@ End Sub
 ```
 
 <a name="4.4"></a>
-### 4. Left 和 Right
+### 4.4 Left 和 Right
 语法：Left(String, Length)</br>
 参数：
    - String - 必需的参数。 输入从左侧返回指定数量的字符的字符串。
@@ -1005,15 +1005,15 @@ End Sub
 ```
 
 <a name="4.5"></a>
-### 5. 其他字符串函数
+### 4.5 其他字符串函数
 - `Ltrim(string)` 去掉 string 左端空白
 - `Rtrim(string)` 去掉 string 右端空白
 - `Len(string)` 计算 string 长度
 - `Ucase(string)` 转换为大写
 
+
 <a name="excel-option"></a>
 ## 0x05 Excel 相关常用操作
-
 
 <a name="5.1"></a>
 ### 5.1 打开Excel两种方式
