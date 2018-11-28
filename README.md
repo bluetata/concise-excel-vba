@@ -435,7 +435,7 @@ End SUb
 故此要用它就必须采用两种方式引用它：一种是前期绑定，另外一种是后期绑定。
 
 前期绑定：就是手工勾选工具/引用中的Microsoft VBScript Regular Expressions 5.5；
-然后在代码中定义对象：`Dim regExp As New RegExp`；</r>
+然后在代码中定义对象：`Dim regExp As New RegExp`；</br>
 后期绑定：使用CreateObject方法定义对象：`CreateObject("vbscript.regexp")`
 
 RegExp对象的属性：
@@ -504,9 +504,84 @@ End Function
 ```
 
 ### 1.7 注释（Comments code）
-注释语句是用来说明程序中某些语句的功能和作用；VBA 中有两种方法标识为注释语句。
-单引号 `'` ；如：' 定义全局变量；可以位于别的语句之尾，也可单独一行。
-`Rem` 如：`Rem 定义全局变量`；只能单独一行
+> 个人觉得注释起着非常重要的作用 --bluetata 11/28/2018 18:40
+
+注释语句是用来说明程序中某些语句的功能和作用；VBA 中有两种方法标识为注释语句。</br>
+单引号 `'` 举例：`' 定义全局变量`；可以位于别的语句之尾，也可单独一行。</br>
+`Rem` 举例：`Rem 定义全局变量`；只能单独一行
+
+以下列举出了不同级别的注释代码，也可以点击这里查看VBA Sample Code.
+
+1. Source version Comments Code
+```vba
+'--------------------------------------
+' Creation date : 03/05/2017  (cn)
+' Last update   : 11/28/2018  (cn)
+' Author(s)     : Sekito.Lv
+' Contributor(s):
+' Tested on Excel 2016
+'--------------------------------------
+```
+
+2. Use Title Blocks Comments code for Each Macro
+```vba
+'=======================================================
+' Program:   DoMemoData
+' Desc:      Writes memo data to the memo sheet
+' Called by: PrintControl
+' Call:      DoMemoData wbkReport, oStopRow
+' Arguments: wbkReport--Name of the report workbook
+'            oStopRow--Number of the last row to process
+' Comments: (1) RunReport initializes the m_oMemoRowNum
+'               variable
+'           (2) wksMemo doesn't need to be static. And
+'               it's over-defined. Fix this at some
+'               point.
+' Changes----------------------------------------------
+' Date        Programmer    Change
+' 11/26/2018  Sekito.Lv     Written
+' 11/28/2018  Sekito.Lv     Re-set memo object. This is
+'                           needed at times in Excel 8
+'                           when the report workbook must
+'                           close then re-open.
+'=======================================================
+Sub DoMemoData(wbkReport As Workbook, oStopRow As Long)
+```
+
+3. Use In-Line Comments
+```vba
+' If this routine was called by the batch routine...
+If g_bCalledByBatch Then
+
+    'Get the reference of the changing date cell
+    sDateRef = GetNameVal("ChgDateCell", 0, g_nReference)
+
+    ' If the date name is empty, return null sDateFormula
+    If sDateRef = g_sNull Then
+        sDateFormula = g_sNull
+
+    ' Else, get the beginning formula in the date cell
+    Else
+        sDateFormula = m_wbkReport.Worksheets(1). _
+        Evaluate(sDateRef).Formula
+    End If
+Else
+```
+
+4. List of Function Comments
+```vba
+'-------------------------------------
+' List of functions :
+' - 1  - PublicHolidayFr
+' - 2  - WorkingDay
+' - 3  - WorkableDay
+' - 4  - NextWorkingDay
+' - 5  - NextWorkableDay
+' - 6  - PrevWorkingDay
+'-------------------------------------
+```
+
+
 ### 1.8 补充
 
 - 在vba中使用 `'`进行代码注释
