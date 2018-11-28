@@ -510,9 +510,10 @@ End Function
 单引号 `'` 举例：`' 定义全局变量`；可以位于别的语句之尾，也可单独一行。</br>
 `Rem` 举例：`Rem 定义全局变量`；只能单独一行
 
-以下列举出了不同级别的注释代码，也可以点击这里查看VBA Sample Code.
+以下列举出了不同级别的注释代码，也可以[点击这里](doc/source/samplecode/sample-code.bas)查看VBA Sample Code.
 
-1. Source version Comments Code
+1. 源码概要注释/Source version Comments Code</br>
+在每个source文件的最开头
 ```vba
 '--------------------------------------
 ' Creation date : 03/05/2017  (cn)
@@ -523,7 +524,9 @@ End Function
 '--------------------------------------
 ```
 
-2. Use Title Blocks Comments code for Each Macro
+2. 区块注释/Use Title Blocks Comments code for Each Macro</br>
+在每个Function或者Sub上下，根据个人风格，可以在紧贴在函数上面一行处，
+也可以在函数名的下面一行处。
 ```vba
 '=======================================================
 ' Program:   DoMemoData
@@ -548,7 +551,7 @@ End Function
 Sub DoMemoData(wbkReport As Workbook, oStopRow As Long)
 ```
 
-3. Use In-Line Comments
+3. 行内注释/Use In-Line Comments
 ```vba
 ' If this routine was called by the batch routine...
 If g_bCalledByBatch Then
@@ -568,7 +571,8 @@ If g_bCalledByBatch Then
 Else
 ```
 
-4. List of Function Comments
+4. 函数列表注释/List of Function Comments</br>
+一般紧挨着源码概要注释下面，与其空一行到两行
 ```vba
 '-------------------------------------
 ' List of functions :
