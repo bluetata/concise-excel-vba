@@ -492,18 +492,22 @@ End Function
 Sample Code（后期绑定）：
 ```vba
 Function ExtractNumber(str As String) As String
-Dim regEx As Object
-Set regEx = CreateObject("vbscript.regexp")     ' 后期绑定
-With regEx
-    .Global = True       ' 搜索字符串中的全部字符，如果为假，则找到匹配的字符就停止搜索！
-    .Pattern = "\D"      ' 非数字字符的正则表达式
-    ExtractNumber = .Replace(str, "")       ' 把非数字字符替换成空字符串
-End With
-Set regEx = Nothing      ' 清除内存中的对象变量的地址，即释放内存。
+    Dim regEx As Object
+    Set regEx = CreateObject("vbscript.regexp")  ' 后期绑定
+    With regEx
+        .Global = True       ' 搜索字符串中的全部字符，如果为假，则找到匹配的字符就停止搜索！
+        .Pattern = "\D"      ' 非数字字符的正则表达式
+        ExtractNumber = .Replace(str, "")        ' 把非数字字符替换成空字符串
+    End With
+    Set regEx = Nothing      ' 清除内存中的对象变量的地址，即释放内存。
 End Function
 ```
 
-### 1.7 补充
+### 1.7 注释（Comments code）
+注释语句是用来说明程序中某些语句的功能和作用；VBA 中有两种方法标识为注释语句。
+单引号 `'` ；如：' 定义全局变量；可以位于别的语句之尾，也可单独一行。
+`Rem` 如：`Rem 定义全局变量`；只能单独一行
+### 1.8 补充
 
 - 在vba中使用 `'`进行代码注释
 - 在很长的语句中使用`_`来分割成多行
