@@ -32,7 +32,7 @@ Last update date：11/28/2018 19:15
 - [ ] [0x05 Excel 相关常用操作](#excel-option) (doing)
     - 5.1 打开Excel两种方式
     - 5.2 操作Excel工作表（Worksheet）
-- [ ] 0x06 Trouble shooting (ding )
+- [ ] 0x06 Trouble shooting (doing)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 
@@ -86,6 +86,7 @@ Excel里的每一个单元格都是一个`数据`，无论是数字、字母或�
 补充一点是，数组就像一筐水果，里面可以存不止一个数据。
 他不是一个具体的数据类型，叫数据结构更合适些。
 
+<a name="1.2"></a>
 ### 1.2 常量和变量
 
 定义后不能被改变的量，就是`常量`；相反的`变量`就能修改具体值。
@@ -183,6 +184,8 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 > 补充
 > [VBA 内置函数列表](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
 
+
+<a name="1.3"></a>
 ### 1.3 运算符
 
 运算符的作用是对数据进行操作，像加减乘除等。这块不再具体说明，列一下vba中常用的运算符。
@@ -225,6 +228,7 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 "这是一个demo3" Like "*demo#" = True    ' # 号表示匹配任意数字
 ```
 
+<a name="1.4"></a>
 ### 1.4 语句结构
 
 程序通常都是顺序依次执行的。语句结构用来控制程序执行的步骤，一般有`选择`语句、`循环`语句。
@@ -406,6 +410,7 @@ With WorkSheets("表1").Range("A1").Font
 End With
 ```
 
+<a name="1.5"></a>
 ### 1.5 过程和函数
 
 **Sub**和**Function**是VBA提供的两种封装体，利用宏录制器得到的就是`Sub`。
@@ -452,6 +457,7 @@ Sub St1(ByVal n As Integer, ByRef range)
 End SUb
 ```
 
+<a name="1.6"></a>
 ### 1.6 正则表达式(Regular Expression)
 在VBA中使用正则表达式，因为正则表达式不是vba自有的对象，
 故此要用它就必须采用两种方式引用它：一种是前期绑定，另外一种是后期绑定。
@@ -525,6 +531,7 @@ Function ExtractNumber(str As String) As String
 End Function
 ```
 
+<a name="1.7"></a>
 ### 1.7 注释（Comments code）
 > 个人觉得注释起着非常重要的作用 -- ** *bluetata* ** 11/28/2018 18:40
 
@@ -607,7 +614,7 @@ Else
 '-------------------------------------
 ```
 
-
+<a name="1.8"></a>
 ### 1.8 补充
 
 - 在vba中使用 `'`进行代码注释
@@ -655,6 +662,7 @@ Sub AssignString()
 EndSub
 ```
 
+<a name="1.9"></a>
 ### 1.9 示例
 
 举个排序的例子，要对`A1:A20`的单元格区域进行排序，区域内的内容为1-100的随机整数，
@@ -761,9 +769,11 @@ End Sub
 <a name="layout"></a>
 ## 0x02 VBA界面介绍
 
+<a name="2.1"></a>
 ### 2.1 整体界面说明
 ![Alt text](/doc/source/images/1505749555407.png)
 
+<a name="2.2"></a>
 ### 2.2 工程资源管理器（Project Explore）说明
 
 显示快捷键：`Ctrl + R`，也可以点击菜单栏 View -> <u>P</u>roject Explore 显示。
@@ -832,6 +842,8 @@ cells(1, 1) = 1
 但如果只是在Worksheet里定义的Funtion，其他的Worksheet是调用不了的。
 也就是说，模块（Modules）是公共的地方。
 
+
+<a name="2.3"></a>
 ### 2.3 设置VBA Macro Project 密码保护
 
 ![Alt text](/doc/source/images/password_protect_setting.png)
@@ -839,7 +851,7 @@ cells(1, 1) = 1
 在VBA界面依次点击：<u>T</u>ools -> VBAProject Prop<u>e</u>rties ->
 Projection 界面设置
 
-
+<a name="2.4"></a>
 ### 2.4 常用快捷栏及窗口设置
 默认情况下某些常用的窗口VBA界面是不显示的，比如立即窗口，编辑操作捷栏（批量注释取消等）
 
@@ -869,6 +881,8 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 一个集合中调用对象的例子：
 ![Alt text](/doc/source/images/1505548422147.png)
 
+
+<a name="3.1"></a>
 ### 3.1 对象简述
 
 对象一般包含下面三种特性：
@@ -905,6 +919,8 @@ VBA中有很多对象，常用的对象如下:
 |Worksheet|代表Excel的工作表|[文档](https://msdn.microsoft.com/zh-cn/library/ff194464.aspx)|
 |Range|代表Excel的单元格，可以是单个单元格或单元格区域|[文档](https://msdn.microsoft.com/zh-cn/library/office/ff838238.aspx)|
 
+
+<a name="3.2"></a>
 ### 3.2 Application对象
 
 ### 3.3 Range对象
@@ -915,10 +931,13 @@ VBA中有很多对象，常用的对象如下:
 <a name="string-option"></a>
 ## 0x04 字符串String相关常用操作
 
+
+<a name="4.1"></a>
 ### 1. Trim
 `Trim`函数删除给定输入字符串的前导空格和尾随空格。</br>
 语法：Trim(String)
 
+<a name="4.2"></a>
 ### 2. Instr
 `InStr`函数返回一个字符串第一次出现在一个字符串，从左到右搜索。返回搜索到的字符索引位置。
 
@@ -945,6 +964,7 @@ Private Sub Constant_demo_Click()
 End Sub
 ```
 
+<a name="4.3"></a>
 ### 3. Mid
 `Mid`函数返回给定输入字符串中指定数量的字符。</br>
 语法：Mid(String, start[, Length])</br>
@@ -963,6 +983,7 @@ End Sub
     End Sub
 ```
 
+<a name="4.4"></a>
 ### 4. Left 和 Right
 语法：Left(String, Length)</br>
 参数：
@@ -982,6 +1003,8 @@ Private Sub Constant_demo_Click()
     Debug.Print Left(var,9)     ' microsoft
 End Sub
 ```
+
+<a name="4.5"></a>
 ### 5. 其他字符串函数
 - `Ltrim(string)` 去掉 string 左端空白
 - `Rtrim(string)` 去掉 string 右端空白
@@ -991,6 +1014,8 @@ End Sub
 <a name="excel-option"></a>
 ## 0x05 Excel 相关常用操作
 
+
+<a name="5.1"></a>
 ### 5.1 打开Excel两种方式
 
 - 利用 `GetObject` 方法打开Excel文档
@@ -1068,7 +1093,7 @@ Function OpenWorkbook(ByVal strWorkbookFilePath As String)
 End Function
 ```
 
-
+<a name="5.2"></a>
 ### 5.2 操作Excel工作表（Worksheet）
 
 #### 5.2.1 移动工作表
