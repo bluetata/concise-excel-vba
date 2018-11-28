@@ -146,7 +146,7 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 
 |函数|函数说明|参数说明|示例|
 |----|----|----|----|
-|`UBound(Array arr, [Integer i])`|数组最大的索引值|`arr`：数组；`i`: 整形，数组维数|
+|`UBound(Array arr, [Integer i])`|数组最大的索引值|`arr`：数组；`i`：整形，数组维数|
 |`LBound(Array arr, [Integer i])`|数组最小的索引值|同上|
 |`Join(Array arr, [String s])`|合并字符串|`arr`：数组；`s`：合并的分隔符|
 |`Split(String str, [String s])`|分割字符串|`str`：待分割的字符串；`s`：分割字符串的分隔符|
@@ -245,7 +245,7 @@ Else
 End If
 ```
 
-3. Select...Case... 多选一
+3. Select...Case... 多选一，类似于java中的Switch...Case... 语句
 ```vba
 Dim Length As Integer
 Length = 10
@@ -257,6 +257,25 @@ Select Length
     Case Else
         操作3
 End Select
+```
+sample code:
+
+```vba
+Private Sub switch_demo_Click()
+    Dim MyVar As Integer
+    MyVar = 1
+
+    Select Case MyVar
+        Case 1
+            Debug.Print "The Number is the Least Composite Number"
+        Case 2
+            Debug.Print "The Number is the only Even Prime Number"
+        Case 3
+            Debug.Print "The Number is the Least Odd Prime Number"
+        Case Else
+            Debug.Print "Unknown Number"
+    End Select
+End Sub
 ```
 
 #### 1.4.2 循环语句
@@ -411,7 +430,35 @@ Sub St1(ByVal n As Integer, ByRef range)
 End SUb
 ```
 
-### 1.6 补充
+### 1.6 正则表达式(Regular Expression)
+在VBA中使用正则表达式，因为正则表达式不是vba自有的对象，
+故此要用它就必须采用两种方式引用它：一种是前期绑定，另外一种是后期绑定，
+前期绑定：就是手工勾选工具/引用中的Microsoft VBScript Regular Expressions 5.5；
+然后在代码中定义对象：`Dim regExp As New RegExp`；
+后期绑定：使用CreateObject方法定义对象：`CreateObject("vbscript.regexp")`
+
+RegExp对象的属性：
+   - Global – 设置或返回一个Boolean值，该值指明在整个搜索字符串时模式是全部匹配还是只匹配第一个。如果搜索应用于整个字符串，Global 属性的值应该为 True，否则其值为 False。默认的设置为True。
+   - Multiline – 返回正则表达式是否具有标志m, 缺省值为False。如果指定的搜索字符串分布在多行，这个属性是要设置为True的。
+   - IgnoreCase – 设置或返回一个Boolean值，指明模式搜索是否区分大小写。如果搜索是区分大小写的，则IgnoreCase 属性应该为False；否则应该设为True。缺省值为True。
+   - Pattern – 设置或返回被搜索的正则表达式模式。被搜索的正则字符串表达式。它包含各种正则表达式字符。
+
+RegExp对象的方法：
+- Execute – 对指定的字符串执行正则表达式搜索。需要传入要在其上执行正则表达式的文本字符串。正则表达式搜索的设计模式是通过RegExp对象的Pattern来设置的。Execute方法返回一个Matches集合，其中包含了在string中找到的每一个匹配的Match对象。如果未找到匹配，Execute将返回空的Matches集合。
+- Replace – 替换在正则表达式查找中找到的文本。
+- Test – 对指定的字符串执行一个正则表达式搜索，并返回一个Boolean值指示是否找到匹配的模式。Global属性对Test方法没有影响。如果找到了匹配的模式，Test方法返回True；否则返回False。
+- MatchCollection对象与Match对象
+匹配到的所有对象放在MatchCollection集合中，这个集合对象只有两个只读属性：
+- Count：匹配到的对象的数目
+- Item：集合的又一通用方法，需要传入Index值获取指定的元素。
+一般，可以使用ForEach语句枚举集合中的对象。集合中对象的类型是Match。
+- Match对象有以下几个只读的属性：
+    - FirstIndex – 匹配字符串在整个字符串中的位置，值从0开始。
+    - Length – 匹配字符串的长度。
+    - Value – 匹配的字符串。
+    - SubMatches – 集合，匹配字符串中每个分组的值。作为集合类型，有Count和Item两个属性。
+
+### 1.7 补充
 
 - 在vba中使用 `'`进行代码注释
 - 在很长的语句中使用`_`来分割成多行
@@ -652,6 +699,7 @@ Projection 界面设置
 ![Alt text](/doc/source/images/toolbars_edit_setting.png)
 
 #### 2.4.2 显示立即窗口(Immediate window)
+Immediate window（立即窗口）：类似其他IDE的console控制台。</br>
 显示快捷键： `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。</br>
 当在调试debug的时候，可以使用`Debug.Print "xxxlog"`的时候可以在该窗口直接显示打印结果
 
