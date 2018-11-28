@@ -504,7 +504,7 @@ End Function
 ```
 
 ### 1.7 注释（Comments code）
-> 个人觉得注释起着非常重要的作用 --bluetata 11/28/2018 18:40
+> 个人觉得注释起着非常重要的作用 -- ** *bluetata* ** 11/28/2018 18:40
 
 注释语句是用来说明程序中某些语句的功能和作用；VBA 中有两种方法标识为注释语句。</br>
 单引号 `'` 举例：`' 定义全局变量`；可以位于别的语句之尾，也可单独一行。</br>
@@ -512,7 +512,7 @@ End Function
 
 以下列举出了不同级别的注释代码，也可以[点击这里](doc/source/samplecode/sample-code.bas)查看VBA Sample Code.
 
-1. 源码概要注释/Source version Comments Code</br>
+#### 1. 源码概要注释/Source version Comments Code</br>
 在每个source文件的最开头
 ```vba
 '--------------------------------------
@@ -524,7 +524,7 @@ End Function
 '--------------------------------------
 ```
 
-2. 区块注释/Use Title Blocks Comments code for Each Macro</br>
+#### 2. 区块注释/Use Title Blocks Comments code for Each Macro</br>
 在每个Function或者Sub上下，根据个人风格，可以在紧贴在函数上面一行处，
 也可以在函数名的下面一行处。
 ```vba
@@ -551,7 +551,7 @@ End Function
 Sub DoMemoData(wbkReport As Workbook, oStopRow As Long)
 ```
 
-3. 行内注释/Use In-Line Comments
+#### 3. 行内注释/Use In-Line Comments
 ```vba
 ' If this routine was called by the batch routine...
 If g_bCalledByBatch Then
@@ -571,7 +571,7 @@ If g_bCalledByBatch Then
 Else
 ```
 
-4. 函数列表注释/List of Function Comments</br>
+#### 4. 函数列表注释/List of Function Comments</br>
 一般紧挨着源码概要注释下面，与其空一行到两行
 ```vba
 '-------------------------------------
