@@ -6,10 +6,32 @@ Last update date：*11/27/2018 19:02*
 ## 目录
 
 - [x] [0x01 语法说明](#explanation) (done)
+    - 1.1 数据和数据类型
+    - 1.2 常量和变量
+    - 1.3 运算符
+    - 1.4 语句结构
+    - 1.5 过程和函数
+    - 1.6 正则表达式(Regular Expression)
+    - 1.7 注释（Comments code）
+    - 1.8 补充
+    - 1.9 示例
 - [x] [0x02 VBA界面介绍](#layout) (done)
+    - 2.1 整体界面说明
+    - 2.2 工程资源管理器（Project Explore）说明
+    - 2.3 设置VBA Macro Project 密码保护
+    - 2.4 常用快捷栏及窗口设置
 - [x] [0x03 对象操作说明](#object-option) (done)
-- [ ] [0x04 字符串 String 相关常用操作](#string-option) (ding)
+    - 3.1 对象简述
+    - 3.2 Application对象
+- [x] [0x04 字符串 String 相关常用操作](#string-option) (done)
+    - 4.1 Trim
+    - 4.2 Instr
+    - 4.3 Mid
+    - 4.4 Left 和 Right
+    - 4.5 其他字符串函数
 - [ ] [0x05 Excel 相关常用操作](#excel-option) (ding)
+    - 5.1 打开Excel两种方式
+    - 5.2 操作Excel工作表（Worksheet）
 - [ ] 0x06 Trouble shooting (ding )
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
@@ -633,7 +655,7 @@ Sub AssignString()
 EndSub
 ```
 
-### 1.7示例
+### 1.9 示例
 
 举个排序的例子，要对`A1:A20`的单元格区域进行排序，区域内的内容为1-100的随机整数，
 规则是大于50的倒序排列，小于50的正序排列。将结果显示在`B1:B20`的区域里。
