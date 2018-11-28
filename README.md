@@ -432,14 +432,15 @@ End SUb
 
 ### 1.6 正则表达式(Regular Expression)
 在VBA中使用正则表达式，因为正则表达式不是vba自有的对象，
-故此要用它就必须采用两种方式引用它：一种是前期绑定，另外一种是后期绑定，
+故此要用它就必须采用两种方式引用它：一种是前期绑定，另外一种是后期绑定。
+
 前期绑定：就是手工勾选工具/引用中的Microsoft VBScript Regular Expressions 5.5；
-然后在代码中定义对象：`Dim regExp As New RegExp`；
+然后在代码中定义对象：`Dim regExp As New RegExp`；</r>
 后期绑定：使用CreateObject方法定义对象：`CreateObject("vbscript.regexp")`
 
 RegExp对象的属性：
    - Global – 设置或返回一个Boolean值，该值指明在整个搜索字符串时模式是全部匹配还是只匹配第一个。如果搜索应用于整个字符串，Global 属性的值应该为 True，否则其值为 False。默认的设置为True。
-   - Multiline – 返回正则表达式是否具有标志m, 缺省值为False。如果指定的搜索字符串分布在多行，这个属性是要设置为True的。
+   - Multiline – 返回正则表达式是否具有标志, 缺省值为False。如果指定的搜索字符串分布在多行，这个属性是要设置为True的。
    - IgnoreCase – 设置或返回一个Boolean值，指明模式搜索是否区分大小写。如果搜索是区分大小写的，则IgnoreCase 属性应该为False；否则应该设为True。缺省值为True。
    - Pattern – 设置或返回被搜索的正则表达式模式。被搜索的正则字符串表达式。它包含各种正则表达式字符。
 
@@ -457,6 +458,50 @@ RegExp对象的方法：
     - Length – 匹配字符串的长度。
     - Value – 匹配的字符串。
     - SubMatches – 集合，匹配字符串中每个分组的值。作为集合类型，有Count和Item两个属性。
+
+Sample Code（前期绑定）：
+```vba
+Private Function IsStringDate(ByVal strDate As String)
+    Dim strDatePattern
+    ' 前期绑定
+    Dim regEx As New RegExp, matches
+
+    Dim str MatchContent As String
+
+    strDatePattern = "^(([0-9])|([0-2][0-9])|([3][0-1]))\-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\-\d{4}$"
+
+    With regEx
+        .Global = True      ' 搜索字符串中的全部字符，如果为假，则找到匹配的字符就停止搜索！
+        .MultiLine = False  ' 是否指定多行搜索
+        .IgnoreCase = True  ' 指定大小写敏感（True）
+        .Pattern = strDatePattern   ' 所匹配的正则
+    End With
+
+    If regEx.Test(strDate) Then     ' 如果与正则相匹配
+        Set matches = regEx.Execute(strDate)
+        MatchContent = matches(0).Value
+    Else
+        MatchContent = "Not Matched"
+    End If
+
+    IsStringDate = regEx.Test(strDate)
+
+End Function
+```
+
+Sample Code（后期绑定）：
+```vba
+Function ExtractNumber(str As String) As String
+Dim regEx As Object
+Set regEx = CreateObject("vbscript.regexp")     ' 后期绑定
+With regEx
+    .Global = True       ' 搜索字符串中的全部字符，如果为假，则找到匹配的字符就停止搜索！
+    .Pattern = "\D"      ' 非数字字符的正则表达式
+    ExtractNumber = .Replace(str, "")       ' 把非数字字符替换成空字符串
+End With
+Set regEx = Nothing      ' 清除内存中的对象变量的地址，即释放内存。
+End Function
+```
 
 ### 1.7 补充
 
