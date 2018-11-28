@@ -1,12 +1,12 @@
 
 # 简明Excel VBA
-Last update date：*11/27/2018 19:02*
+Last update date：11/28/2018 19:15
 
 
 ## 目录
 
 - [x] [0x01 语法说明](#explanation) (done)
-    - 1.1 数据和数据类型
+    - [1.1 数据和数据类型](#1.1)
     - 1.2 常量和变量
     - 1.3 运算符
     - 1.4 语句结构
@@ -29,7 +29,7 @@ Last update date：*11/27/2018 19:02*
     - 4.3 Mid
     - 4.4 Left 和 Right
     - 4.5 其他字符串函数
-- [ ] [0x05 Excel 相关常用操作](#excel-option) (ding)
+- [ ] [0x05 Excel 相关常用操作](#excel-option) (doing)
     - 5.1 打开Excel两种方式
     - 5.2 操作Excel工作表（Worksheet）
 - [ ] 0x06 Trouble shooting (ding )
@@ -50,7 +50,7 @@ Last update date：*11/27/2018 19:02*
 只要知道它是求多个数的和就够了，剩下的就是用了。例如`Sum(1000,9)`结果就是`1009`了。
 函数的一大好处就是隐藏具体实现细节，提供简洁的使用方法。
 
-
+<a name="1.1"></a>
 ### 1.1 数据和数据类型
 
 Excel里的每一个单元格都是一个`数据`，无论是数字、字母或标点都是数据。
