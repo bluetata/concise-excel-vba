@@ -1212,4 +1212,4 @@ End Sub
 
 <a name="license"></a>
 ## 开源许可
-本Repository除特殊注明外，均采用 Creative Commons [BY-NC-ND 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)（自由转载-保持署名-非商用-禁止演绎）协议发布。
+本Repository除特殊注明外，均采用 Creative Commons [BY-NC-ND 4.0](LICENSE)（自由转载-保持署名-非商用-禁止演绎）协议发布。
