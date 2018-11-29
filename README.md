@@ -233,6 +233,7 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 
 程序通常都是顺序依次执行的。语句结构用来控制程序执行的步骤，一般有`选择`语句、`循环`语句。
 
+<a name="1.4.1"></a>
 #### 1.4.1 选择语句
 
 选择语句用来判断程序执行那一部分代码
@@ -304,6 +305,7 @@ Private Sub switch_demo_Click()
 End Sub
 ```
 
+<a name="1.4.2"></a>
 #### 1.4.2 循环语句
 
 循环语句用来让程序重复执行某段代码
@@ -329,7 +331,14 @@ Next i
 ```
 
 3. Do...While循环</br>
-语法：Do While 表达式   表达式为假时跳出循环
+语法：</br>
+前置循环条件：</br>
+![Alt text](doc/source/images/dowhileloopsyntax.png)
+
+后置循环条件：</br>
+![Alt text](doc/source/images/dowhileloopsyntax.png)
+
+sample code:
 ```vba
 Dim i As Integer
 i = 1
@@ -347,7 +356,8 @@ Loop While i < 5 '循环4次
 ```
 
 4. Do Until 直到...循环</br>
-语法：Do Until 表达式    表达式为真时跳出循环
+语法：</br>
+Do Until 表达式    表达式为真时跳出循环
 ```vba
 Dim i As Integer
 i = 5
