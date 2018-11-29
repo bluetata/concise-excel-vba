@@ -181,13 +181,13 @@ Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 |`Join(Array arr, [String s])`|合并字符串|`arr`：数组；`s`：合并的分隔符|
 |`Split(String str, [String s])`|分割字符串|`str`：待分割的字符串；`s`：分割字符串的分隔符|
 
-> 函数说明
->
-> UBound(Array arr,[Integer i]);
-> UBound为函数名
-> arr和i为UBound的的参数，用中括号括起来的表示i为非必填参数
-> arr和i之前的Array,Integer表示对应参数的数据类型
->
+函数说明
+
+UBound(Array arr,[Integer i]);</br>
+UBound为函数名</br>
+arr和i 为UBound的的参数，用中括号括起来的表示i为非必填参数</br>
+arr和i 之前的Array，Integer表示对应参数的数据类型</br>
+
 > 补充
 > [VBA 内置函数列表](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
 
@@ -902,7 +902,7 @@ Projection 界面设置
 
 #### 2.4.2 显示立即窗口(Immediate window)
 Immediate window（立即窗口）：类似其他IDE的console控制台。</br>
-显示快捷键： `Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。</br>
+显示快捷键：`Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。</br>
 当在调试debug的时候，可以使用`Debug.Print "xxxlog"`的时候可以在该窗口直接显示打印结果
 
 <a name="object-option"></a>
