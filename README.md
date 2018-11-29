@@ -340,7 +340,7 @@ Next i
 - 后置循环条件：</br>
 ![Alt text](doc/source/images/dowhileloopsyntax_suffix.png)
 
-sample code:
+Sample code:
 ```vba
 Dim i As Integer
 i = 1
@@ -376,9 +376,31 @@ Do
 Loop Until i < 1  
 ```
 
+#### 1.4.3 GoTo语句
+
+**GoTo**
+无条件地分支直接跳转到过程中指定的行。
+
+**注：** GoTo语句大多用于错误处理时，但会影响程序结构，增加阅读和代码调试难度，
+除非必要时，应尽量避免使用GoTo语句。
+
+```vba
+Sub TestGoTo
+
+    Dim lngSum As Long, i As Integer
+    i = 1
+
+JUMPX:
+    i = i + 1
+    If i <= 100 Then GoTo JUMPX
+    Debug.Print "1到100的自然数之和是：" & lngSum
+
+End Sub
+```
+
 **CONTINUE**
 
-循环的continue操作，类似java语言的continue直接跳出本次循环
+循环中实现continue操作，类似java语言的continue直接跳出本次循环
 ```vba
 Sub continueTest()
     Dim i
