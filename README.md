@@ -10,6 +10,8 @@ Last update date：11/28/2018 19:15
     - [1.2 常量和变量](#1.2)
     - [1.3 运算符](#1.3)
     - [1.4 语句结构](#1.4)
+        - [1.4.1 选择语句](#1.4.1)
+        - [1.4.2 循环语句](#1.4.2)
     - [1.5 过程和函数](#1.5)
     - [1.6 正则表达式(Regular Expression)](#1.6)
     - [1.7 注释（Comments code）](#1.7)
@@ -332,11 +334,11 @@ Next i
 
 3. Do...While循环</br>
 语法：</br>
-前置循环条件：</br>
+- 前置循环条件：</br>
 ![Alt text](doc/source/images/dowhileloopsyntax.png)
 
-后置循环条件：</br>
-![Alt text](doc/source/images/dowhileloopsyntax.png)
+- 后置循环条件：</br>
+![Alt text](doc/source/images/dowhileloopsyntax_suffix.png)
 
 sample code:
 ```vba
