@@ -29,14 +29,16 @@ Last update date：11/28/2018 19:15
     - [3.2 Application对象](#3.2)
 - [x] [0x04 字符串 String 相关常用操作](#string-option) (done)
     - [4.1 Trim](#4.1)
-    - [4.2 Instr](#4.2)
-    - [4.3 Mid](#4.3)
+    - [4.2 Instr 和 InStrRev (类似indexOf函数)](#4.2)
+    - [4.3 Mid (类似substring函数)](#4.3)
     - [4.4 Left 和 Right](#4.4)
-    - [4.5 其他字符串函数](#4.5)
+    - [4.5 Replace](#4.5)
+    - [4.6 StrReverse 倒转函数](#4.6)
+    - [4.7 其他字符串函数](#4.7)
 - [ ] [0x05 Excel 相关常用操作](#excel-option) (doing)
     - [5.1 打开Excel两种方式](#5.1)
     - [5.2 操作Excel工作表（Worksheet）](#5.2)
-- [x] [0x06 文件 相关常用操作](#0x06) (doing)
+- [x] [0x06 文件 相关常用操作](#0x06) (done)
     - [6.1 判断文件，文件夹等是否存在](#6.1)
     - [6.2 文件相关操作](#6.2)
     - [6.3 文件夹相关操作](#6.3)
@@ -983,8 +985,9 @@ VBA中有很多对象，常用的对象如下:
 语法：Trim(String)
 
 <a name="4.2"></a>
-### 4.2 Instr
+### 4.2 Instr 和 InStrRev
 `InStr`函数返回一个字符串第一次出现在一个字符串，从左到右搜索。返回搜索到的字符索引位置。
+`InStrRev`函数与`InStr`功能相同，从**右**到左搜索。返回搜索到的字符索引位置。
 
 语法：InStr([start, ]string1, string2[, compare])
 参数：
@@ -1050,11 +1053,43 @@ End Sub
 ```
 
 <a name="4.5"></a>
-### 4.5 其他字符串函数
+### 4.5 Replace 函数
+Replace 函数可使用一个字符串替换另一个字符串指定的次数。
+语法：Replace(string, findString, replaceWith[, start[, count[, compare]]])</br>
+参数：
+   - String - 必需的参数。需要被搜索的字符串。
+   - findString - 必需的参数。将被替换的字符串部分。
+   - replaceWith - 必需的参数。用于替换的子字符串。
+   - start - 可选的参数。规定开始位置。默认是 1。
+   - count - 规定指定替换的次数。默认是 -1，表示进行所有可能的替换。
+   - compare - 可选的参数。规定所使用的字符串比较类型。默认是 0(执行二进制比较);
+   1(执行文本比较)。
+
+示例：</br>
+```vba
+dim txt
+txt="This is a beautiful day!"
+Debug.Print Replace(txt,"beautiful","horrible") ' This is a horrible day!
+```
+
+<a name="4.6"></a>
+### 4.6 StrReverse 倒转函数
+语法：StrReverse(string) </br>
+示例：</br>
+```vba
+Private Sub StrReverse_Demo()
+    Debug.Print StrReverse("VBSCRIPT"))             ' TPIRCSBV
+    Debug.Print StrReverse("My First VBScript"))    ' tpircSBV tsriF yM
+    Debug.Print StrReverse("123.45"))               ' 54.321
+End Sub
+```
+
+<a name="4.7"></a>
+### 4.7 其他字符串函数
 - `Ltrim(string)` 去掉 string 左端空白
 - `Rtrim(string)` 去掉 string 右端空白
 - `Len(string)` 计算 string 长度
-- `Ucase(string)` 转换为大写
+- `Lcase(string)`和`Ucase(string)` 转换为小写和大写
 
 
 <a name="excel-option"></a>
