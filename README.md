@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：11/28/2018 19:15
+Last update date：11/30/2018 18:50
 
 
 ## 目录
@@ -586,7 +586,7 @@ End Function
 单引号 `'` 举例：`' 定义全局变量`；可以位于别的语句之尾，也可单独一行。</br>
 `Rem` 举例：`Rem 定义全局变量`；只能单独一行
 
-以下列举出了不同级别的注释代码，也可以[点击这里](doc/source/samplecode/sample-code.bas)查看VBA Sample Code.
+以下列举出了不同级别的注释代码，也可以[点击这里](doc/source/samplecode/sample-code.bas)查看 VBA Sample Code。
 
 #### 1. 源码概要注释/Source version Comments Code</br>
 在每个source文件的最开头
@@ -697,7 +697,7 @@ Set rg = Range("A1")   ' 这种情况下，rg将会是Range对象
 - VBA中用Set赋值和不用Set赋值有什么区别？
 
 给普通变量赋值使用`Let`，Let 可以**省略**。</br>
-给对象变量赋值使用`Set`，Set 不能省略。
+给对象变量赋值使用`Set`，Set **不能** 省略。
 
 ```vba
 Sub AssignString()
@@ -1025,9 +1025,9 @@ End Sub
     Private Sub Constant_demo_Click()
         Dim var as Variant
         var = "Microsoft VBScript"
-        Debug.Print Mid(var,2)      ' icrosoft VBScript
-        Debug.Print Mid(var,2,5)    ' icros
-        Debug.Print Mid(var,5,7)    ' osoft V
+        Debug.Print Mid(var, 2)       ' icrosoft VBScript
+        Debug.Print Mid(var, 2, 5)    ' icros
+        Debug.Print Mid(var, 5, 7)    ' osoft V
     End Sub
 ```
 
@@ -1071,7 +1071,7 @@ End Sub
 ```vba
 dim txt
 txt="This is a beautiful day!"
-Debug.Print Replace(txt,"beautiful","horrible") ' This is a horrible day!
+Debug.Print Replace(txt,"beautiful", "horrible") ' This is a horrible day!
 ```
 
 <a name="4.6"></a>
