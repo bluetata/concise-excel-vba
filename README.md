@@ -36,7 +36,7 @@ Last update date：11/28/2018 19:15
 - [ ] [0x05 Excel 相关常用操作](#excel-option) (doing)
     - [5.1 打开Excel两种方式](#5.1)
     - [5.2 操作Excel工作表（Worksheet）](#5.2)
-- [ ] [0x06 文件 相关常用操作](#file-option) (doing)
+- [ ] [0x06 文件 相关常用操作](#0x06) (doing)
 - [ ] 0x06 Trouble shooting (doing)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
@@ -1197,11 +1197,12 @@ Sub 复制工作表至Book1中()
 End Sub
 ```
 
-
+<a name="0x06"></a>
 ## 0x06 文件，文件夹等 相关常用操作
 
 以下文件，文件夹等相关方法可自行封装成共通(common function)以便项目中使用。
 
+<a name="6.1"></a>
 ### 6.1 判断文件，文件夹等是否存在
 1. 文件是否存在（File exists）：
 ```vba
@@ -1242,7 +1243,8 @@ Sub DriveExists()
 End Sub
 ```
 
-### 6.2 文件基本操作
+<a name="6.2"></a>
+### 6.2 文件相关操作
 1. 文件复制（File copy）：
 ```vba
 Sub CopyFile()
@@ -1270,6 +1272,7 @@ End Sub
 End Sub
 ```
 
+<a name="6.3"></a>
 ### 6.3 文件夹相关操作
 
 1. 创建文件夹（Folder create）：
@@ -1308,7 +1311,8 @@ Sub DeleteFolder()
 End Sub
 ```
 
-### 6.3 其他操作（获取文件名等）
+<a name="6.4"></a>
+### 6.4 其他操作（获取文件名等）
 
 1. 获取文件全名，带有后缀（Get file name）
 ```vba
