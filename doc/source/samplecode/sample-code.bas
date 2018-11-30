@@ -56,15 +56,15 @@ Function PublicHolidayFr(Optional DateDay As Date) As Byte
         Case Is = DateSerial(ye, 11, 1): res = 1
         Case Is = DateSerial(ye, 11, 11): res = 1
         Case Is = DateSerial(ye, 12, 25): res = 1
-        Case Is = Pa: res = 1  ' Dimanche Paques
-        Case Is = Pa + 1: res = 1   ' Lundi de Paques
-        Case Is = Pa + 39: res = 1 'Ascension
-        Case Is = Pa + 49: res = 1 'Pentecôte
-        Case Is = Pa + 50: res = 1 'Lundi de Pentecôte
+        Case Is = Pa: res = 1      ' Dimanche Paques
+        Case Is = Pa + 1: res = 1  ' Lundi de Paques
+        Case Is = Pa + 39: res = 1 ' Ascension
+        Case Is = Pa + 49: res = 1 ' Pentecôte
+        Case Is = Pa + 50: res = 1 ' Lundi de Pentecôte
         Case Else
           res = 0
     End Select
-    'return result
+    ' return result
     PublicHolidayFr = res
 End Function
 
