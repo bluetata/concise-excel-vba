@@ -36,6 +36,7 @@ Last update date：11/28/2018 19:15
 - [ ] [0x05 Excel 相关常用操作](#excel-option) (doing)
     - [5.1 打开Excel两种方式](#5.1)
     - [5.2 操作Excel工作表（Worksheet）](#5.2)
+- [ ] [0x06 文件 相关常用操作](#file-option) (doing)
 - [ ] 0x06 Trouble shooting (doing)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
@@ -1193,6 +1194,155 @@ End Sub
 ```vba
 Sub 复制工作表至Book1中()
     Sheets("工资表").Copy After:=Workbooks("Book1").Sheets(1)
+End Sub
+```
+
+
+## 0x06 文件，文件夹等 相关常用操作
+
+以下文件，文件夹等相关方法可自行封装成共通(common function)以便项目中使用。
+
+### 6.1 判断文件，文件夹等是否存在
+1. 文件是否存在（File exists）：
+```vba
+Sub FileExists()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    If fso.FileExists("D:\test.txt") = True Then
+        MsgBox "The file is exists."
+    Else
+        MsgBox "The file isn't exists."
+    End If
+End Sub
+```
+
+2. 文件夹是否存在（Folder exists）：
+```vba
+Sub FolderExists()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    If fso.FolderExists("D:\testFolder") = True Then
+        MsgBox "The folder is exists."
+    Else
+        MsgBox "The folder isn't exists."
+    End If
+End Sub
+```
+
+3. 硬盘是否存在（Drive exists）：
+```vba
+Sub DriveExists()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    If fso.DriveExists("D:\") = True Then
+        MsgBox "The drive is exists."
+    Else
+        MsgBox "The drive isn't exists."
+    End If
+End Sub
+```
+
+### 6.2 文件基本操作
+1. 文件复制（File copy）：
+```vba
+Sub CopyFile()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fso.CopyFile "c:\Makro.txt", "c:\Macros\"
+End Sub
+```
+
+2. 文件移动（File move）：
+```vba
+Sub MoveFile()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fso.MoveFile "c:\*.txt", "c:\Documents and Settings\"
+End Sub
+```
+
+3. 文件删除（File delete）：
+```vba
+    Sub DeleteFile()
+    Dim fso
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fso.DeleteFile "c:\Documents and Settings\Macros\Makro.txt"
+End Sub
+```
+
+### 6.3 文件夹相关操作
+
+1. 创建文件夹（Folder create）：
+```vba
+Sub CreateFolder()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fso.CreateFolder "c:\Documents and Settings\NewFolder"
+End Sub
+```
+
+2. 复制文件夹（Folder copy）：
+```vba
+Sub CopyFolder()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fso.CopyFolder "C:\Documents and Settings\NewFolder", "C:\"
+End Sub
+```
+
+3. 移动文件夹（Folder move）：
+```vba
+Sub MoveFolder()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fso.MoveFolder "C:\Documents and Settings\NewFolder", "C:\"
+End Sub
+```
+
+4. 删除文件件（Folder delete）：
+```vba
+Sub DeleteFolder()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fso.DeleteFolder "C:\Documents and Settings\NewFolder"
+End Sub
+```
+
+### 6.3 其他操作（获取文件名等）
+
+1. 获取文件全名，带有后缀（Get file name）
+```vba
+Sub GetFileName()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    MsgBox fso.GetFileName("c:\Documents and Settings\Makro.txt")   ' Makro.txt
+End Sub
+```
+
+2. 获取文件名，无后缀（Get base name）
+```vba
+Sub GetBaseName()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    MsgBox fso.GetBaseName("c:\Documents and Settings\Makro.txt")   ' Makro
+End Sub
+```
+
+3. 获取文件后缀格式（Get extension name）
+```vba
+Sub GetExtensionName()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    MsgBox fso.GetExtensionName("c:\Documents and Settings\Makro.txt")  ' txt
+End Sub
+```
+
+4. 获取盘符名（Get drive name）
+```vba
+Sub GetDriveName()
+    Dim fso as Scripting.FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    MsgBox fso.GetDriveName("c:\Documents and Settings\Makro.txt")  ' c:
 End Sub
 ```
 
