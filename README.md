@@ -1395,15 +1395,18 @@ End Sub
 
 <a name="0x07"></a>
 ## 0x06 VBA Best Practices
-1. Never write procedures and functions that are longer than a full screen
-as these are hard to understand.
-2. Always prefix your variables so you can quickly identify their datatype.
-3. Never use the Variant datatype unless absolutely necessary.
-4. Always use the keyword "**Call**" to call your procedures.
-5. Always put your arguments in parentheses.
-6. Never use Global variables unless absolutely necessary.
-7. Always have Option Explicit at the top of your code modules to
+1. Always have Option Explicit at the top of your code modules to
 enforce variable declaration.
+2. Never write procedures and functions that are longer than a full screen
+as these are hard to understand. Procedures should fit on one screen -
+ie be 40-50 lines long maximum.- ie be 40-50 lines long maximum.
+3. Always prefix your variables so you can quickly identify their datatype.
+4. Never use the Variant datatype unless absolutely necessary.
+5. Always use the keyword "**Call**" to call your procedures.
+6. Always put your arguments in parentheses.
+7. Never use Global variables unless absolutely necessary.
+Pass parameters ByVal (ByRef is the default) - only use ByRef where
+you intend to modify the parameter and pass the change back to the caller.
 8. Always use tabs to indent your code to bring structure, never use spaces.
 9. Add "value added" comments which explain why, do not add trivial comments.
 10. Always add an Error Handler to every procedure and function.
