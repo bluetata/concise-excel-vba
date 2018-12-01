@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：11/30/2018 18:50
+Last update date：12/01/2018 23:33
 
 
 ## 目录
@@ -43,7 +43,7 @@ Last update date：11/30/2018 18:50
     - [6.2 文件相关操作](#6.2)
     - [6.3 文件夹相关操作](#6.3)
     - [6.4 其他操作（获取文件名等）](#6.4)
-- [ ] [0x07 VBA Best Practices](#0x07) (English Version)
+- [x] [0x07 VBA Best Practices](#0x07) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
@@ -1395,17 +1395,20 @@ End Sub
 
 <a name="0x07"></a>
 ## 0x06 VBA Best Practices
-1. Never write procedures and functions that are longer than a full screen as these are hard to understand.
+1. Never write procedures and functions that are longer than a full screen
+as these are hard to understand.
 2. Always prefix your variables so you can quickly identify their datatype.
 3. Never use the Variant datatype unless absolutely necessary.
 4. Always use the keyword "**Call**" to call your procedures.
 5. Always put your arguments in parentheses.
 6. Never use Global variables unless absolutely necessary.
-7. Always have Option Explicit at the top of your code modules to enforce variable declaration.
+7. Always have Option Explicit at the top of your code modules to
+enforce variable declaration.
 8. Always use tabs to indent your code to bring structure, never use spaces.
 9. Add "value added" comments which explain why, do not add trivial comments.
 10. Always add an Error Handler to every procedure and function.
-11. Use the line continuation character to make your code more readable and to reduce the amount of scrolling.
+11. Use the line continuation character to make your code more readable and
+to reduce the amount of scrolling.
 12. Never use the Option Base or Option Compare statements.
 
 
