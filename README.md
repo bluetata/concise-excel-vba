@@ -246,14 +246,15 @@ arr和i 之前的Array，Integer表示对应参数的数据类型</br>
 <a name="1.5"></a>
 ### 1.5 语句结构
 
-程序通常都是顺序依次执行的。语句结构用来控制程序执行的步骤，一般有`选择`语句、`循环`语句。
+程序通常都是顺序依次执行的。语句结构用来控制程序执行的步骤，
+一般有**选择**语句、**循环**语句。
 
 <a name="1.5.1"></a>
 #### 1.5.1 选择语句
 
 选择语句用来判断程序执行那一部分代码
 
-语法：If...Then...End If</br>
+语法：If ... Then ... End If</br>
 If选择可以嵌套使用</br>
 
 常用的三种形式：
@@ -287,7 +288,7 @@ Else
 End If
 ```
 
-3. Select...Case... 多选一，类似于java中的Switch...Case... 语句
+3. Select ... Case ... 多选一，类似于java中的 Switch ... Case ... 语句
 ```vba
 Dim Length As Integer
 Length = 10
@@ -325,10 +326,10 @@ End Sub
 
 循环语句用来让程序重复执行某段代码
 
-1. 普通For...Next循环</br>
+1. 普通For ... Next循环</br>
 语法：For 循环变量 = 初始值 To 终值 Step 步长</br>
 注：在VBA循环中可以使用`Exit`关键字来跳出循环，类似于Java中的break，
-在for循环中语法为：`Exit For`，do while循环中为：`Exit Do`，也可以利用`GoTo`语句
+在for循环中语法为：`Exit For`，在do while循环中为：`Exit Do`，也可以利用`GoTo`语句
 跳出本次循环，详见：[1.5.3 GoTo语句](#1.5.3)</br>
 ```vba
 Dim i As Integer
@@ -337,7 +338,7 @@ For i = 1 To 10 Step 2 ' 设定i从1到10，每次增加2，总共执行5次
 Next i
 ```
 
-2. For Each...循环</br>
+2. For Each ... 循环</br>
 语法：For Each 变量 In 集合或数组
 ```vba
 Dim arr
@@ -348,7 +349,7 @@ For Each i In arr ' 定义变量i，遍历arr数组
 Next i
 ```
 
-3. Do...While循环</br>
+3. Do ... While循环</br>
 语法：</br>
 - 前置循环条件：</br>
 ![Alt text](doc/source/images/dowhileloopsyntax.png)
@@ -370,7 +371,7 @@ Dim i As Integer
 i = 1
 Do
     i = i + 1
-Loop While i < 5 '循环4次
+Loop While i < 5 ' 循环4次
 ```
 
 4. Do Until 直到...循环</br>
