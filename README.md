@@ -326,7 +326,10 @@ End Sub
 循环语句用来让程序重复执行某段代码
 
 1. 普通For...Next循环</br>
-语法：For 循环变量 = 初始值 To 终值 Step 步长
+语法：For 循环变量 = 初始值 To 终值 Step 步长</br>
+注：在VBA循环中可以使用`Exit`关键字来跳出循环，类似于Java中的break，
+在for循环中语法为：`Exit For`，do while循环中为：`Exit Do`，也可以利用`GoTo`语句
+跳出本次循环，详见：[1.5.3 GoTo语句](#1.5.3)</br>
 ```vba
 Dim i As Integer
 For i = 1 To 10 Step 2 ' 设定i从1到10，每次增加2，总共执行5次
