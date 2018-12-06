@@ -38,6 +38,7 @@ Last update date：12/01/2018 23:33
 - [ ] [0x05 Excel 相关常用操作](#excel-option) (doing)
     - [5.1 打开Excel两种方式](#5.1)
     - [5.2 操作Excel工作表（Worksheet）](#5.2)
+    - [5.3 Excel AutoFilter / Excel 自动筛选操作](#5.3)
 - [x] [0x06 文件 相关常用操作](#0x06) (done)
     - [6.1 判断文件，文件夹等是否存在](#6.1)
     - [6.2 文件相关操作](#6.2)
@@ -1243,6 +1244,7 @@ Sub 复制工作表至Book1中()
 End Sub
 ```
 
+<a name="5.3"></a>
 ### 5.3 Excel AutoFilter / Excel 自动筛选操作
 
 #### 5.3.1 显示所有数据记录
