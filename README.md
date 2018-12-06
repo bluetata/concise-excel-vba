@@ -1387,6 +1387,23 @@ End If
 End Sub
 ```
 
+检查是否有自动筛选：
+
+可以打开立即窗口，即类似于控制台的 Immediate Window，快捷键：`Ctrl+G` ,查看如下code的
+iARM的打印值。
+
+![Alt text](doc/source/images/autofiltermacros03.png)
+
+```vba
+Sub CountSheetAutoFilters()
+Dim iARM As Long
+'counts all worksheet autofilters
+'even if all arrows are hidden
+  If ActiveSheet.AutoFilterMode = True Then iARM = 1
+  Debug.Print "AutoFilterMode: " & iARM
+End Sub  
+```
+
 
 
 <a name="0x06"></a>
