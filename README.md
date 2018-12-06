@@ -1243,6 +1243,11 @@ Sub 复制工作表至Book1中()
 End Sub
 ```
 
+### 5.2 Excel Filter / Excel 筛选操作
+
+#### 5.2.1 移动工作表
+
+
 <a name="0x06"></a>
 ## 0x06 文件，文件夹等 相关常用操作
 
@@ -1421,6 +1426,15 @@ to reduce the amount of scrolling.
 
 <a name="0x08"></a>
 ## 0x07 Trouble shooting
+1. 调试经验 Excel点击保存时总是弹出隐私信息警告（Privacy Warning:this document contains macros...）的解决方法
+
+警告信息：
+> Privacy Warning:this document contains macros,ActiveX controls,XML expansion pack information or web components. these may include personal information that cannot be removed by the document Inspector.
+
+开始菜单依次点击：</br>
+-> 1 File -> Options -> Trust Center -> Trust Center Settings -> Privacy Options
+取消勾选(Uncheck) "Remove personal information from file properties on save"选项
+
 
 
 
