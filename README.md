@@ -1243,9 +1243,150 @@ Sub 复制工作表至Book1中()
 End Sub
 ```
 
-### 5.2 Excel Filter / Excel 筛选操作
+### 5.3 Excel AutoFilter / Excel 自动筛选操作
 
-#### 5.2.1 移动工作表
+#### 5.3.1 显示所有数据记录
+```vba
+Sub ShowAllRecords()
+    If ActiveSheet.FilterMode Then
+        ActiveSheet.ShowAllData
+    End If
+End Sub
+```
+
+#### 5.3.2 开关Excel自动筛选
+
+先判断是否有自动筛选，如果没有为A1添加一个自动筛选
+```vba
+Sub TurnAutoFilterOn()
+'check for filter, turn on if none exists
+  If Not ActiveSheet.AutoFilterMode Then
+    ActiveSheet.Range("A1").AutoFilter
+  End If
+End Sub
+```
+
+清除自动筛选
+```vba
+Sub TurnFilterOff()
+'removes AutoFilter if one exists
+  Worksheets("Data").AutoFilterMode = False
+End Sub
+```
+
+#### 5.3.3 隐藏过滤箭头
+
+隐藏所有的箭头
+```vba
+Sub HideALLArrows()
+'hides all arrows in heading row
+'the Filter remains ON
+Dim c As Range
+Dim i As Integer
+Dim rng As Range
+Set rng = ActiveSheet.AutoFilter.Range.Rows(1)
+i = 1
+Application.ScreenUpdating = False
+
+For Each c In rng.Cells
+  c.AutoFilter Field:=i, _
+      Visibledropdown:=False
+  i = i + 1
+Next
+
+Application.ScreenUpdating = True
+End Sub
+```
+
+只保留一个箭头，其他的过滤箭头全隐藏
+
+![Alt text](doc/source/images/autofiltermacros01.png)
+
+```vba
+Sub HideArrowsExceptOne()
+'hides all arrows except
+' in specified field number
+Dim c As Range
+Dim rng As Range
+Dim i As Long
+Dim iShow As Long
+Set rng = ActiveSheet.AutoFilter.Range.Rows(1)
+i = 1
+iShow = 2 'leave this field's arrow visible
+Application.ScreenUpdating = False
+
+For Each c In rng.Cells
+  If i = iShow Then
+    c.AutoFilter Field:=i, _
+      Visibledropdown:=True
+  Else
+      c.AutoFilter Field:=i, _
+      Visibledropdown:=False
+  End If
+  i = i + 1
+Next
+
+Application.ScreenUpdating = True
+End Sub
+```
+
+隐藏部分箭头
+
+![Alt text](doc/source/images/autofiltermacros02.png)
+
+```vba
+Sub HideArrowsSpecificFields()
+'hides arrows in specified fields
+Dim c As Range
+Dim i As Integer
+Dim rng As Range
+Set rng = ActiveSheet.AutoFilter.Range.Rows(1)
+i = 1
+Application.ScreenUpdating = False
+
+For Each c In rng.Cells
+  Select Case i
+    Case 1, 3, 4
+      c.AutoFilter Field:=i, _
+        Visibledropdown:=False
+    Case Else
+      c.AutoFilter Field:=i, _
+        Visibledropdown:=True
+  End Select
+  i = i + 1
+Next
+
+Application.ScreenUpdating = True
+End Sub
+```
+
+复制所有的过滤后的数据
+
+```vba
+Sub CopyFilter()
+'by Tom Ogilvy
+Dim rng As Range
+Dim rng2 As Range
+
+With ActiveSheet.AutoFilter.Range
+ On Error Resume Next
+   Set rng2 = .Offset(1, 0).Resize(.Rows.Count - 1, 1) _
+       .SpecialCells(xlCellTypeVisible)
+ On Error GoTo 0
+End With
+If rng2 Is Nothing Then
+   MsgBox "No data to copy"
+Else
+   Worksheets("Sheet2").Cells.Clear
+   Set rng = ActiveSheet.AutoFilter.Range
+   rng.Offset(1, 0).Resize(rng.Rows.Count - 1).Copy _
+     Destination:=Worksheets("Sheet2").Range("A1")
+End If
+   ActiveSheet.ShowAllData
+
+End Sub
+```
+
 
 
 <a name="0x06"></a>
@@ -1410,7 +1551,7 @@ enforce variable declaration.
 as these are hard to understand. Procedures should fit on one screen -
 ie be 40-50 lines long maximum.- ie be 40-50 lines long maximum.
 3. Always prefix your variables so you can quickly identify their datatype.
-4. Never use the Variant datatype unless absolutely necessary.
+4. Never use the Variant datatype unless absolutely necessary.</br>
 **注**：尽量不要使用`Variant`，要显示的声明具体的数据类型。Variant是VBA中的一种特殊类型，
 所有没有声明的数据类型的变量都默认是Variant型。但Variant型所占的存储空间远大于其他的
 数据类型，所以除非必要，否则应该避免申明变量为Variant型。
