@@ -1434,8 +1434,7 @@ to reduce the amount of scrolling.
 开始菜单依次点击：</br>
 -> 1 File -> Options -> Trust Center -> Trust Center Settings -> Privacy Options
 取消勾选(Uncheck) "Remove personal information from file properties on save"选项
-
-
+![Alt text](doc/source/images/trouble_shooting_01.png)
 
 
 <a name="docslist"></a>
