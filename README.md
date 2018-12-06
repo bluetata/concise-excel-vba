@@ -1360,7 +1360,7 @@ Application.ScreenUpdating = True
 End Sub
 ```
 
-复制所有的过滤后的数据
+#### 5.3.4 复制所有的过滤后的数据
 
 ```vba
 Sub CopyFilter()
@@ -1387,7 +1387,7 @@ End If
 End Sub
 ```
 
-检查是否有自动筛选：
+#### 5.3.5 检查是否有自动筛选：
 
 可以打开立即窗口，即类似于控制台的 Immediate Window，快捷键：`Ctrl+G` ,查看如下code的
 iARM的打印值。
