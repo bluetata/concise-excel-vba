@@ -1411,6 +1411,9 @@ as these are hard to understand. Procedures should fit on one screen -
 ie be 40-50 lines long maximum.- ie be 40-50 lines long maximum.
 3. Always prefix your variables so you can quickly identify their datatype.
 4. Never use the Variant datatype unless absolutely necessary.
+**注**：尽量不要使用`Variant`，要显示的声明具体的数据类型。Variant是VBA中的一种特殊类型，
+所有没有声明的数据类型的变量都默认是Variant型。但Variant型所占的存储空间远大于其他的
+数据类型，所以除非必要，否则应该避免申明变量为Variant型。
 5. Always use the keyword "**Call**" to call your procedures.
 6. Always put your arguments in parentheses.
 7. Never use Global variables unless absolutely necessary.
@@ -1431,9 +1434,10 @@ to reduce the amount of scrolling.
 警告信息：
 > Privacy Warning:this document contains macros,ActiveX controls,XML expansion pack information or web components. these may include personal information that cannot be removed by the document Inspector.
 
-开始菜单依次点击：</br>
--> 1 File -> Options -> Trust Center -> Trust Center Settings -> Privacy Options
+菜单依次点击：</br>
+File → Options → Trust Center → Trust Center Settings → Privacy Options
 取消勾选(Uncheck) "Remove personal information from file properties on save"选项
+
 ![Alt text](doc/source/images/trouble_shooting_01.png)
 
 
