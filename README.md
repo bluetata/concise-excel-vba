@@ -1105,6 +1105,40 @@ End Sub
 
 <a name=""></a>
 ###  Excel 基础操作
+
+1. Range相关
+Range 属性的一些 A1 样式引用
+```vba
+Range("A1")             ' 单元格 A1
+Range("A1:B5")          ' 从单元格 A1 到单元格 B5 的区域
+Range("C5:D9,G9:H16")   ' 多块选定区域
+Range("A:A")        ' A 列
+Range("1:1")        ' 第一行
+Range("A:C")        ' 从 A 列到 C 列的区域
+Range("1:5")        ' 从第一行到第五行的区域
+Range("1:1, 3:3, 8:8")     ' 第 1、3 和 8 行
+Range("A:A, C:C, F:F")     ' A 、C 和 F 列
+```
+
+2. 行列相关
+行和列的引用
+```vba
+Rows(1)         ' 第一行
+Rows            ' 工作表上所有的行
+Columns(1)      ' 第一列
+Columns("A")    ' 第一列
+Columns         ' 工作表上所有的列
+ Union(Rows(1), Rows(3), Rows(5))  ' 引用第1,3,5行
+```
+3. 循环Selction区域的每一个单元格Cell
+```vba
+For Each rngDataCell In RngDataSelection
+    If Not rngDataCell.HasFormula And Not (Trim(rngDataCell.Value)  = "") Then
+        ...
+    End If
+Next rngDataCell
+```
+
 1. 选择当前工作表中的单元格
 ```vba
 ActiveSheet.Cells(5, 4).Select
@@ -1181,25 +1215,6 @@ ActiveSheet.Range("A1:" & ActiveSheet.Range("a65536").End(xlUp).Address).Select
 ```vba
 Dim lngCountData As Long
 lngCountData = ActiveSheet.UsedRange.Rows.Count
-```
-
-
-
-8.1 利用 End
-
-2.
-```vba
-
-```
-
-2.
-```vba
-
-```
-
-2.
-```vba
-
 ```
 
 
