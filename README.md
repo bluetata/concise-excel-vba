@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：12/01/2018 23:33
+Last update date：12/07/2018 14:02
 
 
 ## 目录
@@ -36,9 +36,10 @@ Last update date：12/01/2018 23:33
     - [4.6 StrReverse 倒转函数](#4.6)
     - [4.7 其他字符串函数](#4.7)
 - [ ] [0x05 Excel 相关常用操作](#excel-option) (doing)
-    - [5.1 打开Excel两种方式](#5.1)
-    - [5.2 操作Excel工作表（Worksheet）](#5.2)
-    - [5.3 Excel AutoFilter / Excel 自动筛选操作](#5.3)
+    - [5.1 Excel 基础操作](#5.1)
+    - [5.2 打开Excel两种方式](#5.2)
+    - [5.3 操作Excel工作表（Worksheet）](#5.3)
+    - [5.4 Excel AutoFilter / Excel 自动筛选操作](#5.4)
 - [x] [0x06 文件 相关常用操作](#0x06) (done)
     - [6.1 判断文件，文件夹等是否存在](#6.1)
     - [6.2 文件相关操作](#6.2)
@@ -1103,8 +1104,8 @@ End Sub
 <a name="excel-option"></a>
 ## 0x05 Excel 相关常用操作
 
-<a name=""></a>
-###  Excel 基础操作
+<a name="5.1"></a>
+### 5.1 Excel 基础操作
 
 1. Range相关
 Range 属性的一些 A1 样式引用
@@ -1139,13 +1140,13 @@ For Each rngDataCell In RngDataSelection
 Next rngDataCell
 ```
 
-1. 选择当前工作表中的单元格
+4. 选择当前工作表中的单元格
 ```vba
 ActiveSheet.Cells(5, 4).Select
 或：ActiveSheet.Range("D5").Select
 ```
 
-2. 选择同一工作簿中其它工作表上的单元格
+5. 选择同一工作簿中其它工作表上的单元格
 ```vba
 Application.Goto (ActiveWorkbook.Sheets("Sheet2").Range("E6"))
 ' 也可以先激活该工作表，然后再选择：
@@ -1153,7 +1154,7 @@ Sheets("Sheet2").Activate
 ActiveSheet.Cells(6, 5).Select
 ```
 
-3. 选择与当前单元格相关的单元格/偏离当前单元格(Offset)</br>
+6. 选择与当前单元格相关的单元格/偏离当前单元格(Offset)</br>
 语法：Offset(D, R) 以当前为基础原点，向下D，且向右D移动，如果负数即为向反方向移动
 即向上和向左移动。</br>
 例如，要选择距当前单元格下面5行左侧4列的单元格
@@ -1161,39 +1162,38 @@ ActiveSheet.Cells(6, 5).Select
 ActiveCell.Offset(5, -4).Select
 ```
 
-4. 选择一个指定的区域并扩展区域的大小
+7. 选择一个指定的区域并扩展区域的大小
 ```vba
 ' 要选择当前工作表中名为“Database”区域，然后将该区域向下扩展5行，可以使用下面的代码：
 Range("Database").Select
 Selection.Resize(Selection.Rows.Count + 5, Selection.Columns.Count).Select
 ```
 
-5. 选择一个指定的区域，再偏离，然后扩展区域的大小
+8. 选择一个指定的区域，再偏离，然后扩展区域的大小
 ```vba
 ' 选择名为“Database”区域下方4行右侧3列的一个区域，然后扩展2行和1列，可以使用下面的代码：
 Range("Database").Select
 Selection.Offset(4, 3).Resize(Selection.Rows.Count + 2, Selection.Columns.Count + 1).Select
 ```
 
-6. 同时选择两个或多个指定区域</br>
+9. 同时选择两个或多个指定区域</br>
 **注意**：所选区域必须在同一工作表(sheet)中。
 ```vba
 Set rngUnionSelection = Application.Union(Range("Sheet1!A1:B2"), Range("Sheet1!C3:D4"))
 ```
 
-7. 选择两个或多个指定区域的交叉区域
+10. 选择两个或多个指定区域的交叉区域
 **注意**：所选区域必须在同一工作表(sheet)中。
 ```vba
 ' 要选择名为“Test1”和“Test2”的两个区域的交叉区域
 Application.Intersect(Range("Test1"), Range("Test2")).Select
 ```
 
-8. 利用End函数的相关操作
+11. 利用End函数的相关操作
 
 End(xldown)：从被选中的单元格向下寻找，如果被选中单元格为空，则一直向下走到
 第一个非空单元格；如果被选中单元格为非空，则向下走到最后一个非空单元格。</br>
 `End`函数的4个方向参数：xlUp, xlDown, xlToLeft, xlToRight。
-
 
 ```vba
 ' 选择连续数据列中的最后一个单元格
@@ -1211,6 +1211,7 @@ ActiveSheet.Range("A1:" & ActiveSheet.Range("a1").End(xlDown).Address).Select
 ActiveSheet.Range("A1", ActiveSheet.Range("a65536").End(xlUp)).Select
 ActiveSheet.Range("A1:" & ActiveSheet.Range("a65536").End(xlUp).Address).Select
 ```
+
 补充： 对于上述代码中非连续数据，也可以利用UsedRange.Rows.Count获取所有数据的条/行数。
 ```vba
 Dim lngCountData As Long
@@ -1219,8 +1220,8 @@ lngCountData = ActiveSheet.UsedRange.Rows.Count
 
 
 
-<a name="5.1"></a>
-### 5.1 打开Excel两种方式
+<a name="5.2"></a>
+### 5.2 打开Excel两种方式
 
 - 利用 `GetObject` 方法打开Excel文档
 ```vba
@@ -1298,9 +1299,9 @@ End Function
 ```
 
 <a name="5.2"></a>
-### 5.2 操作Excel工作表（Worksheet）
+### 5.3 操作Excel工作表（Worksheet）
 
-#### 5.2.1 移动工作表
+#### 5.3.1 移动工作表
 
 移动工作表是指将工作表移到工作簿中的其他位置。
 在VBA中，可以使用WorkSheet.Move方法来移动工作表。
@@ -1329,7 +1330,7 @@ Sub A()
 End Sub
 ```
 
-#### 5.2.2 复制工作表
+#### 5.3.2 复制工作表
 
 复制工作表是指将工作表进行备份，以便于用户对备份文件进行操作时，不会损坏原有文件。
 在VBA中，使用Sheets.Copy方法可以将工作表复制到工作簿的另一位置。
@@ -1360,10 +1361,10 @@ Sub 复制工作表至Book1中()
 End Sub
 ```
 
-<a name="5.3"></a>
-### 5.3 Excel AutoFilter / Excel 自动筛选操作
+<a name="5.4"></a>
+### 5.4 Excel AutoFilter / Excel 自动筛选操作
 
-#### 5.3.1 显示所有数据记录
+#### 5.4.1 显示所有数据记录
 ```vba
 Sub ShowAllRecords()
     If ActiveSheet.FilterMode Then
@@ -1372,7 +1373,7 @@ Sub ShowAllRecords()
 End Sub
 ```
 
-#### 5.3.2 开关Excel自动筛选
+#### 5.4.2 开关Excel自动筛选
 
 先判断是否有自动筛选，如果没有为A1添加一个自动筛选
 ```vba
@@ -1392,7 +1393,7 @@ Sub TurnFilterOff()
 End Sub
 ```
 
-#### 5.3.3 隐藏过滤箭头
+#### 5.4.3 隐藏过滤箭头
 
 隐藏所有的箭头
 ```vba
@@ -1478,7 +1479,7 @@ Application.ScreenUpdating = True
 End Sub
 ```
 
-#### 5.3.4 复制所有的过滤后的数据
+#### 5.4.4 复制所有的过滤后的数据
 
 ```vba
 Sub CopyFilter()
@@ -1505,7 +1506,7 @@ End If
 End Sub
 ```
 
-#### 5.3.5 检查是否有自动筛选：
+#### 5.4.5 检查是否有自动筛选：
 
 可以打开立即窗口，即类似于控制台的 Immediate Window，快捷键：`Ctrl+G` ,查看如下code的
 iARM的打印值。
