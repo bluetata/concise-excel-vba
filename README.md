@@ -1113,12 +1113,12 @@ Range 属性的一些 A1 样式引用
 Range("A1")             ' 单元格 A1
 Range("A1:B5")          ' 从单元格 A1 到单元格 B5 的区域
 Range("C5:D9,G9:H16")   ' 多块选定区域
-Range("A:A")        ' A 列
-Range("1:1")        ' 第一行
-Range("A:C")        ' 从 A 列到 C 列的区域
-Range("1:5")        ' 从第一行到第五行的区域
-Range("1:1, 3:3, 8:8")     ' 第 1、3 和 8 行
-Range("A:A, C:C, F:F")     ' A 、C 和 F 列
+Range("A:A")            ' A 列
+Range("1:1")            ' 第一行
+Range("A:C")            ' 从 A 列到 C 列的区域
+Range("1:5")            ' 从第一行到第五行的区域
+Range("1:1, 3:3, 8:8")  ' 第 1、3 和 8 行
+Range("A:A, C:C, F:F")  ' A 、C 和 F 列
 ```
 
 2. 行列相关
@@ -1129,7 +1129,7 @@ Rows            ' 工作表上所有的行
 Columns(1)      ' 第一列
 Columns("A")    ' 第一列
 Columns         ' 工作表上所有的列
- Union(Rows(1), Rows(3), Rows(5))  ' 引用第1,3,5行
+Union(Rows(1), Rows(3), Rows(5))  ' 引用第1, 3, 5行
 ```
 3. 循环Selction区域的每一个单元格Cell
 ```vba
@@ -1378,18 +1378,18 @@ End Sub
 先判断是否有自动筛选，如果没有为A1添加一个自动筛选
 ```vba
 Sub TurnAutoFilterOn()
-'check for filter, turn on if none exists
-  If Not ActiveSheet.AutoFilterMode Then
-    ActiveSheet.Range("A1").AutoFilter
-  End If
+    'check for filter, turn on if none exists
+    If Not ActiveSheet.AutoFilterMode Then
+        ActiveSheet.Range("A1").AutoFilter
+    End If
 End Sub
 ```
 
 清除自动筛选
 ```vba
 Sub TurnFilterOff()
-'removes AutoFilter if one exists
-  Worksheets("Data").AutoFilterMode = False
+    'removes AutoFilter if one exists
+    Worksheets("Data").AutoFilterMode = False
 End Sub
 ```
 
@@ -1398,22 +1398,22 @@ End Sub
 隐藏所有的箭头
 ```vba
 Sub HideALLArrows()
-'hides all arrows in heading row
-'the Filter remains ON
-Dim c As Range
-Dim i As Integer
-Dim rng As Range
-Set rng = ActiveSheet.AutoFilter.Range.Rows(1)
-i = 1
-Application.ScreenUpdating = False
+    'hides all arrows in heading row
+    'the Filter remains ON
+    Dim c As Range
+    Dim i As Integer
+    Dim rng As Range
+    Set rng = ActiveSheet.AutoFilter.Range.Rows(1)
+    i = 1
+    Application.ScreenUpdating = False
 
-For Each c In rng.Cells
-  c.AutoFilter Field:=i, _
-      Visibledropdown:=False
-  i = i + 1
-Next
+    For Each c In rng.Cells
+        c.AutoFilter Field:=i, _
+            Visibledropdown:=False
+        i = i + 1
+    Next
 
-Application.ScreenUpdating = True
+    Application.ScreenUpdating = True
 End Sub
 ```
 
@@ -1435,14 +1435,14 @@ iShow = 2 'leave this field's arrow visible
 Application.ScreenUpdating = False
 
 For Each c In rng.Cells
-  If i = iShow Then
-    c.AutoFilter Field:=i, _
-      Visibledropdown:=True
-  Else
-      c.AutoFilter Field:=i, _
-      Visibledropdown:=False
-  End If
-  i = i + 1
+    If i = iShow Then
+        c.AutoFilter Field:=i, _
+        Visibledropdown:=True
+    Else
+        c.AutoFilter Field:=i, _
+        Visibledropdown:=False
+    End If
+    i = i + 1
 Next
 
 Application.ScreenUpdating = True
@@ -1455,27 +1455,27 @@ End Sub
 
 ```vba
 Sub HideArrowsSpecificFields()
-'hides arrows in specified fields
-Dim c As Range
-Dim i As Integer
-Dim rng As Range
-Set rng = ActiveSheet.AutoFilter.Range.Rows(1)
-i = 1
-Application.ScreenUpdating = False
+    'hides arrows in specified fields
+    Dim c As Range
+    Dim i As Integer
+    Dim rng As Range
+    Set rng = ActiveSheet.AutoFilter.Range.Rows(1)
+    i = 1
+    Application.ScreenUpdating = False
 
-For Each c In rng.Cells
-  Select Case i
-    Case 1, 3, 4
-      c.AutoFilter Field:=i, _
-        Visibledropdown:=False
-    Case Else
-      c.AutoFilter Field:=i, _
-        Visibledropdown:=True
-  End Select
-  i = i + 1
-Next
+    For Each c In rng.Cells
+        Select Case i
+            Case 1, 3, 4
+            c.AutoFilter Field:=i, _
+                Visibledropdown:=False
+        Case Else
+            c.AutoFilter Field:=i, _
+                Visibledropdown:=True
+        End Select
+        i = i + 1
+    Next
 
-Application.ScreenUpdating = True
+    Application.ScreenUpdating = True
 End Sub
 ```
 
@@ -1483,26 +1483,26 @@ End Sub
 
 ```vba
 Sub CopyFilter()
-'by Tom Ogilvy
-Dim rng As Range
-Dim rng2 As Range
+    'by Tom Ogilvy
+    Dim rng As Range
+    Dim rng2 As Range
 
-With ActiveSheet.AutoFilter.Range
- On Error Resume Next
-   Set rng2 = .Offset(1, 0).Resize(.Rows.Count - 1, 1) _
-       .SpecialCells(xlCellTypeVisible)
- On Error GoTo 0
-End With
-If rng2 Is Nothing Then
-   MsgBox "No data to copy"
-Else
-   Worksheets("Sheet2").Cells.Clear
-   Set rng = ActiveSheet.AutoFilter.Range
-   rng.Offset(1, 0).Resize(rng.Rows.Count - 1).Copy _
-     Destination:=Worksheets("Sheet2").Range("A1")
-End If
-   ActiveSheet.ShowAllData
+    With ActiveSheet.AutoFilter.Range
+        On Error Resume Next
+            Set rng2 = .Offset(1, 0).Resize(.Rows.Count - 1, 1) _
+            .SpecialCells(xlCellTypeVisible)
+        On Error GoTo 0
+    End With
+    If rng2 Is Nothing Then
+        MsgBox "No data to copy"
+    Else
+        Worksheets("Sheet2").Cells.Clear
+        Set rng = ActiveSheet.AutoFilter.Range
+        rng.Offset(1, 0).Resize(rng.Rows.Count - 1).Copy _
+        Destination:=Worksheets("Sheet2").Range("A1")
+    End If
 
+    ActiveSheet.ShowAllData
 End Sub
 ```
 
@@ -1515,14 +1515,13 @@ iARM的打印值。
 
 ```vba
 Sub CountSheetAutoFilters()
-Dim iARM As Long
-'counts all worksheet autofilters
-'even if all arrows are hidden
-  If ActiveSheet.AutoFilterMode = True Then iARM = 1
-  Debug.Print "AutoFilterMode: " & iARM
+    Dim iARM As Long
+    'counts all worksheet autofilters
+    'even if all arrows are hidden
+    If ActiveSheet.AutoFilterMode = True Then iARM = 1
+    Debug.Print "AutoFilterMode: " & iARM
 End Sub  
 ```
-
 
 
 <a name="0x06"></a>
