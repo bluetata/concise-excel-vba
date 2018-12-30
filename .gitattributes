@@ -1,6 +1,6 @@
 # Set language
-*.xls linguist-language=Visual-Basic
-*.bas linguist-language=Visual-Basic
+*.xls linguist-language=Visual Basic
+*.bas linguist-language=Visual Basic
 
 # CRLF -> LF by default, but not for modules or classes (especially classes)
 * text=auto
