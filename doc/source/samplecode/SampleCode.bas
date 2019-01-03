@@ -27,11 +27,13 @@ Const WS_CONST_SHEET            As String = "const"
 Const WS_ORIGINAL_DATA_SHEET    As String = "Original"
 Const WS_DESIRED_OUT_SHEET      As String = "Desired Output"
 
-'-------------------------------------------------
+
+'-------------------------------------------------------------------------------
 ' The function PublicHolidayFr returns 1 if the date is a public holiday.
-' If there is no DateDay parameter, the function returns 1 if the current date is a public holiday.
+' If there is no DateDay parameter, the function returns 1 if the current date
+' is a public holiday.
 ' Note : actually it's just for France
-'-------------------------------------------------
+'-------------------------------------------------------------------------------
 
 Function PublicHolidayFr(Optional DateDay As Date) As Byte
     If DateDay = "00:00:00" Then DateDay = Date
@@ -69,10 +71,10 @@ Function PublicHolidayFr(Optional DateDay As Date) As Byte
 End Function
 
 
-'-------------------------------------------------
+'-------------------------------------------------------------------------------
 ' The function WorkingDay returns 1 if the date is a Working Day (Monday => Friday).
 ' If there is no DateDay parameter, the function returns 1 if the current date is a Working Day.
-'-------------------------------------------------
+'-------------------------------------------------------------------------------
 
 Function WorkingDay(Optional DateDay As Date) As Byte
     If DateDay = "00:00:00" Then DateDay = Date
@@ -90,10 +92,10 @@ Function WorkingDay(Optional DateDay As Date) As Byte
 End Function
 
 
-'-------------------------------------------------
+'-------------------------------------------------------------------------------
 ' The function WorkableDay returns 1 if the date is a Workable Day (Monday => Saturday).
 ' If there is no DateDay parameter, the function returns 1 if the current date is a Workable Day.
-'-------------------------------------------------
+'-------------------------------------------------------------------------------
 
 Function WorkableDay(Optional DateDay As Date) As Byte
     If DateDay = "00:00:00" Then DateDay = Date
@@ -111,10 +113,11 @@ Function WorkableDay(Optional DateDay As Date) As Byte
 End Function
 
 
-'-------------------------------------------------
-' The function NextWorkingDay returns the date in parameter if it's a Working Day and not a public holiday or the next Working Day if not.
+'-------------------------------------------------------------------------------
+' The function NextWorkingDay returns the date in parameter if it's a Working Day and
+' not a public holiday or the next Working Day if not.
 ' If there is no DateDay parameter, the function returns the next Working Day for the current date.
-'-------------------------------------------------
+'-------------------------------------------------------------------------------
 
 Function NextWorkingDay(Optional DateDay As Date) As Date
     If DateDay = "00:00:00" Then DateDay = Date
@@ -140,11 +143,11 @@ Function NextWorkingDay(Optional DateDay As Date) As Date
 End Function
 
 
-
-'-------------------------------------------------
-' The function NextWorkableDay returns the date in parameter if it's a Workable Day and not a public holiday or the next Workable Day if not.
+'-------------------------------------------------------------------------------
+' The function NextWorkableDay returns the date in parameter if it's a Workable Day and
+' not a public holiday or the next Workable Day if not.
 ' If there is no DateDay parameter, the function returns the next Workable Day for the current date.
-'-------------------------------------------------
+'-------------------------------------------------------------------------------
 
 Function NextWorkableDay(Optional DateDay As Date) As Date
     If DateDay = "00:00:00" Then DateDay = Date
