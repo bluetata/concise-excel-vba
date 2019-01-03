@@ -27,6 +27,7 @@ Const WS_CONST_SHEET            As String = "const"
 Const WS_ORIGINAL_DATA_SHEET    As String = "Original"
 Const WS_DESIRED_OUT_SHEET      As String = "Desired Output"
 
+
 '-------------------------------------------------------------------------------
 ' The function PublicHolidayFr returns 1 if the date is a public holiday.
 ' If there is no DateDay parameter, the function returns 1 if the current date
@@ -140,7 +141,6 @@ Function NextWorkingDay(Optional DateDay As Date) As Date
     End If
     NextWorkingDay = res
 End Function
-
 
 
 '-------------------------------------------------------------------------------
