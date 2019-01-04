@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：12/07/2018 14:02
+Last update date：01/04/2019 18:26
 
 
 ## 目录
@@ -1705,7 +1705,8 @@ to reduce the amount of scrolling.
 
 <a name="0x08"></a>
 ## 0x07 Trouble shooting
-1. 调试经验 Excel点击保存时总是弹出隐私信息警告（Privacy Warning:this document contains macros...）的解决方法
+
+### 调试经验 Excel点击保存时总是弹出隐私信息警告（Privacy Warning:this document contains macros...）的解决方法
 
 警告信息：
 > Privacy Warning:this document contains macros,ActiveX controls,XML expansion pack information or web components. these may include personal information that cannot be removed by the document Inspector.
@@ -1716,6 +1717,51 @@ File → Options → Trust Center → Trust Center Settings → Privacy Options
 
 ![Alt text](doc/source/images/trouble_shooting_01.png)
 
+
+### 清除Excel数据透视表中过滤器缓存（旧项目）
+
+如下图所示，根据数据范围创建数据透视表时，从源范围中删除数据后，即使刷新数据透视表，旧项目仍将存在于数据透视表的下拉菜单中。 如果要从数据透视表的下拉菜单中删除所有旧项目，可参照如下两种方法：
+
+**1. 通过更改选项来清除数据透视表中的过滤器缓存（旧项目）**
+
+I 右键单击数据透视表中的任何单元格，然后单击 数据透视表选项 从上下文菜单。 看截图：
+![Alt text](doc/source/images/doc-clear-filter-cache-1.png)
+
+II 在里面 数据透视表选项 对话框中，单击 **数据** 标签，选择 没有 来自 **每个字段要保留的项目数量** 下拉列表，然后单击 OK 按钮。
+![Alt text](doc/source/images/doc-clear-filter-cache-2.png)
+
+III 右键单击“数据透视表”单元格，然后单击 **刷新** 从右键菜单。 看截图：
+![Alt text](doc/source/images/doc-clear-filter-cache-3.png)
+
+然后你可以看到旧的项目从数据透视表的下拉菜单中删除，如下图所示。
+![Alt text](doc/source/images/doc-clear-filter-cache-4.png)
+
+使用VBA代码清除所有数据透视表中的过滤器缓存（旧项目）
+
+**2. 使用VBA代码清除所有数据透视表中的过滤器缓存（旧项目）**
+
+在 **项目** 窗格打开 **ThisWorkbook（Code）** 窗口，然后将下面的VBA代码复制并粘贴到窗口中。
+```VBA
+Private Sub Workbook_Open()
+    Dim xPt As PivotTable
+    Dim xWs As Worksheet
+    Dim xPc As PivotCache
+    Application.ScreenUpdating = False
+    For Each xWs In ActiveWorkbook.Worksheets
+        For Each xPt In xWs.PivotTables
+            xPt.PivotCache.MissingItemsLimit = xlMissingItemsNone
+        Next xPt
+    Next xWs
+    For Each xPc In ActiveWorkbook.PivotCaches
+        On Error Resume Next
+        xPc.Refresh
+    Next xPc
+    Application.ScreenUpdating = True
+End Sub
+```
+![Alt text](doc/source/images/doc-clear-filter-cache-5.png)
+
+按 F5 键来运行代码，然后从活动工作簿中的所有数据透视表的下拉菜单中立即删除旧项目。
 
 <a name="docslist"></a>
 ## 0xFF VBA学习资源列表
@@ -1733,3 +1779,8 @@ File → Options → Trust Center → Trust Center Settings → Privacy Options
 <a name="license"></a>
 ## 开源许可
 本Repository除特殊注明外，均采用 Creative Commons [BY-NC-ND 4.0](LICENSE)（自由转载-保持署名-非商用-禁止演绎）协议发布。
+
+
+## 作者
+
+Sekito.Lv(bluetata) <sekito.lv@gmail.com>
