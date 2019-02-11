@@ -158,7 +158,7 @@ Function NextWorkableDay(Optional DateDay As Date) As Date
     wda2 = WorkableDay(DateDay + 2)
     wda3 = WorkableDay(DateDay + 3)
     If wda = 1 Then
-                    res = DateDay
+            res = DateDay
         ElseIf wda1 = 1 Then
                         res = DateDay + 1
             ElseIf wda2 = 1 Then
