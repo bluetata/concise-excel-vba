@@ -47,6 +47,7 @@ Last update date：01/04/2019 18:26
     - [6.4 其他操作（获取文件名等）](#6.4)
 - [x] [0x07 VBA Best Practices](#0x07) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
+- [x] [0x09 VBA示例代码](#0x09) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 
@@ -593,7 +594,7 @@ End Function
 单引号 `'` 举例：`' 定义全局变量`；可以位于别的语句之尾，也可单独一行。</br>
 `Rem` 举例：`Rem 定义全局变量`；只能单独一行
 
-以下列举出了不同级别的注释代码，也可以[点击这里](doc/source/samplecode/sample-code.bas)查看 VBA Sample Code。
+以下列举出了不同级别的注释代码，也可以[点击这里](SampleCode.bas)查看 VBA Sample Code。
 
 #### 1. 源码概要注释/Source version Comments Code</br>
 在每个source文件的最开头
@@ -1764,6 +1765,12 @@ End Sub
 ![Alt text](doc/source/images/doc-clear-filter-cache-5.png)
 
 按 F5 键来运行代码，然后从活动工作簿中的所有数据透视表的下拉菜单中立即删除旧项目。
+
+
+<a name="0x09"></a>
+## 0x09 VBA示例代码
+VBA示例代码查看：[点击这里](SampleCode.bas)。
+
 
 <a name="docslist"></a>
 ## 0xFF VBA学习资源列表
