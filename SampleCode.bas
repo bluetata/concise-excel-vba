@@ -160,11 +160,11 @@ Function NextWorkableDay(Optional DateDay As Date) As Date
     If wda = 1 Then
             res = DateDay
         ElseIf wda1 = 1 Then
-                        res = DateDay + 1
+                res = DateDay + 1
             ElseIf wda2 = 1 Then
-                            res = DateDay + 2
+                    res = DateDay + 2
                 ElseIf wda3 = 1 Then
-                                res = DateDay + 3
+                        res = DateDay + 3
     End If
     NextWorkableDay = res
 End Function
