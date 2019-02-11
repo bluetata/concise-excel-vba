@@ -129,15 +129,15 @@ Function NextWorkingDay(Optional DateDay As Date) As Date
     wda3 = WorkingDay(DateDay + 3)
     wda4 = WorkingDay(DateDay + 4)
     If wda = 1 Then
-                    res = DateDay
+            res = DateDay
         ElseIf wda1 = 1 Then
-                        res = DateDay + 1
+                res = DateDay + 1
             ElseIf wda2 = 1 Then
-                            res = DateDay + 2
+                    res = DateDay + 2
                 ElseIf wda3 = 1 Then
-                                res = DateDay + 3
+                        res = DateDay + 3
                     ElseIf wda4 = 1 Then
-                                    res = DateDay + 4
+                            res = DateDay + 4
     End If
     NextWorkingDay = res
 End Function
