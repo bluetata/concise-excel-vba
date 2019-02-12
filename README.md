@@ -1776,19 +1776,19 @@ End Sub
 
 错误现象： Excel2016（365）运行macro宏时，弹出标题警告↓   
 
-![Alt text](doc/source/images/trouble_shooting_01.png)   
+![Alt text](doc/source/images/trouble_shooting_03_01.png)   
 
 解决办法：   
 step1：先确认Excel的设置是否正确
 依次点击 File >> Options >> Trust Center >> Trust Center Settings >> Macro Settings 按照如下图所示设置：   
 
-![Alt text](doc/source/images/trouble_shooting_02.png)   
+![Alt text](doc/source/images/trouble_shooting_03_02.png)   
 
 step2：确认自己机器的安全级别   
 一般如果按照step1设置后再次运行macro宏依然弹出警告，另一种情况就是你自己的机器（远程PC/Server/VDI等）自身的安全级别过高造成的。   
 打开浏览器依次点击 Tools >> Internet options >> Security >> Customer level...  将安全级别从 **高(High)** 改成 **中(Medium)**   
 
-![Alt text](doc/source/images/trouble_shooting_03.png)   
+![Alt text](doc/source/images/trouble_shooting_03_03.png)   
 
 <a name="0x09"></a>
 ## 0x09 VBA示例代码
