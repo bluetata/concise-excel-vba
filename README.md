@@ -1709,6 +1709,7 @@ to reduce the amount of scrolling.
 <a name="0x08"></a>
 ## 0x07 Trouble shooting
 
+
 ### 调试经验 Excel点击保存时总是弹出隐私信息警告（Privacy Warning:this document contains macros...）的解决方法
 
 警告信息：
@@ -1725,21 +1726,25 @@ File → Options → Trust Center → Trust Center Settings → Privacy Options
 
 如下图所示，根据数据范围创建数据透视表时，从源范围中删除数据后，即使刷新数据透视表，旧项目仍将存在于数据透视表的下拉菜单中。 如果要从数据透视表的下拉菜单中删除所有旧项目，可参照如下两种方法：
 
+
 **1. 通过更改选项来清除数据透视表中的过滤器缓存（旧项目）**
 
-I 右键单击数据透视表中的任何单元格，然后单击 数据透视表选项 从上下文菜单。 看截图：
+step1: 右键单击数据透视表中的任何单元格，然后单击 数据透视表选项 从上下文菜单。 看截图：   
+
 ![Alt text](doc/source/images/doc-clear-filter-cache-1.png)
 
-II 在里面 数据透视表选项 对话框中，单击 **数据** 标签，选择 没有 来自 **每个字段要保留的项目数量** 下拉列表，然后单击 OK 按钮。
+step2: 在里面 数据透视表选项 对话框中，单击 **数据** 标签，选择 没有 来自 **每个字段要保留的项目数量** 下拉列表，然后单击 OK 按钮。   
+
 ![Alt text](doc/source/images/doc-clear-filter-cache-2.png)
 
-III 右键单击“数据透视表”单元格，然后单击 **刷新** 从右键菜单。 看截图：
+step3: 右键单击“数据透视表”单元格，然后单击 **刷新** 从右键菜单。 看截图：   
+
 ![Alt text](doc/source/images/doc-clear-filter-cache-3.png)
 
-然后你可以看到旧的项目从数据透视表的下拉菜单中删除，如下图所示。
+然后你可以看到旧的项目从数据透视表的下拉菜单中删除，如下图所示。   
+
 ![Alt text](doc/source/images/doc-clear-filter-cache-4.png)
 
-使用VBA代码清除所有数据透视表中的过滤器缓存（旧项目）
 
 **2. 使用VBA代码清除所有数据透视表中的过滤器缓存（旧项目）**
 
@@ -1766,6 +1771,14 @@ End Sub
 
 按 F5 键来运行代码，然后从活动工作簿中的所有数据透视表的下拉菜单中立即删除旧项目。
 
+
+### 解决办法：The macros in this project are disabled.  Please refer to the online help or documentation of the host application to determine how to enable macros.
+
+错误现象： Excel2016（365）运行macro宏时，弹出标题警告↓   
+
+![Alt text](doc/source/images/trouble_shooting_01.png)   
+
+解决办法：➍的复选框勾选掉后，在尝试保存即可。
 
 <a name="0x09"></a>
 ## 0x09 VBA示例代码
