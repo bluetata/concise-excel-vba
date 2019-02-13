@@ -47,6 +47,7 @@ Last update date：01/04/2019 18:26
     - [6.4 其他操作（获取文件名等）](#6.4)
 - [x] [0x07 VBA Best Practices](#0x07) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
+    - [8.1](#8.1)
 - [x] [0x09 VBA示例代码](#0x09) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
@@ -588,7 +589,7 @@ End Function
 
 <a name="1.8"></a>
 ### 1.8 注释（Comments code）
-> 个人觉得注释起着非常重要的作用 -- ** *bluetata* ** 11/28/2018 18:40
+> 个人觉得代码注释起着非常重要的作用。 --  *bluetata* 11/28/2018 18:40
 
 注释语句是用来说明程序中某些语句的功能和作用；VBA 中有两种方法标识为注释语句。</br>
 单引号 `'` 举例：`' 定义全局变量`；可以位于别的语句之尾，也可单独一行。</br>
@@ -1707,22 +1708,24 @@ to reduce the amount of scrolling.
 
 
 <a name="0x08"></a>
-## 0x07 Trouble shooting
+## 0x08 Trouble shooting
 
 
-### 调试经验 Excel点击保存时总是弹出隐私信息警告（Privacy Warning:this document contains macros...）的解决方法
+<a name="8.1"></a>
+### 8.1 调试经验 Excel点击保存时总是弹出隐私信息警告（Privacy Warning:this document contains macros...）的解决方法
 
 警告信息：
-> Privacy Warning:this document contains macros,ActiveX controls,XML expansion pack information or web components. these may include personal information that cannot be removed by the document Inspector.
+> Privacy Warning:this document contains macros, ActiveX controls, XML expansion pack information or web components. these may include personal information that cannot be removed by the document Inspector.
 
 菜单依次点击：</br>
 File → Options → Trust Center → Trust Center Settings → Privacy Options
-取消勾选(Uncheck) "Remove personal information from file properties on save"选项
+取消勾选(Uncheck) "Remove personal information from file properties on save" 选项
 
 ![Alt text](doc/source/images/trouble_shooting_01.png)
 
 
-### 清除Excel数据透视表中过滤器缓存（旧项目）
+<a name="8.2"></a>
+### 8.2 清除Excel数据透视表中过滤器缓存（旧项目）
 
 如下图所示，根据数据范围创建数据透视表时，从源范围中删除数据后，即使刷新数据透视表，旧项目仍将存在于数据透视表的下拉菜单中。 如果要从数据透视表的下拉菜单中删除所有旧项目，可参照如下两种方法：
 
@@ -1772,7 +1775,8 @@ End Sub
 按 F5 键来运行代码，然后从活动工作簿中的所有数据透视表的下拉菜单中立即删除旧项目。
 
 
-### 解决办法：The macros in this project are disabled.  Please refer to the online help or documentation of the host application to determine how to enable macros.
+<a name="8.3"></a>
+### 8.3 解决办法：The macros in this project are disabled.  Please refer to the online help or documentation of the host application to determine how to enable macros.
 
 错误现象： Excel2016（365）运行macro宏时，弹出标题警告↓   
 
@@ -1786,7 +1790,7 @@ step1：先确认Excel的设置是否正确
 
 step2：确认自己机器的安全级别   
 一般如果按照step1设置后再次运行macro宏依然弹出警告，另一种情况就是你自己的机器（远程PC/Server/VDI等）自身的安全级别过高造成的。   
-打开浏览器依次点击 Tools >> Internet options >> Security >> Customer level...  将安全级别从 **高(High)** 改成 **中(Medium)**   
+打开浏览器依次点击 Tools >> Internet options >> Security >> Customer level...  将安全级别从 **高(High)** 改成 **中(Medium)**。   
 
 ![Alt text](doc/source/images/trouble_shooting_03_03.png)   
 
