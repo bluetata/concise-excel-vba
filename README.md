@@ -47,7 +47,9 @@ Last update date：01/04/2019 18:26
     - [6.4 其他操作（获取文件名等）](#6.4)
 - [x] [0x07 VBA Best Practices](#0x07) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
-    - [8.1](#8.1)
+    - [8.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#8.1)
+    - [8.2 清除Excel数据透视表中过滤器缓存（旧项目）](#8.2)
+    - [8.3 解决办法：The macros in this project are disabled. Please refer to ...](#8.3)
 - [x] [0x09 VBA示例代码](#0x09) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
@@ -1683,7 +1685,7 @@ End Sub
 
 
 <a name="0x07"></a>
-## 0x06 VBA Best Practices
+## 0x07 VBA Best Practices
 1. Always have Option Explicit at the top of your code modules to
 enforce variable declaration.
 2. Never write procedures and functions that are longer than a full screen
