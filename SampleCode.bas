@@ -18,7 +18,7 @@
 '-------------------------------------
 
 
-option explicit
+Option Explicit
 
 '-------------------------------------
 ' Define all Constant variables
