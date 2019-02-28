@@ -249,6 +249,23 @@ arr和i 之前的Array，Integer表示对应参数的数据类型</br>
 "这是一个demo3" Like "*demo#" = True    ' # 号表示匹配任意数字
 ```
 
+
+#### 三目运算符
+
+正常在VBA中没有类似java的 `expression ? true : false` 写法，但是可以使用 `IFF` 来代替：
+```vba
+x = IIF(expression, A, B）
+x = IIF(条件, 如果成立A赋值给X, 如果不成立B赋值给X）
+```
+
+作用也等同于如下：
+```
+If ... Then
+Else
+End If
+```
+
+
 <a name="1.5"></a>
 ### 1.5 语句结构
 
@@ -1223,7 +1240,6 @@ ActiveSheet.Range("A1:" & ActiveSheet.Range("a65536").End(xlUp).Address).Select
 Dim lngCountData As Long
 lngCountData = ActiveSheet.UsedRange.Rows.Count
 ```
-
 
 
 <a name="5.2"></a>
