@@ -14,7 +14,7 @@ Last update date：01/04/2019 18:26
         - [1.5.1 选择语句](#1.5.1)
         - [1.5.2 循环语句](#1.5.2)
         - [1.5.3 GoTo语句](#1.5.3)
-    - [1.6 过程(Sub) 和 函数(Function)](#1.6)
+    - [1.6 过程(Sub)和函数(Function)](#1.6)
     - [1.7 正则表达式(Regular Expression)](#1.7)
     - [1.8 注释（Comments code）](#1.8)
     - [1.9 补充](#1.9)
@@ -486,7 +486,7 @@ End With
 ```
 
 <a name="1.6"></a>
-### 1.6 过程(Sub) 和 函数(Function)
+### 1.6 过程(Sub)和函数(Function)
 
 **Sub** 和 **Function** 是VBA提供的两种封装体。
 * 利用宏录制得到的就是`Sub`。
@@ -497,10 +497,10 @@ Set functionName = xxxxxx
 ```
 * 调用过程：调用 Sub 过程与 Function 过程不同。调用 Sub 过程的是一个独立的语句，而调用函数过程只是表达式的一部分。另外，自定义函数并不允许修改工作表和单元格格式 (A UDF will only return a value it won't allow you to change the properties of a cell/sheet/workbook. )。但是，与 Function 一样，Sub 也可以修改传递给它们的任何变量的值。
 * 调用 Sub 过程有两种方法：   
-    - 以下两个语句都调用了名为 MyProc 的 Sub 过程。
+    - 以下两个语句都调用了名为 ProcExcel 的 Sub 过程。
 ```vba
-Call  MyProc (FirstArgument, SecondArgument)
-MyProc  FirstArgument, SecondArgument
+Call  ProcExcel (FirstArgument, SecondArgument)
+ProcExcel  FirstArgument, SecondArgument
 ```
 注意当使用 Call 语法时，参数必须在括号内。若省略 Call 关键字，则也必须省略参数两边的括号。
 
