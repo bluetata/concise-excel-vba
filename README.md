@@ -488,8 +488,20 @@ End With
 <a name="1.6"></a>
 ### 1.6 过程和函数
 
-**Sub**和**Function** 是VBA提供的两种封装体，利用宏录制器得到的就是`Sub`。
-两者的区别不大，`Sub`不需要返回值，`Function`可以定义返回值和返回的类型。
+**Sub** 和 **Function** 是VBA提供的两种封装体。
+* 利用宏录制得到的就是`Sub`。
+* `Sub` 定义时无需定义返回值类型，而 `Function` 一般需要用 “As 数据类型” 定义函数返回值类型。
+* `Sub` 中没有对过程名赋值的语句，而 `Function` 中有对函数名赋值的语句，一般在函数最后返回值，格式如下：
+```vba
+Set functionName = xxxxxx
+```
+* 调用过程：调用 Sub 过程与 Function 过程不同。调用 Sub 过程的是一个独立的语句，而调用函数过程只是表达式的一部分。另外，自定义函数并不允许修改工作表和单元格格式 (A UDF will only return a value it won't allow you to change the properties of a cell/sheet/workbook. )。但是，与 Function 一样，Sub 也可以修改传递给它们的任何变量的值。
+* 调用 Sub 过程有两种方法：   
+    - 以下两个语句都调用了名为 MyProc 的 Sub 过程。   
+Call  MyProc (FirstArgument, SecondArgument)   
+MyProc  FirstArgument, SecondArgument   
+注意当使用 Call 语法时，参数必须在括号内。若省略 Call 关键字，则也必须省略参数两边的括号。
+
 
 #### 1.6.1 Sub过程
 ```vba
