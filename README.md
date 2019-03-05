@@ -40,6 +40,7 @@ Last update date：01/04/2019 18:26
     - [5.2 打开Excel两种方式](#5.2)
     - [5.3 操作Excel工作表（Worksheet）](#5.3)
     - [5.4 Excel AutoFilter / Excel 自动筛选操作](#5.4)
+    - [5.5 清理Excel数据相关操作](#5.5)
 - [x] [0x06 文件 相关常用操作](#0x06) (done)
     - [6.1 判断文件，文件夹等是否存在](#6.1)
     - [6.2 文件相关操作](#6.2)
@@ -1559,6 +1560,28 @@ Sub CountSheetAutoFilters()
 End Sub  
 ```
 
+
+<a name="5.5"></a>
+### 5.5 清理Excel数据相关操作
+
+#### 5.5.1 清理单元格或Range中的内容
+
+如若清空某个选中的单元格中的数据，使用的API为：`ClearContents`。   
+示例：
+```vba
+Range("A1").Select
+Selection.ClearContents
+```
+
+#### 5.5.1 清理/删除Excel中第一个标题行以外的所有行
+
+同样使用ClearContents方法，主要是确定如何选中除第一行以外的表格。   
+示例代码如下：
+```vba
+Sub ClearContentExceptFirst()
+    Rows("2:" & Rows.Count).ClearContents
+End Sub
+```
 
 <a name="0x06"></a>
 ## 0x06 文件，文件夹等 相关常用操作
