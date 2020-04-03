@@ -1,6 +1,6 @@
 
 
-### 8.4 解决办法：添加一个宏文件到快速访问栏
+### 8.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏
 
 (How to Add a Macro to the Quick Access Toolbar in Excel、Word)
 
@@ -8,7 +8,7 @@
 Macro文件直接给其他同事，以便在他们的PC上直接使用，操作方法如下：
 
 **方法如下：**   
- 
+
 Step1.  如下图所示，点击快速访问栏右侧下箭头按钮，选择 <b>*More Commands*</b>.
 
 ![Alt text](../doc/source/images/macro2quicktoolbar/01_selecting_more_commands.png)   

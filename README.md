@@ -51,7 +51,7 @@ Last update date：01/Apr/2020 17:24
     - [8.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#8.1)
     - [8.2 清除Excel数据透视表中过滤器缓存（旧项目）](#8.2)
     - [8.3 解决办法：The macros in this project are disabled. Please refer to ...](#8.3)
-    - [8.4 解决办法：添加一个宏文件到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
+    - [8.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
 - [x] [0x09 VBA示例代码](#0x09) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
