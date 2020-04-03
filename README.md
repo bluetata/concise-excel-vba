@@ -52,6 +52,7 @@ Last update date：01/Apr/2020 17:24
     - [8.2 清除Excel数据透视表中过滤器缓存（旧项目）](#8.2)
     - [8.3 解决办法：The macros in this project are disabled. Please refer to ...](#8.3)
     - [8.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
+    - [8.5 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
 - [x] [0x09 VBA示例代码](#0x09) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
