@@ -20,4 +20,4 @@
 点击菜单来View ↠　Locals Window，会显示本地窗口，显示所有参数变量。
 
 view：
-![Alt text](../doc/source/images/debug/debug.jpg)  
+![Alt text](./doc/source/images/debug/debug.jpg)  
