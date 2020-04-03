@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：01/Apr/2020 17:24
+Last update date：03/Apr/2020 16:42
 
 
 ## 目录
@@ -53,6 +53,7 @@ Last update date：01/Apr/2020 17:24
     - [8.3 解决办法：The macros in this project are disabled. Please refer to ...](#8.3)
     - [8.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
     - [8.5 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
+    - [8.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
 - [x] [0x09 VBA示例代码](#0x09) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
