@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：03/Apr/2020 16:42
+Last update date：03/Apr/2020 17:44
 
 
 ## 目录
@@ -55,6 +55,8 @@ Last update date：03/Apr/2020 16:42
     - [8.5 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
     - [8.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
 - [x] [0x09 VBA示例代码](#0x09) (done)
+- [x] [0x10 VBA快捷键](#0x10) (doing)
+- [x] [0x11 Excel-VBA Debug调试](Debug.md) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 
@@ -956,7 +958,7 @@ Projection 界面设置
 #### 2.4.2 显示立即窗口(Immediate window)
 Immediate window（立即窗口）：类似其他IDE的console控制台。</br>
 显示快捷键：`Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。</br>
-当在调试debug的时候，可以使用`Debug.Print "xxxlog"`的时候可以在该窗口直接显示打印结果
+当在调试debug的时候，可以使用`Debug.Print "xxxlog"`的时候可以在该窗口直接显示打印结果。
 
 <a name="object-option"></a>
 ## 0x03 对象操作说明
