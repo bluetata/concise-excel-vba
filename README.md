@@ -505,10 +505,11 @@ Set functionName = xxxxxx
 * 调用 Sub 过程有两种方法：   
     - 以下两个语句都调用了名为 ProcExcel 的 Sub 过程。
 ```vba
-Call  ProcExcel (FirstArgument, SecondArgument)
-ProcExcel  FirstArgument, SecondArgument
+  Call  ProcExcel (FirstArgument, SecondArgument) '使用Call关键字调用
+  ProcExcel  FirstArgument, SecondArgument        '直接调用
 ```
-注意当使用 Call 语法时，参数必须在括号内。若省略 Call 关键字，则也必须省略参数两边的括号。
+
+**注意** ：当使用 Call 语法时，**参数必须在括号内**。若省略 Call 关键字，则也必须省略参数两边的括号。
 
 
 #### 1.6.1 Sub 过程
