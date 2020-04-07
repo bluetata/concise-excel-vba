@@ -494,6 +494,8 @@ End With
 <a name="1.6"></a>
 ### 1.6 过程(Sub)和函数(Function)
 
+概述Sub和Function的区别：   
+
 **Sub** 和 **Function** 是VBA提供的两种封装体。
 * 利用宏录制得到的就是`Sub`。
 * `Sub` 定义时无需定义返回值类型，而 `Function` 一般需要用 “As 数据类型” 定义函数返回值类型。
@@ -502,14 +504,16 @@ End With
 Set functionName = xxxxxx
 ```
 * 调用过程：调用 Sub 过程与 Function 过程不同。调用 Sub 过程的是一个独立的语句，而调用函数过程只是表达式的一部分。另外，自定义函数并不允许修改工作表和单元格格式 (A UDF will only return a value it won't allow you to change the properties of a cell/sheet/workbook. )。但是，与 Function 一样，Sub 也可以修改传递给它们的任何变量的值。
-* 调用 Sub 过程有两种方法：   
-    - 以下两个语句都调用了名为 ProcExcel 的 Sub 过程。
-```vba
-  Call  ProcExcel (FirstArgument, SecondArgument) '使用Call关键字调用
-  ProcExcel  FirstArgument, SecondArgument        '直接调用
-```
+* 调用 Sub 过程有三种方法：   [参见1.6.1](#1.6.1)   
 
-**注意** ：当使用 Call 语法时，**参数必须在括号内**。若省略 Call 关键字，则也必须省略参数两边的括号。
+~~   - 以下两个语句都调用了名为 ProcExcel 的 Sub 过程。~~
+
+    ~~Call  ProcExcel (FirstArgument, SecondArgument) '使用Call关键字调用~~   
+    ~~ProcExcel  FirstArgument, SecondArgument        '直接调用~~   
+    ~~Application.Run "ProcExcel" FirstArgument, SecondArgument~~   
+
+
+~~**注意** ：当使用 Call 语法时，**参数必须在括号内**。若省略 Call 关键字，则也必须省略参数两边的括号。~~
 
 
 #### 1.6.1 Sub 过程
@@ -521,10 +525,13 @@ End Sub
 ' [Static]定义过程是否为静态
 ' [参数列表]定义需要传入的参数
 ```
-调用`Sub`的方法有三种，使用`Call`、直接调用和`Application.Run`
+
+调用`Sub`的方法有三种，使用 `Call`、<u>直接调用</u>和使用 `Application.Run`:
 
 举个例子：
 ![Alt text](/doc/source/images/1505555701907.png)
+
+**注意** ：当使用 Call 语法时，**参数必须在括号内**。若省略 Call 关键字，则也必须省略参数两边的括号。
 
 #### 1.6.2 Function 函数
 
