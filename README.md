@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：07/Apr/2020 17:10
+Last update date：07/Apr/2020 17:12
 
 
 ## 目录
@@ -506,7 +506,7 @@ Set functionName = xxxxxx
 * 调用过程：调用 Sub 过程与 Function 过程不同。调用 Sub 过程的是一个独立的语句，而调用函数过程只是表达式的一部分。另外，自定义函数并不允许修改工作表和单元格格式 (A UDF will only return a value it won't allow you to change the properties of a cell/sheet/workbook. )。但是，与 Function 一样，Sub 也可以修改传递给它们的任何变量的值。
 * 调用 Sub 过程有三种方法：   [参见1.6.1](#1.6.1)   
 
-~~ 以下两个语句都调用了名为 ProcExcel 的 Sub 过程。~~
+~~以下语句都调用了名为 ProcExcel 的 Sub 过程。~~
 
   ~~Call  ProcExcel (FirstArgument, SecondArgument) '使用Call关键字调用~~   
   ~~ProcExcel  FirstArgument, SecondArgument        '直接调用~~   
