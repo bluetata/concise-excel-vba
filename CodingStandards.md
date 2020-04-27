@@ -1,6 +1,6 @@
-# VBA Code Guidelines
+# VBA Code Guidelines/Best-practices
 
-  *Base on repository:* *[VBA-Coding-Standards](https://github.com/bluetata/VBA-Coding-Standards) on 27-Apr-2020*
+    *Base on repository:* *[VBA-Coding-Standards](https://github.com/bluetata/VBA-Coding-Standards) on 27-Apr-2020*
 
 <!-- TOC -->
 
