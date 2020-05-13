@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：27/Apr/2020 11:48
+Last update date：05/13/2020 12:30
 
 <!-- TOC -->
 
@@ -47,7 +47,7 @@ Last update date：27/Apr/2020 11:48
     - [6.2 文件相关操作](#6.2)
     - [6.3 文件夹相关操作](#6.3)
     - [6.4 其他操作（获取文件名等）](#6.4)
-- [x] [0x07 VBA Best Practices](#0x07) (English Version)
+- [x] [0x07 VBA Best Practices（VB代码规范/开发规约）](#0x07) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
     - [8.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#8.1)
     - [8.2 清除Excel数据透视表中过滤器缓存（旧项目）](#8.2)
@@ -58,7 +58,6 @@ Last update date：27/Apr/2020 11:48
 - [x] [0x09 VBA示例代码](#0x09) (done)
 - [ ] [0x10 Excel-VBA 快捷键](#0x10) (doing)
 - [x] [0x11 Excel-VBA Debug调试](Debug.md) (done)
-- [x] [0x12 Excel-vba 开发规约](CodingStandards.md) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 <!-- /TOC -->
@@ -1778,6 +1777,7 @@ you intend to modify the parameter and pass the change back to the caller.
 to reduce the amount of scrolling.
 12. Never use the Option Base or Option Compare statements.
 
+**More reference:** [VBA Code Guidelines/Best-practices](CodingStandards.md)
 
 <a name="0x08"></a>
 ## 0x08 Trouble shooting
