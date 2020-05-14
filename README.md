@@ -1,11 +1,12 @@
 
 # 简明Excel VBA
-Last update date：05/13/2020 12:30
+Last update date：05/14/2020 17:31
 
 <!-- TOC -->
 
 ## 目录
 
+- [x] [0x00 如何创建一个宏](#CreateAMacro.md) (English Version)
 - [x] [0x01 语法说明](#explanation) (done)
     - [1.1 数据和数据类型](#1.1)
     - [1.2 常量和变量](#1.2)
@@ -61,6 +62,11 @@ Last update date：05/13/2020 12:30
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 <!-- /TOC -->
+
+
+<a name="createAMacro"></a>
+## 0x00 如何创建一个宏
+*Ref：* [如何创建一个宏](#CreateAMacro.md) (English Version)
 
 <a name="explanation"></a>
 ## 0x01 语法说明

@@ -1,6 +1,6 @@
-#### Create a Macro
+#### 0x00 如何创建一个宏
 
-[Developer Tab](#DeveloperTab)  |  [Command Button](#CommandButton)  |  [Assign a Macro](#[AssignaMacro)  |  [Visual Basic Editor](#VisualBasicEditor)
+[Developer Tab](#Developer-Tab)  |  [Command Button](#Command-Button)  |  [Assign a Macro](#Assign-a-Macro)  |  [Visual Basic Editor](#Visual-Basic-Editor)
 
 With Excel VBA you can automate tasks in Excel by writing so called macros. In this chapter, learn how to create a simple macro which will be executed after clicking on a command button. First, turn on the Developer tab.
 
@@ -27,11 +27,11 @@ To turn on the Developter tab, execute the following steps.
 ##### Command Button
 To place a command button on your worksheet, execute the following steps.
 
-1. On the [Developer tab](#DeveloperTab), click Insert.
+1. On the [Developer tab](#Developer-Tab), click Insert.
 
 2. In the ActiveX Controls group, click Command Button.
 
-![Alt text](/doc/source/images/createAMacro/developer-tab.png)
+![Alt text](/doc/source/images/createAMacro/insert-command-button-control.png)
 
 3. Drag a command button on your worksheet.
 
@@ -65,7 +65,7 @@ Result:
 Congratulations. You've just created a macro in Excel!
 
 ##### Visual Basic Editor
-To open the Visual Basic Editor, on the Developer tab, click Visual Basic.
+To open the Visual Basic Editor, on the [Developer tab](#Developer-Tab), click Visual Basic.
 
 ![Alt text](/doc/source/images/createAMacro/open-visual-basic-editor.png)
 
