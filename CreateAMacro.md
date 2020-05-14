@@ -27,7 +27,7 @@ To turn on the Developter tab, execute the following steps.
 ##### Command Button
 To place a command button on your worksheet, execute the following steps.
 
-1. On the Developer tab, click Insert.
+1. On the [Developer tab](#Developer Tab), click Insert.
 
 2. In the ActiveX Controls group, click Command Button.
 
