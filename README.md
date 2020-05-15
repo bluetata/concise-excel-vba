@@ -569,6 +569,58 @@ Sub St1(ByVal n As Integer, ByRef range)
 End SUb
 ```
 
+
+**ByRef vs ByVal**
+
+举个简单栗子来解释值传和引用传递的区别：
+可以参照[Create A Macro](CreateAMacro.md) 在工作表上放置一个command button，并添加以下代码行：
+
+```
+Dim x As Integer
+x = 10
+
+MsgBox Triple(x)
+MsgBox x
+```
+
+上述代码调用了`Triple`函数，按照如下步骤添加一个`Triple`函数模块：
+
+1. 打开 Visual Basic Editor，点击菜单栏：Insert, 选择插入一个 Module.
+
+2. 添加如下代码：
+
+```
+Function Triple(ByRef x As Integer) As Integer
+
+x = x * 3
+Triple = x
+
+End Function
+```
+
+当点击 command button 的时候显示如下结果：
+![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
+![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
+
+3. 使用 `ByVal`替换`ByRef`:
+
+```
+Function Triple(ByVal x As Integer) As Integer
+
+x = x * 3
+Triple = x
+
+End Function
+```
+当点击 command button 的时候显示如下结果为：
+![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
+![Alt text](/doc/source/images/ByRefandByVal/byval-result-2.png)
+
+**说明：** 当通过引用(ByRef)传递参数时，我们引用的是原始值。函数中`x`的值(原始值)发生了变化。因此，第二个MsgBox显示的值为30。当通过值传递(ByVal)参数时，我们是在向函数传递一个副本。原始值没有改变。因此，第二个MsgBox显示的值为10(原始值)。
+
+
+
+
 <a name="1.7"></a>
 ### 1.7 正则表达式(Regular Expression)
 在VBA中使用正则表达式，因为正则表达式不是vba自有的对象，
