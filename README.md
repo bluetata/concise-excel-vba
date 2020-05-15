@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：05/14/2020 17:46
+Last update date：05/15/2020 16:45
 
 <!-- TOC -->
 
@@ -17,6 +17,10 @@ Last update date：05/14/2020 17:46
         - [1.5.2 循环语句](#1.5.2)
         - [1.5.3 GoTo语句](#1.5.3)
     - [1.6 过程(Sub)和函数(Function)](#1.6)
+      - [1.6.1 Sub 过程](#1.6.1)
+      - [1.6.2 Function 函数](#1.6.2)
+      - [1.6.3 VBA的参数传递](#1.6.3)
+      - [1.6.4 ByRef vs ByVal](#1.6.4)
     - [1.7 正则表达式(Regular Expression)](#1.7)
     - [1.8 注释（Comments code）](#1.8)
     - [1.9 补充](#1.9)
@@ -542,6 +546,7 @@ End Sub
 
 **注意** ：当使用 Call 语法时，**参数必须在括号内**。若省略 Call 关键字，则也必须省略参数两边的括号。
 
+<a name="1.6.2"></a>
 #### 1.6.2 Function 函数
 
 vba内部提供了大量的函数，也可以通过`Function`来定义函数，实现个性化的需求。
@@ -554,7 +559,9 @@ End Function
 使用函数完成上面的例子：
 ![Alt text](/doc/source/images/1505556598033.png)
 
-**参数传递**
+
+<a name="1.6.3"></a>
+#### 1.6.3 VBA的参数传递
 
 参数传递的方式有两种，引用和传值。
 传值，只是将数据的内容给到函数，不会对数据本身进行修改。
@@ -569,8 +576,8 @@ Sub St1(ByVal n As Integer, ByRef range)
 End SUb
 ```
 
-
-**ByRef vs ByVal**
+<a name="1.6.4"></a>
+#### 1.6.4 ByRef vs ByVal
 
 举个简单栗子来解释值传和引用传递的区别：
 可以参照[Create A Macro](CreateAMacro.md) 在工作表上放置一个command button，并添加以下代码行：
@@ -599,7 +606,9 @@ End Function
 ```
 
 当点击 command button 的时候显示如下结果：
+
 ![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
+
 ![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
 
 3. 使用 `ByVal`替换`ByRef`:
@@ -613,7 +622,9 @@ Triple = x
 End Function
 ```
 当点击 command button 的时候显示如下结果为：
+
 ![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
+
 ![Alt text](/doc/source/images/ByRefandByVal/byval-result-2.png)
 
 **说明：** 当通过引用(ByRef)传递参数时，我们引用的是原始值。函数中`x`的值(原始值)发生了变化。因此，第二个MsgBox显示的值为30。当通过值传递(ByVal)参数时，我们是在向函数传递一个副本。原始值没有改变。因此，第二个MsgBox显示的值为10(原始值)。
@@ -621,6 +632,8 @@ End Function
 **总结：**
 **ByRef** 传递一个指向变量的指针，因此任何更改都会在使用该变量的任何地方反映出来（改变一处，其他所有使用该变量的地方均会改变）。   
 **ByVal** 将变量的副本传递给函数，因此对该变量的任何更改都不会影响其原始值。当使用ByVal传递一个对象，你传递的是一个指针的拷贝而不是原始的指针(**注意:** 不是对象的拷贝)
+
+
 **注意：**
 
 1. 数组变量（Array）总是通过ByRef传递（只适用于实际声明为 *Array* 的变量，不适用于`Variants`声明的数组变量）。
