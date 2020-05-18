@@ -579,8 +579,8 @@ End SUb
 <a name="1.6.4"></a>
 #### 1.6.4 ByRef vs ByVal
 
-举个简单栗子来解释值传和引用传递的区别：
-可以参照[Create A Macro](CreateAMacro.md) 在工作表上放置一个command button，并添加以下代码行：
+举个简单栗子来解释值传和引用传递的区别：   
+可以参照[Create A Macro](CreateAMacro.md) 在工作表上放置一个command button，并添加以下代码：
 
 ```
 Dim x As Integer
@@ -590,9 +590,9 @@ MsgBox Triple(x)
 MsgBox x
 ```
 
-上述代码调用了`Triple`函数，按照如下步骤添加一个`Triple`函数模块：
+在上述代码中调用了`Triple`函数，按照如下步骤添加一个`Triple`函数模块：
 
-1. 打开 Visual Basic Editor，点击菜单栏：Insert, 选择插入一个 Module.
+1. 打开 [Visual Basic Editor](CreateAMacro.md#Visual-Basic-Editor)，点击菜单栏中的 <U>I</U>nsert ，选择插入一个 <U>M</U>odule.
 
 2. 添加如下代码：
 
@@ -637,7 +637,7 @@ End Function
 **注意：**
 
 1. 数组变量（Array）总是通过ByRef传递（只适用于实际声明为 *Array* 的变量，不适用于`Variants`声明的数组变量）。
-2. VBA在不具体指定传值方式的时候，默认为`ByRef`方式传值
+2. VBA在不具体指定传值方式的时候，默认为`ByRef`方式传值。
 
 ```
 Function Triple(x As Integer) As Integer '当不声明指定具体值传递还是引用传递的时候，VBA默认为 ByRef 方式传值
