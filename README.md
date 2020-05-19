@@ -592,7 +592,7 @@ MsgBox x
 
 在上述代码中调用了`Triple`函数，按照如下步骤添加一个`Triple`函数模块：
 
-1. 打开 [Visual Basic Editor](CreateAMacro.md#Visual-Basic-Editor)，点击菜单栏中的 <U>I</U>nsert ，选择插入一个 <U>M</U>odule.
+1. 打开 [Visual Basic Editor](CreateAMacro.md#visual-basic-editor)，点击菜单栏中的 <U>I</U>nsert ，选择插入一个 <U>M</U>odule.
 
 2. 添加如下代码：
 
@@ -962,6 +962,8 @@ End Sub
 
 <a name="2.1"></a>
 ### 2.1 整体界面说明
+
+（点击图片查看大图）   
 ![Alt text](/doc/source/images/1505749555407.png)
 
 <a name="2.2"></a>
@@ -1037,10 +1039,35 @@ cells(1, 1) = 1
 <a name="2.3"></a>
 ### 2.3 设置VBA Macro Project 密码保护
 
-![Alt text](/doc/source/images/password_protect_setting.png)
+#### 2.3.1 利用密码保护工作表或者sheet
 
-在VBA界面依次点击：<u>T</u>ools -> VBAProject Prop<u>e</u>rties ->
-Projection 界面设置
+在VBA编辑界面依次点击：<u>T</u>ools → VBAProject Prop<u>e</u>rties…
+
+![Alt text](/doc/source/images/password_protect_setting_1.png)
+
+
+在弹出界面选择 `Projection`，勾选 `Lock project for viewing`后，输入密码，如下图所示：
+
+![Alt text](/doc/source/images/password_protect_setting_2.png)
+
+
+#### 2.3.2 Macro执行时密码保护
+
+如果想要使用密码控制Macro是否可以运行，可以参考如下代码：
+```
+Dim password As Variant
+password = Application.InputBox("Enter Password", "Password Protected")
+
+Select Case password
+    Case Is = False
+        ' do nothing
+    Case Is = "P@ssw0rd"  ' 验证密码
+        Range("A1").Value = "This is secret code"   ' 执行密码保护的代码块。
+    Case Else
+        MsgBox "Incorrect Password"
+End Select
+```
+
 
 <a name="2.4"></a>
 ### 2.4 常用快捷栏及窗口设置
