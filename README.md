@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：05/15/2020 16:45
+Last update date：05/19/2020 17:15
 
 <!-- TOC -->
 
@@ -60,6 +60,7 @@ Last update date：05/15/2020 16:45
     - [8.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
     - [8.5 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
     - [8.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
+    - [8.7 解决办法：Excel每次保存时都弹出警告：”此文档中包含宏、Activex控件、XML扩展包信息“（office 2007/2010/365+）](#8.7)
 - [x] [0x09 VBA示例代码](#0x09) (done)
 - [ ] [0x10 Excel-VBA 快捷键](#0x10) (doing)
 - [x] [0x11 Excel-VBA Debug调试](Debug.md) (done)
@@ -1259,6 +1260,7 @@ End Sub
 
 <a name="4.7"></a>
 ### 4.7 其他字符串函数
+- `&` 字符串连接操作，在VBA中连个字符串连接使用`&`进行连接
 - `Ltrim(string)` 去掉 string 左端空白
 - `Rtrim(string)` 去掉 string 右端空白
 - `Len(string)` 计算 string 长度
@@ -1977,6 +1979,26 @@ step2：确认自己机器的安全级别
 打开浏览器依次点击 Tools >> Internet options >> Security >> Customer level...  将安全级别从 **高(High)** 改成 **中(Medium)**。   
 
 ![Alt text](doc/source/images/trouble_shooting_03_03.png)   
+
+
+<a name="8.7"></a>
+### 8.7 Excel每次保存时都弹出警告：”此文档中包含宏、Activex控件、XML扩展包信息“（office 2007/2010/365+）
+
+**1.** office 2003版本：
+
+ 依次点击：“工具” → “选项" → "在安全" 选项卡中 **勾选** ”保存时从文件属性中删除个人信息”。
+
+![Alt text](doc/source/images/trouble-shootings/remove_activeX_warning_1.png)
+
+
+**2.** office 2007/2010/365+版本：
+
+单击“Office按钮（或文件菜单） → Excel选项（或选项） → 信任中心”，单击“信任中心设置”按钮，选择“个人信息选项”（隐私选项Privacy Options），在“文档特定设置”下 **取消** 勾选 “保存时从文件属性中删除个人信息” 后确定。
+
+**注意：** 该选项仅对当前工作簿有效。另外，新建工作簿时该选项为灰色不可用，只有用“文档检查器”检查了文档并删除了个人信息后该选项才可用。
+
+![Alt text](doc/source/images/trouble-shootings/remove_activeX_warning_2.png)
+
 
 <a name="0x09"></a>
 ## 0x09 VBA示例代码
