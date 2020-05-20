@@ -1908,8 +1908,46 @@ MsgBox Day(exampleDate)   ' 19
 ```
 
 
+<a name="7.3"></a>
+### 7.3 CDate 和 DateValue 函数
+VBA中的CDate和DateValue的区别(Difference between CDate and DateValue in VBA)
+
+1. CDate 函数可把一个合法的日期和时间 *表达式* 转换为 `Date` 类型，并返回结果。
+
+**提示：** 请使用 `IsDate` 函数来判断 date 是否可被转换为日期或时间。
+
+**注释：** `IsDate` 函数使用本地设置来检测字符串是否可被转换为日期。
+
+※　举例参照如下小节
+
+2. DateValue(date) 函数 返回一Date类型数据
+
+*date* 参数通常是一个字符串表达式, 表示从100年1月1日到9999年12月31日之间的日期。 但是，*date* 还可是任何表示该范围内的日期、时间或日期和时间的表达式。
+
+**备注（Reference From [MSDN](https://docs.microsoft.com/zh-cn/office/vba/language/reference/user-interface-help/datevalue-function)）：** 如果 *date* 是一个仅包含由有效日期分隔符分隔的数字的字符串, 则DateValue将根据您为系统指定的短日期格式识别月、日和年的顺序。 DateValue 还能清楚地识别包含月名称（长名称或简写形式）的日期。 例如，除了识别 12/30/1991 和 12/30/91 之外，DateValue 还识别 December 30, 1991 和 Dec 30, 1991。
+如果省略 date 的年部分，则 DateValue 将使用计算机系统日期中的当前年。
+如果 date 参数包含时间信息，则 DateValue 将不会返回它。 但是，如果 date 包含的时间信息无效（如“89:98”），则将出错。
 
 
+CDate与DateValue的举例：   
+```
+d1 = "April 22, 2001"
+d2 = "6:15:45 PM"
+d3 = "2014-07-24 15:43:06"
+
+If IsDate(d1) And IsDate(d2) And IsDate(d3) Then
+    MsgBox CDate(d1)      ' 22/04/2020
+    MsgBox CDate(d2)      ' 18:15:45
+    MsgBox CDate(d3)      ' 24/07/2014 15:43:06
+
+    MsgBox DateValue(d1)  ' 22/04/2020
+    MsgBox DateValue(d2)  ' 00:00:00
+    MsgBox DateValue(d3)  ' 24/07/2014
+End If
+```
+
+**总结：** CDate和DateValue的区别：   
+从上述举例代码结果看，`DateValue` 只返回一个Date类型结果，而`CDate`返回结果将保留日期和时间，当参数为一个时间类型的时候，`DateValue` 只能返回一个 `00:00:00`的结果。
 
 
 <a name="0x90"></a>
