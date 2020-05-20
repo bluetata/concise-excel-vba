@@ -52,18 +52,21 @@ Last update date：05/19/2020 17:15
     - [6.2 文件相关操作](#6.2)
     - [6.3 文件夹相关操作](#6.3)
     - [6.4 其他操作（获取文件名等）](#6.4)
-- [x] [0x07 VBA Best Practices（VB代码规范/开发规约）](#0x07) (English Version)
+- [x] [0x07 日期和时间 相关函数](#0x07) (done)
+    - [7.1 ](#7.1)
+
+- [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
-    - [8.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#8.1)
-    - [8.2 清除Excel数据透视表中过滤器缓存（旧项目）](#8.2)
-    - [8.3 解决办法：The macros in this project are disabled. Please refer to ...](#8.3)
-    - [8.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
-    - [8.5 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
-    - [8.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
-    - [8.7 解决办法：Excel每次保存时都弹出警告：”此文档中包含宏、Activex控件、XML扩展包信息“（office 2007/2010/365+）](#8.7)
-- [x] [0x09 VBA示例代码](#0x09) (done)
-- [ ] [0x10 Excel-VBA 快捷键](#0x10) (doing)
-- [x] [0x11 Excel-VBA Debug调试](Debug.md) (done)
+    - [91.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#8.1)
+    - [91.2 清除Excel数据透视表中过滤器缓存（旧项目）](#8.2)
+    - [91.3 解决办法：The macros in this project are disabled. Please refer to ...](#8.3)
+    - [91.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
+    - [91.5 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
+    - [91.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
+    - [91.7 解决办法：Excel每次保存时都弹出警告：”此文档中包含宏、Activex控件、XML扩展包信息“（office 2007/2010/365+）](#8.7)
+- [x] [0x92 VBA示例代码](#0x09) (done)
+- [ ] [0x93 Excel-VBA 快捷键](#0x10) (doing)
+- [x] [0x94 Excel-VBA Debug调试](Debug.md) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 <!-- /TOC -->
@@ -1868,7 +1871,49 @@ End Sub
 
 
 <a name="0x07"></a>
-## 0x07 VBA Best Practices
+## 0x07 日期和时间 相关函数
+
+
+<a name="7.1"></a>
+### 7.1 Date, Time, Now 函数
+
+Date 函数返回当前的系统日期。   
+Time 函数返回当前的系统时间。   
+Now  函数返回当前的系统日期和时间。   
+
+**注意：** 如果同时读取 Date、Time 以及 Now，那么 Now = Date + Time，但是实际上，我们不可能同时调用这三个函数，因为执行完一个函数之后，才能执行另一个函数，所以如果您在程序中必需同时取得当时的日期和时间，必需调用 Now，再利用 DateVale 及 TimeValue 分别取出日期和时间。
+
+
+```
+Private Sub CommandButton2_Click()    
+    MsgBox Now    ' 20/05/2020 16:28:04
+    MsgBox Date   ' 20/05/2020
+    MsgBox Time   ' 16:28:39
+End Sub
+```
+
+<a name="7.2"></a>
+### 7.2 日期函数：Year, Month, Day
+
+Year, Month, Day 函数分别返回 **数字格式** 的年，月，日。
+
+```
+Dim exampleDate As Date
+
+exampleDate = DateValue("May 19, 2020")
+
+MsgBox Year(exampleDate)  ' 2020
+MsgBox Month(exampleDate) ' 5
+MsgBox Day(exampleDate)   ' 19
+```
+
+
+
+
+
+
+<a name="0x90"></a>
+## 0x90 VBA Best Practices
 1. Always have Option Explicit at the top of your code modules to
 enforce variable declaration.
 2. Never write procedures and functions that are longer than a full screen
@@ -1894,11 +1939,11 @@ to reduce the amount of scrolling.
 **More reference:** [VBA Code Guidelines/Best-practices](CodingStandards.md)
 
 <a name="0x08"></a>
-## 0x08 Trouble shooting
+## 0x91 Trouble shooting
 
 
-<a name="8.1"></a>
-### 8.1 调试经验 Excel点击保存时总是弹出隐私信息警告（Privacy Warning:this document contains macros...）的解决方法
+<a name="91.1"></a>
+### 91.1 调试经验 Excel点击保存时总是弹出隐私信息警告（Privacy Warning:this document contains macros...）的解决方法
 
 警告信息：
 > Privacy Warning:this document contains macros, ActiveX controls, XML expansion pack information or web components. these may include personal information that cannot be removed by the document Inspector.
@@ -1910,8 +1955,8 @@ File → Options → Trust Center → Trust Center Settings → Privacy Options
 ![Alt text](doc/source/images/trouble_shooting_01.png)
 
 
-<a name="8.2"></a>
-### 8.2 清除Excel数据透视表中过滤器缓存（旧项目）
+<a name="91.2"></a>
+### 91.2 清除Excel数据透视表中过滤器缓存（旧项目）
 
 如下图所示，根据数据范围创建数据透视表时，从源范围中删除数据后，即使刷新数据透视表，旧项目仍将存在于数据透视表的下拉菜单中。 如果要从数据透视表的下拉菜单中删除所有旧项目，可参照如下两种方法：
 
@@ -1962,7 +2007,7 @@ End Sub
 
 
 <a name="8.3"></a>
-### 8.3 解决办法：The macros in this project are disabled.  Please refer to the online help or documentation of the host application to determine how to enable macros.
+### 91.3 解决办法：The macros in this project are disabled.  Please refer to the online help or documentation of the host application to determine how to enable macros.
 
 错误现象： Excel2016（365）运行macro宏时，弹出标题警告↓   
 
@@ -1981,8 +2026,8 @@ step2：确认自己机器的安全级别
 ![Alt text](doc/source/images/trouble_shooting_03_03.png)   
 
 
-<a name="8.7"></a>
-### 8.7 Excel每次保存时都弹出警告：”此文档中包含宏、Activex控件、XML扩展包信息“（office 2007/2010/365+）
+<a name="91.7"></a>
+### 91.7 Excel每次保存时都弹出警告：”此文档中包含宏、Activex控件、XML扩展包信息“（office 2007/2010/365+）
 
 **1.** office 2003版本：
 
@@ -2000,8 +2045,8 @@ step2：确认自己机器的安全级别
 ![Alt text](doc/source/images/trouble-shootings/remove_activeX_warning_2.png)
 
 
-<a name="0x09"></a>
-## 0x09 VBA示例代码
+<a name="0x92"></a>
+## 0x92 VBA示例代码
 VBA示例代码查看：[点击这里](SampleCode.bas)。
 
 
