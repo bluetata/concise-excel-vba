@@ -53,7 +53,9 @@ Last update date：05/19/2020 17:15
     - [6.3 文件夹相关操作](#6.3)
     - [6.4 其他操作（获取文件名等）](#6.4)
 - [x] [0x07 日期和时间 相关函数](#0x07) (done)
-    - [7.1 ](#7.1)
+    - [7.1 Date, Time, Now 函数](#7.1)
+    - [7.2 日期函数：Year, Month, Day](#7.2)
+    - [7.3 CDate 和 DateValue 函数](#7.3)
 
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
