@@ -1,6 +1,8 @@
 
 # 简明Excel VBA
-Last update date：05/19/2020 17:15
+Last update date：05/20/2020 18:36
+
+`VBA` 缩写于 *Visual Basic for Applications*。
 
 <!-- TOC -->
 
@@ -2092,6 +2094,7 @@ VBA示例代码查看：[点击这里](SampleCode.bas)。
 
 <a name="docslist"></a>
 ## 0xFF VBA学习资源列表
+- [MSDN 函数 (Visual Basic for Applications)](https://docs.microsoft.com/zh-cn/office/vba/language/reference/functions-visual-basic-for-applications)
 - [Excel-vba coding规约/开发规范](https://github.com/Youchien/development-specification/blob/master/doc/source/Excel-vba%20Language%20Specification.md)
 - [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
 - [Excel宏教程 (宏的介绍与基本使用)](http://blog.csdn.net/lyhdream/article/details/9060801)
