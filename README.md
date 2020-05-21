@@ -2,7 +2,7 @@
 # 简明Excel VBA
 Last update date：05/20/2020 18:36
 
-`VBA` 缩写于 *Visual Basic for Applications*。
+> `VBA` 缩写于 *Visual Basic for Applications*。
 
 <!-- TOC -->
 
@@ -58,7 +58,6 @@ Last update date：05/20/2020 18:36
     - [7.1 Date, Time, Now 函数](#7.1)
     - [7.2 日期函数：Year, Month, Day](#7.2)
     - [7.3 CDate 和 DateValue 函数](#7.3)
-
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
     - [91.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#19.1)
@@ -1935,6 +1934,7 @@ VBA中的CDate和DateValue的区别(Difference between CDate and DateValue in VB
 
 CDate与DateValue的举例：   
 ```
+' 举例1：
 d1 = "April 22, 2001"
 d2 = "6:15:45 PM"
 d3 = "2014-07-24 15:43:06"
@@ -1950,8 +1950,20 @@ If IsDate(d1) And IsDate(d2) And IsDate(d3) Then
 End If
 ```
 
+```
+' 举例2：
+MsgBox CDate(43972)             ' 5/21/2020
+MsgBox CDate("12/25/2020")      ' 1/15/2014
+
+MsgBox DateValue("12/25/2020")  ' 1/15/2014
+MsgBox DateValue(43972)         ' Throws a Type mismatch error(Run-time error 13)
+```
+
+
 **总结：** CDate和DateValue的区别：   
-从上述举例代码结果看，`DateValue` 只返回一个Date类型结果，而`CDate`返回结果将保留日期和时间，当参数为一个时间类型的时候，`DateValue` 只能返回一个 `00:00:00`的结果。
+* 从上述 *举例1* 代码结果总结出，`DateValue` 只返回一个Date类型结果，而`CDate`返回结果将保留日期和时间，当参数为一个时间类型的时候，`DateValue` 只能返回一个 `00:00:00`的结果。
+
+* 从上述 *举例2* 代码结果总结出，另外，`DateValue` (或`TimeValue`)只接受 `String` 类型的参数，而 `CDate` 也可以处理 **数字** 。可使用`CDate(Int(num))`和`CDate(num - Int(num))`函数。
 
 
 <a name="0x90"></a>
