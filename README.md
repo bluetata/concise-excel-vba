@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：05/22/2020 10:55
+Last update date：05/22/2020 16:48
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -58,7 +58,7 @@ Last update date：05/22/2020 10:55
     - [7.1 Date, Time, Now 函数](#7.1)
     - [7.2 日期函数：Year, Month, Day](#7.2)
     - [7.3 CDate 和 DateValue 函数](#7.3)
-    - [7.4 IsDate函数](#7.4)
+    - [7.4 IsDate 函数](#7.4)
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
     - [91.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#19.1)
@@ -1918,7 +1918,7 @@ VBA中的CDate和DateValue的区别(Difference between CDate and DateValue in VB
 
 1. `CDate` 函数可把一个合法的日期和时间 *表达式* 转换为 `Date` 类型，并返回结果。
 
-**提示：** 请使用 [IsDate]((#7.4)) 函数来判断 date 是否可被转换为日期或时间。
+**提示：** 请使用 [IsDate](#7.4) 函数来判断 date 是否可被转换为日期或时间。
 
 ※　举例参照如下小节
 
@@ -1966,7 +1966,7 @@ MsgBox DateValue(43972)         ' Throws a Type mismatch error(Run-time error 13
 
 
 <a name="7.4"></a>
-### 7.4 IsDate函数
+### 7.4 IsDate 函数
 `IsDate` 函数返回一个布尔值，用于判断一个表达式是否可被转换为日期。如果表达式是日期，或可被转换为日期，则返回 True 。否则，返回 False 。
 
 **注释：** `IsDate` 函数使用本地设置来检测字符串是否可以转换为日期。在 Windows 中, 有效日期的范围是公元100年1月1日至公元9999年12月31日;各操作系统的范围各不相同。
@@ -1994,6 +1994,34 @@ MyCheck = IsDate(MyVar)     ' Returns False.
 ```
 
 
+<a name="7.5"></a>
+### 7.5 DateAdd 函数
+
+`DateAdd` 函数可返回已添加指定时间间隔的日期。
+
+语法：DateAdd(*interval, number, date*)
+
+| 参数 | 描述 |
+|--------|-------|
+|interval|必需的。需要增加的时间间隔。</br>可采用下面的值：</br>yyyy - 年   </br>q - 季度          </br>m - 月          </br>y - 当年的第几天          </br>d - 日          </br>w - 当周的第几天          </br>ww - 周          </br>h - 小时          </br>n - 分钟          </br>s - 秒|
+|number|必需的。需要添加的时间间隔的数目。可对未来的日期使用正值，对过去的日期使用负值。|
+|date|必需的。代表被添加的时间间隔的日期的变量或文字。|
+
+示例：
+
+```
+DateAdd("m",1,"31-Jan-01")    ' 2/28/2001
+DateAdd("m",1,"31-Jan-00")    ' 2/29/2000
+DateAdd("m",-1,"31-Jan-01")   ' 12/31/2000
+```
+
+在此情况下，DateAdd 返回 2001 年 2 月 28 日，而不是 2001 年 2 月 31 日。 如果 date 为 2000 年 1 月 31 日，则它将返回 2000 年 2 月 29 日，因为 2000 年是闰年。
+
+如果计算的日期位于年份数 100 前（即，你减去的年份数大于 date 中的年份，则出现错误。
+
+如果 *number* 不是 Long 值，则在计算之前将其 **四舍五入** 到最接近的整数。
+
+**另外：** 在使用“w”时间间隔（包括一周的所有天，从星期日到星期六）向日期添加天数时，DateAdd 函数会向日期添加您指定的总天数，而不是像您预期的那样仅向日期添加工作日（从星期一到星期五）数。
 
 
 <a name="0x90"></a>
