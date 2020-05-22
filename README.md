@@ -54,10 +54,11 @@ Last update date：05/20/2020 18:36
     - [6.2 文件相关操作](#6.2)
     - [6.3 文件夹相关操作](#6.3)
     - [6.4 其他操作（获取文件名等）](#6.4)
-- [x] [0x07 日期和时间 相关函数](#0x07) (done)
+- [ ] [0x07 日期和时间 相关函数](#0x07) (done)
     - [7.1 Date, Time, Now 函数](#7.1)
     - [7.2 日期函数：Year, Month, Day](#7.2)
     - [7.3 CDate 和 DateValue 函数](#7.3)
+    - [7.4 IsDate函数](#7.4)
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
     - [91.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#19.1)
@@ -1964,6 +1965,37 @@ MsgBox DateValue(43972)         ' Throws a Type mismatch error(Run-time error 13
 * 从上述 *举例1* 代码结果总结出，`DateValue` 只返回一个Date类型结果，而`CDate`返回结果将保留日期和时间，当参数为一个时间类型的时候，`DateValue` 只能返回一个 `00:00:00`的结果。
 
 * 从上述 *举例2* 代码结果总结出，另外，`DateValue` (或`TimeValue`)只接受 `String` 类型的参数，而 `CDate` 也可以处理 **数字** 。可使用`CDate(Int(num))`和`CDate(num - Int(num))`函数。
+
+
+<a name="7.4"></a>
+### 7.4 IsDate函数
+`IsDate` 函数返回一个布尔值，用于判断一个表达式是否可被转换为日期。如果表达式是日期，或可被转换为日期，则返回 True 。否则，返回 False 。
+
+注释：IsDate 函数使用本地设置来检测字符串是否可以转换为日期。在 Windows 中, 有效日期的范围是公元100年1月1日至公元9999年12月31日;各操作系统的范围各不相同。
+
+示例：   
+```
+Dim MyVar, MyCheck
+MyVar = "04/28/2014"        ' Assign valid date value.
+MyCheck = IsDate(MyVar)     ' Returns True.
+
+MyVar = "April 28, 2014"    ' Assign valid date value.
+MyCheck = IsDate(MyVar)     ' Returns True.
+
+MyVar = "13/32/2014"        ' Assign invalid date value.
+MyCheck = IsDate(MyVar)     ' Returns False.
+
+MyVar = "04.28.14"          ' Assign valid time value.
+MyCheck = IsDate(MyVar)     ' Returns True.
+
+MyVar = "04.28.2014"        ' Assign invalid time value.
+MyCheck = IsDate(MyVar)     ' Returns False.
+
+MyVar = "Hello World!"      ' Assign invalid time value.
+MyCheck = IsDate(MyVar)     ' Returns False.
+```
+
+
 
 
 <a name="0x90"></a>
