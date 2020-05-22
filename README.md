@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：05/20/2020 18:36
+Last update date：05/22/2020 10:55
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -1881,9 +1881,9 @@ End Sub
 <a name="7.1"></a>
 ### 7.1 Date, Time, Now 函数
 
-Date 函数返回当前的系统日期。   
-Time 函数返回当前的系统时间。   
-Now  函数返回当前的系统日期和时间。   
+`Date` 函数返回当前的系统日期。   
+`Time` 函数返回当前的系统时间。   
+`Now`  函数返回当前的系统日期和时间。   
 
 **注意：** 如果同时读取 Date、Time 以及 Now，那么 Now = Date + Time，但是实际上，我们不可能同时调用这三个函数，因为执行完一个函数之后，才能执行另一个函数，所以如果您在程序中必需同时取得当时的日期和时间，必需调用 Now，再利用 DateVale 及 TimeValue 分别取出日期和时间。
 
@@ -1899,7 +1899,7 @@ End Sub
 <a name="7.2"></a>
 ### 7.2 日期函数：Year, Month, Day
 
-Year, Month, Day 函数分别返回 **数字格式** 的年，月，日。
+`Year`, `Month`, `Day` 函数分别返回 **数字格式** 的年，月，日。
 
 ```
 Dim exampleDate As Date
@@ -1916,11 +1916,9 @@ MsgBox Day(exampleDate)   ' 19
 ### 7.3 CDate 和 DateValue 函数
 VBA中的CDate和DateValue的区别(Difference between CDate and DateValue in VBA)
 
-1. CDate 函数可把一个合法的日期和时间 *表达式* 转换为 `Date` 类型，并返回结果。
+1. `CDate` 函数可把一个合法的日期和时间 *表达式* 转换为 `Date` 类型，并返回结果。
 
-**提示：** 请使用 `IsDate` 函数来判断 date 是否可被转换为日期或时间。
-
-**注释：** `IsDate` 函数使用本地设置来检测字符串是否可被转换为日期。
+**提示：** 请使用 [IsDate]((#7.4)) 函数来判断 date 是否可被转换为日期或时间。
 
 ※　举例参照如下小节
 
@@ -1971,7 +1969,7 @@ MsgBox DateValue(43972)         ' Throws a Type mismatch error(Run-time error 13
 ### 7.4 IsDate函数
 `IsDate` 函数返回一个布尔值，用于判断一个表达式是否可被转换为日期。如果表达式是日期，或可被转换为日期，则返回 True 。否则，返回 False 。
 
-注释：IsDate 函数使用本地设置来检测字符串是否可以转换为日期。在 Windows 中, 有效日期的范围是公元100年1月1日至公元9999年12月31日;各操作系统的范围各不相同。
+**注释：** `IsDate` 函数使用本地设置来检测字符串是否可以转换为日期。在 Windows 中, 有效日期的范围是公元100年1月1日至公元9999年12月31日;各操作系统的范围各不相同。
 
 示例：   
 ```
