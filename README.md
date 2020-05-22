@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：05/22/2020 16:48
+Last update date：05/22/2020 17:44
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -59,6 +59,7 @@ Last update date：05/22/2020 16:48
     - [7.2 日期函数：Year, Month, Day](#7.2)
     - [7.3 CDate 和 DateValue 函数](#7.3)
     - [7.4 IsDate 函数](#7.4)
+- [x] [0x10 VBA 转换函数一览](#0x10) (done) (*English Version*)
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
     - [91.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#19.1)
@@ -2022,6 +2023,25 @@ DateAdd("m",-1,"31-Jan-01")   ' 12/31/2000
 如果 *number* 不是 Long 值，则在计算之前将其 **四舍五入** 到最接近的整数。
 
 **另外：** 在使用“w”时间间隔（包括一周的所有天，从星期日到星期六）向日期添加天数时，DateAdd 函数会向日期添加您指定的总天数，而不是像您预期的那样仅向日期添加工作日（从星期一到星期五）数。
+
+
+<a name="0x10"></a>
+## 0x10 VBA 转换函数一览
+
+* [Type conversion functions](type-conversion-functions.md)
+- [10.1 CBool](type-conversion-functions.md#CBool-function-example)
+- [10.2 CByte](type-conversion-functions.md#CByte-function-example)
+- [10.3 CCur](type-conversion-functions.md#CCur-function-example)
+- [10.4 CDate](type-conversion-functions.md#CDate-function-example)
+- [10.5 CDbl](type-conversion-functions.md#CDbl-function-example)
+- [10.6 CDec](type-conversion-functions.md#CDec-function-example)
+- [10.7 CInt](type-conversion-functions.md#CInt-function-example)
+- [10.8 CLng](type-conversion-functions.md#CLng-function-example)
+- [10.9 CLngLng](type-conversion-functions.md) (Valid on 64-bit platforms only.)
+- [10.10 CLngPtr](type-conversion-functions.md)
+- [10.11 CSng](type-conversion-functions.md#CSng-function-example)
+- [10.12 CStr](type-conversion-functions.md#CStr-function-example)
+- [10.13 CVar](type-conversion-functions.md#CVar-function-example)
 
 
 <a name="0x90"></a>
