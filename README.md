@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：05/22/2020 17:44
+Last update date：06/02/2020 18:57
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -68,7 +68,8 @@ Last update date：05/22/2020 17:44
     - [91.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
     - [91.5 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
     - [91.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
-    - [91.7 解决办法：Excel每次保存时都弹出警告：”此文档中包含宏、Activex控件、XML扩展包信息“（office 2007/2010/365+）](#91.7)
+    - [91.7 解决办法：Excel每次保存时都弹出警告：“此文档中包含宏、Activex控件、XML扩展包信息”（office 2007/2010/365+）](#91.7)
+    - [91.8 解决办法：使用.xlam宏文件执行VBA程序时，操作excel无任何反应](#91.8)
 - [x] [0x92 VBA示例代码](#0x09) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x10) (doing)
 - [x] [0x94 Excel-VBA Debug调试](Debug.md) (done)
@@ -2175,6 +2176,28 @@ step2：确认自己机器的安全级别
 **注意：** 该选项仅对当前工作簿有效。另外，新建工作簿时该选项为灰色不可用，只有用“文档检查器”检查了文档并删除了个人信息后该选项才可用。
 
 ![Alt text](doc/source/images/trouble-shootings/remove_activeX_warning_2.png)
+
+
+<a name="91.8"></a>
+### 91.8 解决办法：使用.xlam宏文件执行VBA程序时，操作excel无任何反应
+
+今天小伙伴遇到一个问题，自己做了一个xlam的工具，实现更改当前excel的所有sheet名称，但是当点击工具button的时候程序无反应。   
+代码如下：
+
+```
+Sub demo45()
+    Dim ws As Worksheet          ' 把ws 定义为一个工作表对象
+    For Each ws In Worksheets    ' 用for each 遍历对象集合
+    ws.Name = "Test_" & ws.Name  ' 改名
+    Next
+End Sub
+```
+
+原因及解决办法：首先看代码并没有什么问题，调查的时候在循环语句中添加了ThisWorkbook指定，
+但执行macro的时候发现sheet名字依然没有改变。在无意间看 工程资源管理器（Project Explore）
+的时候，发现VBAProject(XXX.xlam)中的默认Sheet1的名字被改变，这也就说明了，不是VBA程序
+没有起作用，而是程序在执行的时候默认操作了xlam工作簿。后修改程序中的默认制定工作簿语句
+为：`ActiveWorkbook` marco可以正常执行操作，问题得以解决。
 
 
 <a name="0x92"></a>
