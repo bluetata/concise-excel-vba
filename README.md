@@ -2096,15 +2096,15 @@ File → Options → Trust Center → Trust Center Settings → Privacy Options
 
 **1. 通过更改选项来清除数据透视表中的过滤器缓存（旧项目）**
 
-step1: 右键单击数据透视表中的任何单元格，然后单击 数据透视表选项 从上下文菜单。 看截图：   
+Step1: 右键单击数据透视表中的任何单元格，然后单击 数据透视表选项 从上下文菜单。 看截图：   
 
 ![Alt text](doc/source/images/doc-clear-filter-cache-1.png)
 
-step2: 在里面 数据透视表选项 对话框中，单击 **数据** 标签，选择 没有 来自 **每个字段要保留的项目数量** 下拉列表，然后单击 OK 按钮。   
+Step2: 在里面 数据透视表选项 对话框中，单击 **数据** 标签，选择 没有 来自 **每个字段要保留的项目数量** 下拉列表，然后单击 OK 按钮。   
 
 ![Alt text](doc/source/images/doc-clear-filter-cache-2.png)
 
-step3: 右键单击“数据透视表”单元格，然后单击 **刷新** 从右键菜单。 看截图：   
+Step3: 右键单击“数据透视表”单元格，然后单击 **刷新** 从右键菜单。 看截图：   
 
 ![Alt text](doc/source/images/doc-clear-filter-cache-3.png)
 
@@ -2193,7 +2193,8 @@ Sub demo45()
 End Sub
 ```
 
-原因及解决办法：首先看代码并没有什么问题，调查的时候在循环语句中添加了ThisWorkbook指定，
+原因及解决办法：   
+首先看代码并没有什么问题，调查的时候在循环语句中添加了ThisWorkbook指定，
 但执行macro的时候发现sheet名字依然没有改变。在无意间看 工程资源管理器（Project Explore）
 的时候，发现VBAProject(XXX.xlam)中的默认Sheet1的名字被改变，这也就说明了，不是VBA程序
 没有起作用，而是程序在执行的时候默认操作了xlam工作簿。后修改程序中的默认制定工作簿语句
