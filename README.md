@@ -2225,6 +2225,8 @@ VBA示例代码查看：[点击这里](SampleCode.bas)。
 本Repository除特殊注明外，均采用 Creative Commons [BY-NC-ND 4.0](LICENSE)（自由转载-保持署名-非商用-禁止演绎）协议发布。
 
 
-## 作者
-
-Sekito.Lv(bluetata) <sekito.lv@gmail.com>
+## 鸣谢列表
+### Code Contributors
+| <img src="https://avatars0.githubusercontent.com/u/25427352" alt="bluetata" width="100px" height="100px"/> |<img src="https://avatars2.githubusercontent.com/u/46813661" alt="chromeheart" width="100px" height="100px"/> |<img src="https://avatars3.githubusercontent.com/u/3829140" alt="BobBJSun" width="100px" height="100px"/> | | | | |
+| :----: |:----: |:----: |:----: |:----: |:----: |:----: |
+| [bluetata](https://github.com/bluetata) |[chromeheart](https://github.com/chromeheart) |[BobBJSun](https://github.com/BobBJSun) | | | | |
