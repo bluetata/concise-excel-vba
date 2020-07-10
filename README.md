@@ -70,9 +70,9 @@ Last update date：06/02/2020 18:57
     - [91.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
     - [91.7 解决办法：Excel每次保存时都弹出警告：“此文档中包含宏、Activex控件、XML扩展包信息”（office 2007/2010/365+）](#91.7)
     - [91.8 解决办法：使用.xlam宏文件执行VBA程序时，操作excel无任何反应](#91.8)
-- [x] [0x92 VBA示例代码](#0x09) (done)
-- [ ] [0x93 Excel-VBA 快捷键](#0x10) (doing)
-- [x] [0x94 Excel-VBA Debug调试](Debug.md) (done)
+- [x] [0x92 VBA示例代码](#0x02) (done)
+- [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
+- [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 <!-- /TOC -->
@@ -2204,6 +2204,16 @@ End Sub
 <a name="0x92"></a>
 ## 0x92 VBA示例代码
 VBA示例代码查看：[点击这里](SampleCode.bas)。
+
+
+<a name="0x93"></a>
+## 0x93 Excel-VBA 快捷键
+Excel-VBA 快捷键相关 查看：[点击这里](ShortcutKey.md)。
+
+
+<a name="0x94"></a>
+## 0x94 Excel-VBA Debug调试
+Excel-VBA Debug调试相关 查看：[点击这里](Debug.md)。
 
 
 <a name="docslist"></a>
