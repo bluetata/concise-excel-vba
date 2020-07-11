@@ -70,7 +70,7 @@ Last update date：06/02/2020 18:57
     - [91.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
     - [91.7 解决办法：Excel每次保存时都弹出警告：“此文档中包含宏、Activex控件、XML扩展包信息”（office 2007/2010/365+）](#91.7)
     - [91.8 解决办法：使用.xlam宏文件执行VBA程序时，操作excel无任何反应](#91.8)
-- [x] [0x92 VBA示例代码](#0x02) (done)
+- [x] [0x92 VBA示例代码](#0x92) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
@@ -1796,6 +1796,52 @@ End Sub
     fso.DeleteFile "c:\Documents and Settings\Macros\Makro.txt"
 End Sub
 ```
+
+4. 文件序号取得 FreeFile 函数
+
+`FreeFile`函数返回一个整数，即表示可由 `Open` 语句使用的文件标识符号句柄。
+
+语法：FreeFile[(rangenumber)]   
+参数介绍：rangenumber 0 或 1 指定可能，它指定要返回的下一个文件编号所属的范围，   
+参数num=0，返回1~255 (含) 范围内的文件号。   
+
+参数num=1，返回一个范围为 256–511 的文件号。   
+
+
+```
+Dim m As Integer, n As Integer, buf As String
+m = FreeFile
+Open D:\Articles\2019\File 1.txt For Input As m
+Line Input #m, buf
+n = FreeFile
+Open D:\Articles\2019\File 2.txt For Input As n
+Print #m, buf
+Close m
+Close n
+
+
+
+'------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+syste.outside.
+
+Dim MyIndex, FileNumber
+For MyIndex = 1 To 5    ' Loop 5 times.
+    FileNumber = FreeFile    ' Get unused file
+        ' number.
+    Open "TEST" & MyIndex For Output As #FileNumber    ' Create file name.
+    Write #FileNumber, "This is a sample."    ' Output text.
+    Close #FileNumber    ' Close file.
+Next MyIndex
+```
+
 
 <a name="6.3"></a>
 ### 6.3 文件夹相关操作
