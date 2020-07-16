@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：06/02/2020 18:57
+Last update date：07/16/2020 17:00
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -1807,7 +1807,7 @@ End Sub
 
 参数num=1，返回一个范围为 256–511 的文件号。   
 
-
+示例：   
 ```
 Dim m As Integer, n As Integer, buf As String
 m = FreeFile
@@ -1831,6 +1831,76 @@ For MyIndex = 1 To 5         ' Loop 5 times.
 Next MyIndex
 ```
 
+
+5. EOF 函数
+
+EOF函数 在对文件进行读取时，用于确认读取位置是否到达文件末尾。到达文件末尾时返回真(true)。
+
+语法：EOF(FileNumber)   
+返回值：Boolean
+
+
+示例1：
+
+```
+Sub sample_eof()
+    Dim FileNumber      As Integer
+    Dim FilePath        As String
+    Dim InputData       As String
+
+    '使用可能なファイル番号を取得します。
+    FileNumber = FreeFile
+
+    'このマクロが組み込まれているエクセルファイルと
+    '同一フォルダ内の"test.txt"を入力とします。
+    FilePath = ThisWorkbook.Path & "\test.txt"
+
+    '入力ファイルの存在チェック
+    If Dir(FilePath) = "" Then
+        MsgBox "入力ファイルが存在しません。", vbCritical
+        '入力ファイルがない場合はここで処理を終了させます。
+        End
+    End If
+
+    'テキストファイルを入力モードで開きます。
+    Open FilePath For Input As #FileNumber
+
+    'ファイルの終わりになるまで
+    'ファイル内のデータを1行ずつ読み込みます。
+    Do While Not EOF(FileNumber)
+        Line Input #FileNumber, InputData
+        'イミディエイトウィンドウへ表示
+        Debug.Print InputData
+    Loop
+
+    Close #FileNumber
+
+    MsgBox "処理が終了しました。", vbInformation
+End Sub
+```
+
+
+示例2：
+
+```
+Dim intFNum      As Integer
+Dim strExcelDir  As String
+Dim strInputFile As String
+Dim strInputData As String
+
+strExcelDir = ThisWorkbook.Path
+strInputFile = strExcelDir & "\" ActiveSheet.Cells("1", "E").Value
+intFNum = FreeFile()
+
+Open strInputFile For Input As intFNum
+  ... 'other logic
+
+  Do While Not EOF(intFNum)              ' Check for end of file.
+      Line Input #intFNum, strInputData  ' Read line of data.
+      Debug.Print strInputData           ' Print to the Immediate window.
+  Loop
+  Close #intFNum                         ' Close file.
+```
 
 <a name="6.3"></a>
 ### 6.3 文件夹相关操作
@@ -2254,7 +2324,7 @@ Excel-VBA Debug调试相关 查看：[点击这里](Debug.md)。
 <a name="docslist"></a>
 ## 0xFF VBA学习资源列表
 - [MSDN 函数 (Visual Basic for Applications)](https://docs.microsoft.com/zh-cn/office/vba/language/reference/functions-visual-basic-for-applications)
-- [Excel-vba coding规约/开发规范](https://github.com/Youchien/development-specification/blob/master/doc/source/Excel-vba%20Language%20Specification.md)
+- [Excel-vba coding规约/开发规范](CodingStandards.md)
 - [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
 - [Excel宏教程 (宏的介绍与基本使用)](http://blog.csdn.net/lyhdream/article/details/9060801)
 - [Excel2010中的VBA入门,官方文档](https://docs.microsoft.com/zh-cn/previous-versions/office/ee814737(v=office.14))
