@@ -1819,26 +1819,15 @@ Print #m, buf
 Close m
 Close n
 
-
-
 '------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-syste.outside.
-
 Dim MyIndex, FileNumber
-For MyIndex = 1 To 5    ' Loop 5 times.
+For MyIndex = 1 To 5         ' Loop 5 times.
     FileNumber = FreeFile    ' Get unused file
-        ' number.
+
     Open "TEST" & MyIndex For Output As #FileNumber    ' Create file name.
-    Write #FileNumber, "This is a sample."    ' Output text.
-    Close #FileNumber    ' Close file.
+    Write #FileNumber, "This is a sample."             ' Output text.
+    Close #FileNumber                                  ' Close file.
 Next MyIndex
 ```
 
