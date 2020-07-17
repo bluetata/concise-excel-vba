@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：07/16/2020 17:00
+Last update date：07/17/2020 17:13
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -132,7 +132,7 @@ Excel里的每一个单元格都是一个`数据`，无论是数字、字母或�
 表1.1 VBA数据类型
 
 补充一点是，数组就像一筐水果，里面可以存不止一个数据。
-他不是一个具体的数据类型，叫数据结构更合适些。
+但它不是一个具体的数据类型，叫数据结构更合适些。
 
 
 <a name="1.2"></a>
@@ -234,6 +234,28 @@ Dim arr3 As Variant
 arr3 = Range("A1:C3").Value   ' 将A1:C3中的数组存储到arr3中
 Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 ```
+
+**注意：**   
+###### 1. 使用 `Dim` 声明变动数组时，不能直接在数组中使用变量   
+即 `Dim arr(1 to 变量)` 是错误的。   
+而应该是：
+
+  1、先用Dim声明，Dim arr()或arr。   
+  2、然后Redim arr(1 to 变量)  即:Redim(重新声明) 变动数组时可以使用变量
+
+```
+Dim tempArray() As Integer
+ReDim tempArray(1 To v1)
+```
+
+###### 2. 使用 `ReDim Preserve` 声明变动数组时，只能改变最末维的大小。
+即 `Redim Preserve arr(1 to k1, 1 to 2)` 是错误的。   
+而应该是：
+
+```
+Redim Preserve arr(1 to 2, 1 to k1) ' 重新定义数组的大小，又可以保留数组内现有的值
+```
+动态数组中用Redim改变数组最后一维的大小，但是如果数组中已经有了数据，如果只用Redim的形式的话，数组中原有的数组就会丢失，为了保留数据，就需要加 `Preserve` 关键字。
 
 
 **数组常用的函数**
