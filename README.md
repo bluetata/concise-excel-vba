@@ -82,6 +82,7 @@ Last update date：07/16/2020 17:00
 ## 0x00 如何创建一个宏
 *Ref：* [如何创建一个宏](CreateAMacro.md) (English Version)
 
+
 <a name="explanation"></a>
 ## 0x01 语法说明
 
@@ -95,6 +96,7 @@ Last update date：07/16/2020 17:00
 顺带一提的是，函数其实也很容易理解，方便使用。拿到一个函数，例如`Sum`，
 只要知道它是求多个数的和就够了，剩下的就是用了。例如`Sum(1000,9)`结果就是`1009`了。
 函数的一大好处就是隐藏具体实现细节，提供简洁的使用方法。
+
 
 <a name="1.1"></a>
 ### 1.1 数据和数据类型
@@ -132,6 +134,7 @@ Excel里的每一个单元格都是一个`数据`，无论是数字、字母或�
 补充一点是，数组就像一筐水果，里面可以存不止一个数据。
 他不是一个具体的数据类型，叫数据结构更合适些。
 
+
 <a name="1.2"></a>
 ### 1.2 常量和变量
 
@@ -155,7 +158,8 @@ Dim 变量名 As 数据类型
 数据类型，对应上面 ↑　表1.1里的那些
 
 更多的声明方法，跟`Dim`声明的区别是作用范围不同：
-```vba
+
+```
 Private v1 As Integer   ' v1为私有整形变量
 Public v2 As String     ' v2为共有字符串变量
 Static v3 As Integer    ' v3为静态变量，程序结束后值不变
@@ -171,6 +175,24 @@ public v2$  ' 与 Public v2 As String 效果一样
 ' 声明变量时，不指定具体的类型就变成了Variant类型，根据需要转换数据类型
 Dim v4
 ```
+
+**注意：**   
+这里提一下在VBA开发规范中有一条： 强制使用 `Option Explicit`。   
+`Option Explicit` 语句自动提醒要求开发者正式地声明你的变量，这个语句必须放在每个模块的最上面。如果你试图运行一个含有未定义的变量的过程时，Option Explicit语句会让VBA产生一个错误信息。   
+
+总结：Option Explicit   
+
+`Option Explicit` 语句在模块级别中使用，强制显示声明模块中的所有变量。   
+`Option Explicit` 语句必须写在模块的所有过程之前。   
+如果模块中使用了 `Option Explicit`，则必须使用 Dim、Private、Public、ReDim 或 Static 语句来显式声明所有的变量。   
+
+    ---------------------------------------------
+    explicit 英 [ɪkˈsplɪsɪt]  美 [ɪkˈsplɪsɪt]
+    adj. 明确的，清楚的; 直言的; 详述的; 不隐瞒的;  
+    ---------------------------------------------
+
+另外在 **工具** →　**选项**　中勾选 "要求变量声明(Require Variable Declaration)"，那么新插入一个模块时，就会在第一行显示这句代码，强制要求程序中要声明变量。
+
 
 <a name="1.3"></a>
 ### 1.3 数组
@@ -188,7 +210,7 @@ Dim arr2(100) As Integer ' 表示arr可以存储101个整数,从0数
 arr2(100) '表示arr2中第101个数据
 
 ' 多维数组
-Dim arr3(1 To 3,1 To 3,1 To 3) As Integer ' 定义了一个三维数组，可以存储3*3*3=27个整数
+Dim arr3(1 To 3, 1 To 3, 1 To 3) As Integer ' 定义了一个三维数组，可以存储3*3*3=27个整数
 
 ' 动态数组，不确定数组大小时使用
 Dim arr4() As Integer   ' 定义arr4为整形动态数组
@@ -300,6 +322,7 @@ End If
 程序通常都是顺序依次执行的。语句结构用来控制程序执行的步骤，
 一般有**选择**语句、**循环** 语句。
 
+
 <a name="1.5.1"></a>
 #### 1.5.1 选择语句
 
@@ -371,6 +394,7 @@ Private Sub switch_demo_Click()
     End Select
 End Sub
 ```
+
 
 <a name="1.5.2"></a>
 #### 1.5.2 循环语句
@@ -444,6 +468,7 @@ Do
 Loop Until i < 1  
 ```
 
+
 <a name="1.5.3"></a>
 #### 1.5.3 GoTo语句
 
@@ -512,6 +537,7 @@ With WorkSheets("表1").Range("A1").Font
     .ColorIndex =3
 End With
 ```
+
 
 <a name="1.6"></a>
 ### 1.6 过程(Sub)和函数(Function)
