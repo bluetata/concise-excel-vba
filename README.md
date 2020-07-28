@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：07/17/2020 17:13
+Last update date：07/28/2020 17:03
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -1785,11 +1785,13 @@ End Sub
 以下文件，文件夹等相关方法可自行封装成共通(common function)以便项目中使用。
 
 
+
 <a name="6.1"></a>
 ### 6.1 判断文件，文件夹等是否存在
-1. 文件是否存在（File exists）：
 
-1.1 使用 FileExists 判断是否存在
+#1. 文件是否存在（File exists）：
+
+1.1    使用 FileExists 判断是否存在
 ```vba
 Sub FileExists()
     Dim fso as Scripting.FileSystemObject
@@ -1814,7 +1816,7 @@ End If
 `FileExists`返回逻辑值，而 `Dir` 返回字符串，因此 `Dir` 不能参与逻辑值的比较。
 
 
-2. 文件夹是否存在（Folder exists）：
+#2. 文件夹是否存在（Folder exists）：
 ```vba
 Sub FolderExists()
     Dim fso as Scripting.FileSystemObject
@@ -1828,7 +1830,7 @@ End Sub
 ```
 
 
-3. 硬盘是否存在（Drive exists）：
+#3. 硬盘是否存在（Drive exists）：
 ```vba
 Sub DriveExists()
     Dim fso as Scripting.FileSystemObject
