@@ -1522,6 +1522,7 @@ Function OpenWorkbook(ByVal strWorkbookFilePath As String)
 End Function
 ```
 
+
 <a name="5.3"></a>
 ### 5.3 操作Excel工作表（Worksheet）
 
@@ -1554,6 +1555,7 @@ Sub A()
 End Sub
 ```
 
+
 #### 5.3.2 复制工作表
 
 复制工作表是指将工作表进行备份，以便于用户对备份文件进行操作时，不会损坏原有文件。
@@ -1585,6 +1587,7 @@ Sub 复制工作表至Book1中()
 End Sub
 ```
 
+
 <a name="5.4"></a>
 ### 5.4 Excel AutoFilter / Excel 自动筛选操作
 
@@ -1596,6 +1599,7 @@ Sub ShowAllRecords()
     End If
 End Sub
 ```
+
 
 #### 5.4.2 开关Excel自动筛选
 
@@ -1616,6 +1620,7 @@ Sub TurnFilterOff()
     Worksheets("Data").AutoFilterMode = False
 End Sub
 ```
+
 
 #### 5.4.3 隐藏过滤箭头
 
@@ -1703,6 +1708,7 @@ Sub HideArrowsSpecificFields()
 End Sub
 ```
 
+
 #### 5.4.4 复制所有的过滤后的数据
 
 ```vba
@@ -1729,6 +1735,7 @@ Sub CopyFilter()
     ActiveSheet.ShowAllData
 End Sub
 ```
+
 
 #### 5.4.5 检查是否有自动筛选：
 
@@ -1760,6 +1767,7 @@ Range("A1").Select
 Selection.ClearContents
 ```
 
+
 #### 5.5.1 清理/删除Excel中第一个标题行以外的所有行
 
 同样使用ClearContents方法，主要是确定如何选中除第一行以外的表格。   
@@ -1770,14 +1778,18 @@ Sub ClearContentExceptFirst()
 End Sub
 ```
 
+
 <a name="0x06"></a>
 ## 0x06 文件，文件夹等 相关常用操作
 
 以下文件，文件夹等相关方法可自行封装成共通(common function)以便项目中使用。
 
+
 <a name="6.1"></a>
 ### 6.1 判断文件，文件夹等是否存在
 1. 文件是否存在（File exists）：
+
+1.1 使用 FileExists 判断是否存在
 ```vba
 Sub FileExists()
     Dim fso as Scripting.FileSystemObject
@@ -1789,6 +1801,18 @@ Sub FileExists()
     End If
 End Sub
 ```
+
+
+1.2 使用Dir()判断文件是否存在
+
+```
+If Dir("C:\stamp.bat") = "" Then
+    Debug.Print "文件未找到。"
+End If
+```
+**注意：** VBA中两种判断文件是否存在的方法，使用 `FileExists` 和 `Dir`，期中
+`FileExists`返回逻辑值，而 `Dir` 返回字符串，因此 `Dir` 不能参与逻辑值的比较。
+
 
 2. 文件夹是否存在（Folder exists）：
 ```vba
@@ -1803,6 +1827,7 @@ Sub FolderExists()
 End Sub
 ```
 
+
 3. 硬盘是否存在（Drive exists）：
 ```vba
 Sub DriveExists()
@@ -1815,6 +1840,7 @@ Sub DriveExists()
     End If
 End Sub
 ```
+
 
 <a name="6.2"></a>
 ### 6.2 文件相关操作
@@ -1836,6 +1862,7 @@ Sub MoveFile()
 End Sub
 ```
 
+
 3. 文件删除（File delete）：
 ```vba
     Sub DeleteFile()
@@ -1844,6 +1871,7 @@ End Sub
     fso.DeleteFile "c:\Documents and Settings\Macros\Makro.txt"
 End Sub
 ```
+
 
 4. 文件序号取得 FreeFile 函数
 
@@ -1949,6 +1977,29 @@ Open strInputFile For Input As intFNum
   Loop
   Close #intFNum                         ' Close file.
 ```
+
+
+6. 获取C盘根目录下的所有文件名并且将每个文件名写入工作表
+
+```
+Sub GetAllFiles()
+    Dim strFiles As String
+    Dim intNextRow As Integer
+    intNextRow = 1
+
+    ' next row index
+    With Worksheets("Sheet1").Range("A1")
+        strFiles = Dir("C:\", vbNormal)
+        .Value = strFiles
+        Do While strFiles <> ""
+            strFiles = Dir
+            .Offset(intNextRow, 0).Value = strFiles
+            intNextRow = intNextRow + 1
+        Loop
+    End With
+End Sub
+```
+
 
 <a name="6.3"></a>
 ### 6.3 文件夹相关操作
