@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：07/28/2020 17:03
+Last update date：07/29/2020 17:08
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -2003,11 +2003,43 @@ End Sub
 ```
 
 
+7. 获取文件大小（FileLen函数和CreateObject.GetFile.Size）:
+
+
+使用FileLen函数：
+```
+Sub getTotalFileSizeByFileLen()
+    Dim iniFiles As String
+    Dim allBytes As Long
+    iniFiles = Dir("C:\WINDOWS\*.ini")
+    allBytes = 0
+    Do While iniFiles <> ""
+        allBytes = allBytes + FileLen("C:\WINDOWS\" & iniFiles)
+        iniFiles = Dir
+    Loop
+    Debug.Print "Total bytes: " & allBytes
+End Sub
+```
+
+使用CreateObject.GetFile.Size：
+```
+Sub GetFileSize()
+    Dim fs, f, strFilename
+    strFilename = ThisWorkbook.Path & "\1.txt"
+    Set fs = CreateObject("Scripting.FileSystemObject")
+    Set f = fs.GetFile(strFilename)
+    Debug.Print "file size:" & CStr(CDbl(f.Size) / 1024# / 1024#) & "MB"
+    Debug.Print "file LastModified:" & f.DateLastModified
+End Sub
+```
+
+
+
 <a name="6.3"></a>
 ### 6.3 文件夹相关操作
 
 1. 创建文件夹（Folder create）：
-```vba
+```
 Sub CreateFolder()
     Dim fso as Scripting.FileSystemObject
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -2016,7 +2048,7 @@ End Sub
 ```
 
 2. 复制文件夹（Folder copy）：
-```vba
+```
 Sub CopyFolder()
     Dim fso as Scripting.FileSystemObject
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -2025,7 +2057,7 @@ End Sub
 ```
 
 3. 移动文件夹（Folder move）：
-```vba
+```
 Sub MoveFolder()
     Dim fso as Scripting.FileSystemObject
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -2033,14 +2065,26 @@ Sub MoveFolder()
 End Sub
 ```
 
-4. 删除文件件（Folder delete）：
-```vba
+4. 删除文件夹（Folder delete）：
+```
 Sub DeleteFolder()
     Dim fso as Scripting.FileSystemObject
     Set fso = CreateObject("Scripting.FileSystemObject")
     fso.DeleteFolder "C:\Documents and Settings\NewFolder"
 End Sub
 ```
+
+5. 获取文件夹大小：
+```
+Sub fldsize()
+    Dim fso, fld
+    Set fso = CreateObject("scripting.filesystemobject")
+    Set fld = fso.getfolder(ThisWorkbook.Path)  ' 获取文件夹
+    ' Set fld = fso.GetFile(ThisWorkbook.Path  & "\1.txt")  ' 获取文件
+    MsgBox "Total size:" & fld.Size / 1024 & "KB"
+End Sub
+```
+
 
 <a name="6.4"></a>
 ### 6.4 其他操作（获取文件名等）
