@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：07/29/2020 17:08
+Last update date：08/13/2020 15:58
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -273,6 +273,18 @@ UBound(Array arr,[Integer i]);</br>
 UBound为函数名</br>
 arr和i 为UBound的的参数，用中括号括起来的表示i为非必填参数</br>
 arr和i 之前的Array，Integer表示对应参数的数据类型</br>
+
+示例：
+```
+Dim lngUpperNum As Long
+Dim MyArray(1 To 10, 5 To 15, 10 To 20)    ' 定义数组变量.
+Dim AnyArray(10)
+lngUpperNum = UBound(MyArray, 1)    ' 返回 10.
+lngUpperNum = UBound(MyArray, 3)    ' 返回 20.
+lngUpperNum = UBound(AnyArray)      ' 返回 10.
+lngUpperNum = LBound(AnyArray, 2)   ' 返回 5.
+```
+
 
 > 补充
 > [VBA 内置函数列表](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
