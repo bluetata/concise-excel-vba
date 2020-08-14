@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：08/13/2020 15:58
+Last update date：08/14/2020 15:11
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -258,14 +258,16 @@ Redim Preserve arr(1 to 2, 1 to k1) ' 重新定义数组的大小，又可以保
 动态数组中用Redim改变数组最后一维的大小，但是如果数组中已经有了数据，如果只用Redim的形式的话，数组中原有的数组就会丢失，为了保留数据，就需要加 `Preserve` 关键字。
 
 
-**数组常用的函数**
+**其他数组函数**
 
-|函数|函数说明|参数说明|示例|
-|----|----|----|----|
+| 函数 | 函数说明 | 参数说明 |
+|----|----|----|
 |`UBound(Array arr, [Integer i])`|数组最大的索引值|`arr`：数组；`i`：整形，数组维数|
 |`LBound(Array arr, [Integer i])`|数组最小的索引值|同上|
 |`Join(Array arr, [String s])`|合并字符串|`arr`：数组；`s`：合并的分隔符|
 |`Split(String str, [String s])`|分割字符串|`str`：待分割的字符串；`s`：分割字符串的分隔符|
+|`Erase ArrayName`|擦拭清空数组|`ArrayName`：需要被清空的数组名|
+
 
 函数说明
 
