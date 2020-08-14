@@ -285,6 +285,32 @@ lngUpperNum = UBound(AnyArray)      ' 返回 10.
 lngUpperNum = LBound(AnyArray, 2)   ' 返回 5.
 ```
 
+**Erase** 清空数组函数
+
+语法：Erase ArrayName
+
+Erase 释放动态数组所使用的内存，下次引用该动态数组之前，必须使用 `ReDim` 重新声明数组变量和维数。
+
+* 固定数值数组，数组中的每个元素重置为零
+* 固定字符串数组，数组中的每个元素被重置为零长度 ""
+* 固定 Variant 数组，数组中的每个元素将被设置为 Empty。
+* 对象数组，数组中的每个元素被重置为特殊值 Nothing
+
+```
+' Declare array variables.
+Dim NumArray(10) As Integer         ' Integer array.
+Dim StrVarArray(10) As String       ' Variable-string array.
+Dim StrFixArray(10) As String * 10  ' Fixed-string array.
+Dim VarArray(10) As Variant         ' Variant array.
+Dim DynamicArray() As Integer       ' Dynamic array.
+ReDim DynamicArray(10)              ' Allocate storage space.
+Erase NumArray                      ' Each element set to 0.
+Erase StrVarArray                   ' Each element set to zero-length string ("").
+Erase StrFixArray                   ' Each element set to 0.
+Erase VarArray                      ' Each element set to Empty.
+Erase DynamicArray                  ' Free memory used by array.
+```
+
 
 > 补充
 > [VBA 内置函数列表](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
