@@ -177,7 +177,7 @@ Dim v4
 ```
 
 **注意：**   
-这里提一下在VBA开发规范中有一条： 强制使用 `Option Explicit`。   
+这里提一下在VBA开发规范中有一条： **强制** 使用 `Option Explicit`。   
 `Option Explicit` 语句自动提醒要求开发者正式地声明你的变量，这个语句必须放在每个模块的最上面。如果你试图运行一个含有未定义的变量的过程时，Option Explicit语句会让VBA产生一个错误信息。   
 
 总结：Option Explicit   
@@ -191,7 +191,9 @@ Dim v4
     adj. 明确的，清楚的; 直言的; 详述的; 不隐瞒的;  
     ---------------------------------------------
 
-另外在 **工具** →　**选项**　中勾选 "要求变量声明(Require Variable Declaration)"，那么新插入一个模块时，就会在第一行显示这句代码，强制要求程序中要声明变量。
+另外在 **工具** →　**选项**　中勾选 "要求变量声明(Require Variable Declaration)"，那么新插入一个模块时，就会在第一行显示这句代码，强制要求程序中要声明变量（如下图）。
+
+![Alt text](doc/source/images/require_variable_declaration.jpg)
 
 
 <a name="1.3"></a>
