@@ -70,6 +70,7 @@ Last update date：08/14/2020 15:11
     - [91.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
     - [91.7 解决办法：Excel每次保存时都弹出警告：“此文档中包含宏、Activex控件、XML扩展包信息”（office 2007/2010/365+）](#91.7)
     - [91.8 解决办法：使用.xlam宏文件执行VBA程序时，操作excel无任何反应](#91.8)
+    - [91.9 解决办法：复位Excel到A1单元格，锁定缩放比例85%](#91.9)
 - [x] [0x92 VBA示例代码](#0x92) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
@@ -2491,6 +2492,26 @@ End Sub
 的时候，发现VBAProject(XXX.xlam)中的默认Sheet1的名字被改变，这也就说明了，不是VBA程序
 没有起作用，而是程序在执行的时候默认操作了xlam工作簿。后修改程序中的默认制定工作簿语句
 为：`ActiveWorkbook` marco可以正常执行操作，问题得以解决。
+
+
+<a name="91.9"></a>
+### 解决办法：解决办法：复位Excel到A1单元格，锁定缩放比例85%
+1. 创建.xlam文件
+2. 在 .xlam文件内编辑如下代码：
+```
+Sub MacroZoom
+    For i = 1 To ActiveWorkbook.WorkSheets.Count
+        WorkSheets(i).Select
+        SendKeys("^{HOME}")     ' 快捷键：Ctrl + Home，使freeze部分复位
+        Range("A1").Select      ' 复位光标到A1单元格
+        ActiveWindow.Zoom = 85  ' 缩放sheet比例为 85%
+    Next i
+End Sub
+```
+3. 点击Excel菜单：Developer -> Excel Add-ins 添加建好的.xlam文件
+4. 在Option里添加.xlam到菜单快捷栏
+
+
 
 
 <a name="0x92"></a>
