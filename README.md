@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：08/14/2020 15:11
+Last update date：01/14/2021 18:19
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -2495,7 +2495,7 @@ End Sub
 
 
 <a name="91.9"></a>
-### 解决办法：解决办法：复位Excel到A1单元格，锁定缩放比例85%
+### 91.9 解决办法：解决办法：复位Excel到A1单元格，锁定缩放比例85%
 1. 创建.xlam文件
 2. 在 .xlam文件内编辑如下代码：
 ```
