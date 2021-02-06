@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：01/14/2021 18:19
+Last update date：02/06/2021 12:58
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -62,15 +62,16 @@ Last update date：01/14/2021 18:19
 - [x] [0x10 VBA 转换函数一览](#0x10) (done) (*English Version*)
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
-    - [91.1 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#19.1)
-    - [91.2 清除Excel数据透视表中过滤器缓存（旧项目）](#91.2)
-    - [91.3 解决办法：The macros in this project are disabled. Please refer to ...](#91.3)
-    - [91.4 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
-    - [91.5 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
-    - [91.6 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
-    - [91.7 解决办法：Excel每次保存时都弹出警告：“此文档中包含宏、Activex控件、XML扩展包信息”（office 2007/2010/365+）](#91.7)
-    - [91.8 解决办法：使用.xlam宏文件执行VBA程序时，操作excel无任何反应](#91.8)
-    - [91.9 解决办法：复位Excel到A1单元格，锁定缩放比例85%](#91.9)
+    - [91.01 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#19.1)
+    - [91.02 清除Excel数据透视表中过滤器缓存（旧项目）](#91.2)
+    - [91.03 解决办法：The macros in this project are disabled. Please refer to ...](#91.3)
+    - [91.04 解决办法：添加一个宏文件(第三方插件)到快速访问栏](troubleshootings/Macro2QuickToolBar.md)
+    - [91.05 解决办法：如何修改编辑一个.xlam文件/解决保存修改后的.xlam文件再次内容消失问题](troubleshootings/EditXlamFile.md)
+    - [91.06 解决办法：使用SaveAs方法保存.xlsx后，再次打开提示: 文件损坏,后缀名错误（格式错误）](troubleshootings/SaveAsIssue.md)
+    - [91.07 解决办法：Excel每次保存时都弹出警告：“此文档中包含宏、Activex控件、XML扩展包信息”（office 2007/2010/365+）](#91.7)
+    - [91.08 解决办法：使用.xlam宏文件执行VBA程序时，操作excel无任何反应](#91.8)
+    - [91.09 解决办法：复位Excel到A1单元格，锁定缩放比例85%](#91.9)
+    - [91.10 解决办法：编译错误 找不到工程或库](#91.10)
 - [x] [0x92 VBA示例代码](#0x92) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
@@ -2510,6 +2511,30 @@ End Sub
 ```
 3. 点击Excel菜单：Developer -> Excel Add-ins 添加建好的.xlam文件
 4. 在Option里添加.xlam到菜单快捷栏
+
+
+<a name="91.10"></a>
+### 91.10 解决办法：编译错误 找不到工程或库
+
+    英文版本错误：Can't find Project or Library
+
+解决办法：
+1. 按 `Alt+F11`进入VBE窗口
+2. 依次点击 Tools  -> References
+3. 找到缺失的类库，勾选掉。如果有特殊的添加类库，需要看窗口下面Location的路径是否存在该类库。
+
+Excel VBA默认的5个引用类库（英文）
+
+    1. Visual Basic For Applications (This is the library that defines the VBA language.)
+    2. Microsoft Excel Object Library (This defines all of the elements of Excel.)
+    3. OLE Automation (This specifies the types for linking and embedding documents
+        and for automation of other applications and the "plumbing" of the COM
+        system that Excel uses to communicate with the outside world.)
+    4. Microsoft Office (This defines things that are common to all Office
+        programs such as Command Bars and Command Bar controls.)
+    5. Microsoft Forms 2.0 This is required if you are using a User Form. This
+        library defines things like the user form and the controls that you can
+        place on a form.
 
 
 
