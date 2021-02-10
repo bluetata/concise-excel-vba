@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：02/06/2021 12:58
+Last update date：02/10/2021 17:13
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -2500,12 +2500,16 @@ End Sub
 1. 创建.xlam文件
 2. 在 .xlam文件内编辑如下代码：
 ```
-Sub MacroZoom
-    For i = 1 To ActiveWorkbook.WorkSheets.Count
-        WorkSheets(i).Select
-        SendKeys("^{HOME}")     ' 快捷键：Ctrl + Home，使freeze部分复位
-        Range("A1").Select      ' 复位光标到A1单元格
-        ActiveWindow.Zoom = 85  ' 缩放sheet比例为 85%
+Sub MacroZoom285()
+    Dim i As Integer
+    For i = 1 To ActiveWorkbook.Worksheets.Count
+        Debug.Print Worksheets(i).Name  ' print the name of current loop worksheet
+        If Worksheets(i).Visible = xlSheetVisible Then      ' only zoom visible worksheet
+            Worksheets(i).Select
+            SendKeys ("^{HOME}")        ' sendkeys ctrl + home and making Freeze to reset.
+            Range("A1").Select          ' setting the focus to A1
+            ActiveWindow.Zoom = 85      ' making the zoom to 85%
+        End If
     Next i
 End Sub
 ```
@@ -2537,6 +2541,10 @@ Excel VBA默认的5个引用类库（英文）
         place on a form.
 
 
+
+
+
+microsoft office has identified a potential security concern
 
 
 <a name="0x92"></a>
