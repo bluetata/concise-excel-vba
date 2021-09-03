@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：02/10/2021 17:13
+Last update date：09/03/2021 11:42
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -1184,6 +1184,10 @@ End Select
 Immediate window（立即窗口）：类似其他IDE的console控制台。</br>
 显示快捷键：`Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。</br>
 当在调试debug的时候，可以使用`Debug.Print "xxxlog"`的时候可以在该窗口直接显示打印结果。
+
+#### 2.4.3 更改编辑区域默认字体
+点击菜单栏的 Tools，选择Options，选择 Editor Format，鼠标光标放在在字体栏，按键盘翻页键选择字体，
+注意一定不要直接粘贴字体名字到字体栏，可能不生效。
 
 <a name="object-option"></a>
 ## 0x03 对象操作说明
