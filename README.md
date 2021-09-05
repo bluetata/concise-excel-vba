@@ -239,6 +239,33 @@ arr3 = Range("A1:C3").Value   ' 将A1:C3中的数组存储到arr3中
 Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 ```
 
+#### 循环遍历数组的两种方式：
+
+
+```
+' 循环遍历Variant数组方法1：
+Dim Arr As Variant
+Dim i As Integer
+
+Arr = Array(1, 2, 3, 4, 5)
+For i = 0 To UBound(Arr)
+    Debug.Print Arr(i)
+Next i
+```
+
+```
+' 循环遍历Variant数组方法2：
+Dim Arr As Variant
+Dim i As Variant
+
+Arr = Array(1, 2, 3, 4, 5)
+
+For Each i In Arr
+    Debug.Print i
+Next i
+```
+
+
 **注意：**   
 ###### 1. 使用 `Dim` 声明变动数组时，不能直接在数组中使用变量   
 即 `Dim arr(1 to 变量)` 是错误的。   

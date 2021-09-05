@@ -21,3 +21,10 @@
 
 view：
 ![Alt text](./doc/source/images/debug/debug.jpg)  
+
+・SHIFT + F8：            单步执行，不进入方法  （逐步 过程）
+・F8：                    单步执行，进入方法    （逐步 语句）
+・Ctrl + SHIFT + F8：     跳出
+・F5：                    继续执行
+・F9：                    添加／移除断点
+・Ctrl + Shift + F9：     移除所有断点
