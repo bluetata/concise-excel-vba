@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/06/2021 16:48
+Last update date：09/06/2021 18:34
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -680,10 +680,12 @@ End Sub
 #### 1.6.2 Function 函数
 
 vba内部提供了大量的函数，也可以通过`Function`来定义函数，实现个性化的需求。
+
+VBA 函数`Function`的基本语法如下：
 ```vba
-[Public|private] [Static] Function 函数名([参数列表 [As 数据类型]]) [As 数据类型]
+[Public|private] [Static] Function 函数名([参数列表 [As 数据类型]]) [As 返回值数据类型]
     [语句块]
-    [函数名=过程结果]
+    [函数名=返回值]
 End Function
 ```
 使用函数完成上面的例子：
