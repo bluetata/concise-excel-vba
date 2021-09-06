@@ -49,6 +49,7 @@ Last update date：09/03/2021 11:42
     - [5.3 操作Excel工作表（Worksheet）](#5.3)
     - [5.4 Excel AutoFilter / Excel 自动筛选操作](#5.4)
     - [5.5 清理Excel数据相关操作](#5.5)
+    - [5.6 循环遍历Excel中所有sheet](#5.6)
 - [x] [0x06 文件 相关常用操作](#0x06) (done)
     - [6.1 判断文件，文件夹等是否存在](#6.1)
     - [6.2 文件相关操作](#6.2)
@@ -1393,6 +1394,7 @@ End Sub
 <a name="4.7"></a>
 ### 4.7 其他字符串函数
 - `&` 字符串连接操作，在VBA中连个字符串连接使用`&`进行连接
+- `+` 也能进行字符串连接，但是对于数字会进行`加法`操作，`&` 无论是否为数字，都会强制进行字符串拼接操作。
 - `Ltrim(string)` 去掉 string 左端空白
 - `Rtrim(string)` 去掉 string 右端空白
 - `Len(string)` 计算 string 长度
@@ -1851,6 +1853,29 @@ Selection.ClearContents
 Sub ClearContentExceptFirst()
     Rows("2:" & Rows.Count).ClearContents
 End Sub
+```
+
+
+<a name="5.6"></a>
+### 5.6 循环遍历Excel中所有sheet
+
+```
+Dim wbOpenBook As Workbook
+Dim i As Integer
+
+Set wbOpenBook = Workbooks.Open("D:\test.xlsx")
+
+wbOpenBook.Activate
+
+For i = 1 To wbOpenBook.Worksheets.Count
+    Set shCurrentWorkSheet = ActiveWorkbook.Worksheets(i)
+
+    If shCurrentWorkSheet.Visible = True Then  ' 排除隐藏sheet，如果工作表为隐藏不进行遍历
+        shCurrentWorkSheet.Activate
+        Debug.Print shCurrentWorkSheet.Name
+    End If
+Next i
+
 ```
 
 
