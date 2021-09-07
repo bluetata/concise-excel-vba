@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/07/2021 16:30
+Last update date：09/07/2021 20:01
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -51,7 +51,7 @@ Last update date：09/07/2021 16:30
     - [5.5 清理Excel数据相关操作](#5.5)
     - [5.6 循环遍历Excel中所有sheet](#5.6)
 - [x] [0x06 文件 相关常用操作](#0x06) (done)
-    - [6.1 获取文件路径相关方法](#6.0)
+    - [6.0 获取文件路径相关方法](#6.0)
     - [6.1 判断文件，文件夹等是否存在](#6.1)
     - [6.2 文件相关操作](#6.2)
     - [6.3 文件夹相关操作](#6.3)
@@ -1524,6 +1524,23 @@ Dim lngCountData As Long
 lngCountData = ActiveSheet.UsedRange.Rows.Count
 ```
 
+最大某一列的最大行数封装方法：
+```
+'-------------------------------------------------------------------------------
+' The function OpenWorkbook returns a max record row of current active worksheet
+'-------------------------------------------------------------------------------
+Public Function GetMaxRecord(ByVal strColumn As String) As Integer
+
+    Dim intReocrdRowMax As Integer
+
+    intReocrdRowMax = ActiveSheet.Cells(Rows.Count, strColumn).End(xlUp).Row
+
+    GetMaxRecord = intReocrdRowMax
+
+End Function
+```
+
+
 
 <a name="5.2"></a>
 ### 5.2 打开Excel两种方式
@@ -1849,7 +1866,7 @@ Selection.ClearContents
 ```
 
 
-#### 5.5.1 清理/删除Excel中第一个标题行以外的所有行
+#### 5.5.2 清理/删除Excel中第一个标题行以外的所有行
 
 同样使用ClearContents方法，主要是确定如何选中除第一行以外的表格。   
 示例代码如下：
@@ -1857,6 +1874,37 @@ Selection.ClearContents
 Sub ClearContentExceptFirst()
     Rows("2:" & Rows.Count).ClearContents
 End Sub
+```
+
+
+#### 5.5.3  清理/删除Excel中某一些有空数据或者为0的数据
+
+参数1：所要清理的工作簿名称
+参数2：所要清理检查的所在列
+
+```
+Public Function RemoveIncorrectData(ByVal wsCheckedWorkSheetName As String, ByVal strCheckedColName)
+
+    Dim shCheckIfRomoveSheet    As Worksheet    'The worksheet name of to be checked.
+    Dim rwRecordRowMax          As Integer      'the max row number of all record in checked sheet.
+    Dim i                       As Integer      'loop flag
+
+    Set shCheckIfRomoveSheet = ThisWorkbook.Worksheets(wsCheckedWorkSheetName)
+
+    shCheckIfRomoveSheet.Activate
+    ' Get max original record row number
+    rwRecordRowMax = shCheckIfRomoveSheet.Range("A1").End(xlDown).Row   ' 也可使用：Rows.Count
+
+    'Delete rows with zero values
+    For i = 2 To rwRecordRowMax Step 1
+        If Cells(i, strCheckedColName) = "0" Then
+            ' Remove incorrect record in worksheet
+            Rows(i).EntireRow.Delete
+        End If
+    Next
+
+End Function
+
 ```
 
 
@@ -2167,6 +2215,8 @@ Public Function SaveAsTemplateData2CSVFile(ByVal wsSavedWorkSheetName As String,
     strSavePath = ThisWorkbook.Path
 
     Debug.Print strSavePath
+    'Close warning message.
+    Application.DisplayAlerts = False   ' 关闭提示警告
 
     'Copies the sheet to a new workbook:
     Worksheets(wsSavedWorkSheetName).Copy
@@ -2181,6 +2231,8 @@ Public Function SaveAsTemplateData2CSVFile(ByVal wsSavedWorkSheetName As String,
         'Closes the file
         .Close False
     End With
+
+    Application.DisplayAlerts = True
 End Function
 ```
 
