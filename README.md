@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/06/2021 18:34
+Last update date：09/07/2021 16:30
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -51,6 +51,7 @@ Last update date：09/06/2021 18:34
     - [5.5 清理Excel数据相关操作](#5.5)
     - [5.6 循环遍历Excel中所有sheet](#5.6)
 - [x] [0x06 文件 相关常用操作](#0x06) (done)
+    - [6.1 获取文件路径相关方法](#6.0)
     - [6.1 判断文件，文件夹等是否存在](#6.1)
     - [6.2 文件相关操作](#6.2)
     - [6.3 文件夹相关操作](#6.3)
@@ -73,6 +74,7 @@ Last update date：09/06/2021 18:34
     - [91.08 解决办法：使用.xlam宏文件执行VBA程序时，操作excel无任何反应](#91.8)
     - [91.09 解决办法：复位Excel到A1单元格，锁定缩放比例85%](#91.9)
     - [91.10 解决办法：编译错误 找不到工程或库](#91.10)
+    - [91.11 解决办法：错误的参数号或无效的属性赋值](#91.11)
 - [x] [0x92 VBA示例代码](#0x92) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
@@ -1884,6 +1886,25 @@ Next i
 <a name="0x06"></a>
 ## 0x06 文件，文件夹等 相关常用操作
 
+<a name="6.0"></a>
+### 6.0 获取文件路径相关方法
+
+返回应用程序完整路径
+Application.Path
+
+返回当前工作薄的路径
+ThisWorkbook.Path
+
+返回当前默认文件路径：
+Application.DefaultFilePath
+
+Application.ActiveWorkbook.Path   只返回路径
+Application.ActiveWorkbook.FullName   返回路径及工作簿文件名
+Application.ActiveWorkbook.Name   返回工作簿文件名
+
+
+
+
 以下文件，文件夹等相关方法可自行封装成共通(common function)以便项目中使用。
 
 
@@ -2135,6 +2156,33 @@ Sub GetFileSize()
 End Sub
 ```
 
+
+8. 另存某一个工作簿sheet为CSV文件
+
+保存CSV文件位置为当前VBA Tool同文件夹
+```
+Public Function SaveAsTemplateData2CSVFile(ByVal wsSavedWorkSheetName As String, ByVal strCSVFileName As String)
+    Dim strSavePath As String
+
+    strSavePath = ThisWorkbook.Path
+
+    Debug.Print strSavePath
+
+    'Copies the sheet to a new workbook:
+    Worksheets(wsSavedWorkSheetName).Copy
+
+    'The new workbook becomes Activeworkbook:
+    With ActiveWorkbook
+        'Saves the new workbook to given folder / filename:
+        .SaveAs fileName:= _
+            strSavePath & "\" & strCSVFileName, _
+            FileFormat:=xlCSV, _
+            CreateBackup:=False
+        'Closes the file
+        .Close False
+    End With
+End Function
+```
 
 
 <a name="6.3"></a>
@@ -2600,9 +2648,14 @@ Excel VBA默认的5个引用类库（英文）
 
 
 
+<a name="91.11"></a>
+### 91.11 解决办法：错误的参数号或无效的属性赋值
 
+    英文版本错误：Wrong number or arguments or invalid property assignmeng
 
-microsoft office has identified a potential security concern
+问题原因： 所运行的函数的名称和系统函数名**重名**
+解决办法： 更改自定义的函数名，**避免** 与系统函数名同名
+
 
 
 <a name="0x92"></a>
