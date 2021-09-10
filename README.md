@@ -1,8 +1,12 @@
 
 # 简明Excel VBA
-Last update date：09/07/2021 20:01
+Last update date：09/10/2021 19:35
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
+
+    无论是VBA还是Automation，亦或是RPA工具，如果你有录制一个脚本的想法，那么依然非常的初级。
+    一定不要有录制的思想。
+        --bluetata 09/08/2021 14:31
 
 <!-- TOC -->
 
@@ -2232,7 +2236,7 @@ Public Function SaveAsTemplateData2CSVFile(ByVal wsSavedWorkSheetName As String,
         .Close False
     End With
 
-    Application.DisplayAlerts = True
+    Application.DisplayAlerts = True    ' 打开提示警告
 End Function
 ```
 
@@ -2289,7 +2293,70 @@ End Sub
 
 
 <a name="6.4"></a>
-### 6.4 其他操作（获取文件名等）
+### 6.4 GetOpenFilename获取文件名
+
+语法：GetOpenFilename (FileFilter, FilterIndex, Title, ButtonText, MultiSelect)
+
+参数介绍：
+
+`FileFilter`	可选项		指定文件筛选条件的字符串。
+`FilterIndex`	可选项		指定默认文件筛选条件的索引号，编号从 1 直到 FileFilter 中指定的筛选器编号。 如果此参数被省略或大于存在的筛选器数，使用的是第一个文件筛选器。
+`Title`	        可选项		指定对话框的标题。 如果此参数被省略，标题为“打开”。
+`ButtonText`	可选项		仅限 Macintosh。
+`MultiSelect`	可选项     若为 True，允许选择多个文件名。 若为 False，仅允许选择一个文件名。 默认值为 False。
+
+
+利用`GetOpenFilename`多选文件，返回所有文件名
+```
+Sub ImportOriginalDataFiles()
+
+    '-------------------------------------
+    ' Define all variables
+    '-------------------------------------
+    Dim strFileNames As Variant     ' import report files
+    Dim i As Integer                ' the variable of import file loop flag
+
+    ' Remove exist filename of imported before.
+    ThisWorkbook.ActiveSheet.Range("C9", "D30").Select
+    Selection.ClearContents
+
+    ThisWorkbook.ActiveSheet.Range("A1").Select ' Reset focus to "A1"
+
+    ' Disable updating on screen.
+    'Application.ScreenUpdating = False
+
+    ' Call ShowWarning method to alert message to User.
+    Call ShowWarning
+
+    ' To prevent any error when If user don't select any input file.
+    On Error Resume Next
+
+    ' Get All imported file array.
+    strFileNames = Application.GetOpenFilename("Excel Files(*.xls*), *.xlsx*", , "Please Select Files", , True)
+
+
+    With ThisWorkbook.ActiveSheet
+        If strFileNames <> False Then   ' To prevent any error when If user don't select any input file.
+            For i = 1 To UBound(strFileNames)
+                Debug.Print strFileNames(i)
+                .Cells(8 + i, 3).Value = CStr(i) & "."            ' Write No. in C9 cell
+                .Cells(8 + i, 4).Value = strFileNames(i)    ' Write file path in D9 cell
+            Next i
+        Else
+            MsgBox (STR_LOCAL_MSG_REQUIRED_INPUT)
+        End If
+        .Range("A1").Select ' Reset focus to "A1"
+    End With
+
+    ' Avalible updating on screen.
+    'Application.ScreenUpdating = True
+
+End Sub
+```
+
+
+<a name="6.9"></a>
+### 6.9 其他操作（获取文件名等）
 
 1. 获取文件全名，带有后缀（Get file name）
 ```vba
