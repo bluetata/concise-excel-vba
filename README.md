@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/10/2021 19:35
+Last update date：09/14/2021 17:27
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -31,6 +31,7 @@ Last update date：09/10/2021 19:35
     - [1.8 注释（Comments code）](#1.8)
     - [1.9 补充](#1.9)
     - [1.10 示例](#1.10)
+    - [1.11 转义](#1.11)
 - [x] [0x02 VBA界面介绍](#layout) (done)
     - [2.1 整体界面说明](#2.1)
     - [2.2 工程资源管理器（Project Explore）说明](#2.2)
@@ -1298,7 +1299,7 @@ VBA中有很多对象，常用的对象如下:
 语法：Trim(String)
 
 <a name="4.2"></a>
-### 4.2 Instr 和 InStrRev
+### 4.2 InStr 和 InStrRev
 `InStr`函数返回一个字符串第一次出现在一个字符串，从左到右搜索。返回搜索到的字符索引位置。</br>
 `InStrRev`函数与`InStr`功能相同，从**右**到左搜索。返回搜索到的字符索引位置。
 
@@ -1324,6 +1325,20 @@ Private Sub Constant_demo_Click()
     Debug.Print InStr(Var, "VB")          ' 11
 End Sub
 ```
+
+利用Instr判断字符串中是否包含另外一个字符串：
+```
+Sub test()
+    strList = "中华人民很行"
+    If InStr(LCase(strList), "银行") <> 0 Then  ' 忽略大小写的进行比较
+        MsgBox "在里面"
+    Else
+        MsgBox "不在里面"
+    End If
+
+End Sub
+```
+
 
 <a name="4.3"></a>
 ### 4.3 Mid
@@ -1430,6 +1445,18 @@ Range("1:5")            ' 从第一行到第五行的区域
 Range("1:1, 3:3, 8:8")  ' 第 1、3 和 8 行
 Range("A:A, C:C, F:F")  ' A 、C 和 F 列
 ```
+
+1. 单元格Bi 可以使用以下3中表示方法
+Range("B" & i )    
+Cells( i , 2 )    
+Cells( i , "B") （当列号较大、不易计算时，如“H"、”AD"，我们可以直接用双引号加列标作为第二参数）
+使用Range、Cells是比较常用的写法，方便，易记，规律性较好！对单元格访问，速度最快的的是 Cells(1,1) ,其次是 Range("A1"), 最慢是 [A1]，    Cells() 快于 Range()  快于 []，因此多循环中建议使用 Cells()。Range("B" & i )
+Cells( i , 2 )
+Cells( i , "B") （当列号较大、不易计算时，如“H"、”AD"，我们可以直接用双引号加列标作为第二参数）
+使用Range、Cells是比较常用的写法，方便，易记，规律性较好！对单元格访问，速度最快的的是 Cells(1,1) ,其次是 Range("A1"), 最慢是 [A1]，    Cells() 快于 Range()  快于 []，因此多循环中建议使用 Cells()。
+
+
+
 
 2. 行列相关
 行和列的引用
@@ -1543,6 +1570,15 @@ Public Function GetMaxRecord(ByVal strColumn As String) As Integer
 
 End Function
 ```
+
+
+12. VBA中如何终止整个程序的执行
+```If endFlag = 1 Then
+　　  msgbox “错误退出”
+　　End
+End If
+```
+
 
 
 
@@ -1692,6 +1728,24 @@ End Sub
 
 <a name="5.4"></a>
 ### 5.4 Excel AutoFilter / Excel 自动筛选操作
+Range.AutoFIlter方法可以进行自动筛选，语法结构如下：
+
+Range.AutoFilter(Field,Criteria1Operator,Criteria2,VIsibleDropDown);
+Field可选，筛按33选的字段的整型偏移量，；例如筛选A列的字段则取值1，筛选D列的字段则取值4；
+
+Criteria1，可选，字符串类型。筛选条件可以使用“=”，“<”,“>”，“<>”等运算符
+
+Operator，可选，指定筛选类型。设置为xlAutoFileterOpearator枚举中的常量之一
+
+筛选省份为湖北的数据:
+```
+If ActiveSheet.AutoFilterMode = False Then  '检查是否开启自动筛选
+    Range("A1:B9").AutoFilter   '没有开启的话则开启自动筛选
+End If
+ActiveSheet.Range("A1:B9").AutoFilter field:=1, Criteria1:="湖北"
+
+```
+
 
 #### 5.4.1 显示所有数据记录
 ```vba
@@ -1821,6 +1875,7 @@ Sub CopyFilter()
 
     With ActiveSheet.AutoFilter.Range
         On Error Resume Next
+            ' 删选后的结果，删选后的行号即为：rng2.Row
             Set rng2 = .Offset(1, 0).Resize(.Rows.Count - 1, 1) _
             .SpecialCells(xlCellTypeVisible)
         On Error GoTo 0
@@ -2418,7 +2473,7 @@ End Sub
 ```
 
 <a name="7.2"></a>
-### 7.2 日期函数：Year, Month, Day
+### 7.2 日期函数：Year, Month, Day, 季度
 
 `Year`, `Month`, `Day` 函数分别返回 **数字格式** 的年，月，日。
 
@@ -2431,6 +2486,34 @@ MsgBox Year(exampleDate)  ' 2020
 MsgBox Month(exampleDate) ' 5
 MsgBox Day(exampleDate)   ' 19
 ```
+
+**季度(Quarter)函数**：
+
+1. 返回季度公式一：
+
+    `=ROUNDUP(MONTH(A2)/3,0)`    
+    解释：MONTH(A2)，结果为12。MONTH函数的用法是返回日期中的月份，它是介于 1(一月)和12(十二月)之间的整数。    
+    MONTH(A2)/3，结果为4。    
+    ROUNDUP函数的用法是向上舍入。当第二参数为0，表示向上舍入到最接近的整数。比如=ROUNDUP(0.333333333333333,0)，结果为1。第二参数为0，通常可以简写，因此上面这个返回季度的公式也可以这样写：`=ROUNDUP(MONTH(A2)/3,)`
+
+2. 返回季度公式二：
+
+    `=INT((MONTH(A2)+2)/3)`    
+    INT是向下取整函数，和公式一的写法类似。
+
+3. 返回季度公式三：
+
+    `=CEILING(MONTH(A2)/3,1)`    
+    CEILING函数也是向上舍入函数之一
+
+4. 返回季度公式四：
+
+    `=LOOKUP(MONTH(A2),{1,4,7,10},{1,2,3,4})`
+    解释：公式中使用了LOOKUP函数的向量形式。LOOKUP 函数的向量形式在第一个单行或单列区域中查找值，然后返回第二个单行或单列区域中相同位置的值。如果找不到，那么它将与其中小于或等于查找值的最大值匹配。如MONTH(A2)返回“12”，在“{1,4,7,10}”中找不到，则与接近“12”的最小值（“10”）匹配，返回“4”。
+
+5. 返回季度公式五：
+
+    `=LEN(2^MONTH(A2))`
 
 
 <a name="7.3"></a>
