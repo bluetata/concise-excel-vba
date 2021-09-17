@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/14/2021 17:27
+Last update date：09/17/2021 19:06
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -67,6 +67,7 @@ Last update date：09/14/2021 17:27
     - [7.3 CDate 和 DateValue 函数](#7.3)
     - [7.4 IsDate 函数](#7.4)
 - [x] [0x10 VBA 转换函数一览](#0x10) (done) (*English Version*)
+    - [10.1 取整函数的使用](#10.1)
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
 - [ ] [0x08 Trouble shooting](#0x08) (doing)
     - [91.01 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#19.1)
@@ -210,41 +211,42 @@ Dim v4
 ### 1.3 数组
 
 使用数组和对象时，也要声明，这里说下数组的声明：
+
 ```vba
-' 确定范围的数组，可以存储b - a + 1个数，a、b为整数
-Dim 数组名称(a To b) As 数据类型
+    ' 确定范围的数组，可以存储b - a + 1个数，a、b为整数
+    Dim 数组名称(a To b) As 数据类型
 
-Dim arr(1 TO 100) As Integer ' 表示arr可以存储100个整数
-arr(100) '表示arr中第100个数据
+    Dim arr(1 TO 100) As Integer ' 表示arr可以存储100个整数
+    arr(100) '表示arr中第100个数据
 
-' 不指定a，直接声明时，默认a为0
-Dim arr2(100) As Integer ' 表示arr可以存储101个整数,从0数
-arr2(100) '表示arr2中第101个数据
+    ' 不指定a，直接声明时，默认a为0
+    Dim arr2(100) As Integer ' 表示arr可以存储101个整数,从0数
+    arr2(100) '表示arr2中第101个数据
 
-' 多维数组
-Dim arr3(1 To 3, 1 To 3, 1 To 3) As Integer ' 定义了一个三维数组，可以存储3*3*3=27个整数
+    ' 多维数组
+    Dim arr3(1 To 3, 1 To 3, 1 To 3) As Integer ' 定义了一个三维数组，可以存储3*3*3=27个整数
 
-' 动态数组，不确定数组大小时使用
-Dim arr4() As Integer   ' 定义arr4为整形动态数组
-ReDim arr4(1 To v1)     ' 设定arr4的大小，不能重新设定arr4的类型
+    ' 动态数组，不确定数组大小时使用
+    Dim arr4() As Integer   ' 定义arr4为整形动态数组
+    ReDim arr4(1 To v1)     ' 设定arr4的大小，不能重新设定arr4的类型
 
 ```
 
 除了用`Dim`做常规的数组的声明，还有下面这些声明数组的方式:
 ```vba
-' 使用Array函数将已知的数据常量放到数组里
-Dim arr As Variant        ' 定义arr为变体类型
-arr = Array(1, 1, 2, 3, 5, 8, 13, 21) ' 将整数存储到arr中,索引默认从0开始
+    ' 使用Array函数将已知的数据常量放到数组里
+    Dim arr As Variant        ' 定义arr为变体类型
+    arr = Array(1, 1, 2, 3, 5, 8, 13, 21) ' 将整数存储到arr中,索引默认从0开始
 
-' 使用Split函数分隔字符串创建数组
-Dim arr2 As Variant
-arr2 = Split("hello, world", ", ") ' 按,分隔字符串 hello,world 并赋值给arr2
+    ' 使用Split函数分隔字符串创建数组
+    Dim arr2 As Variant
+    arr2 = Split("hello, world", ", ") ' 按,分隔字符串 hello,world 并赋值给arr2
 
-' 使用Excel单元格区域创建数组
-' 这种方式创建的数组，索引默认从1开始
-Dim arr3 As Variant
-arr3 = Range("A1:C3").Value   ' 将A1:C3中的数组存储到arr3中
-Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
+    ' 使用Excel单元格区域创建数组
+    ' 这种方式创建的数组，索引默认从1开始
+    Dim arr3 As Variant
+    arr3 = Range("A1:C3").Value   ' 将A1:C3中的数组存储到arr3中
+    Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 ```
 
 #### 循环遍历数组的两种方式：
@@ -275,19 +277,31 @@ Next i
 
 
 **注意：**   
-###### 1. 使用 `Dim` 声明变动数组时，不能直接在数组中使用变量   
+###### 1. 使用 `Dim` 声明动态数组时，不能直接在数组中使用变量   
 即 `Dim arr(1 to 变量)` 是错误的。   
 而应该是：
 
   1、先用Dim声明，Dim arr()或arr。   
-  2、然后Redim arr(1 to 变量)  即:Redim(重新声明) 变动数组时可以使用变量
+  2、然后Redim arr(1 to 变量)  即: Redim(重新声明) 动态数组时可以使用变量
 
 ```
 Dim tempArray() As Integer
 ReDim tempArray(1 To v1)
 ```
+动态数组赋值：</br>
 
-###### 2. 使用 `ReDim Preserve` 声明变动数组时，只能改变最末维的大小。
+```
+    Dim intDynamicArray()
+
+    For i = 0 To 10
+        ReDim intDynamicArray(i)    '多次redim,适合不知道数组大小时
+        intDynamicArray(i) = i * i
+        Debug.Print intDynamicArray(i)
+    Next
+```
+
+
+###### 2. 使用 `ReDim Preserve` 声明动态数组时，只能改变最末维的大小。
 即 `Redim Preserve arr(1 to k1, 1 to 2)` 是错误的。   
 而应该是：
 
@@ -504,7 +518,7 @@ End Sub
 
 1. 普通For ... Next循环</br>
 语法：For 循环变量 = 初始值 To 终值 Step 步长</br>
-注：在VBA循环中可以使用`Exit`关键字来跳出循环，类似于Java中的break，
+注：在VBA循环中可以使用`Exit`关键字来跳出循环，类似于Java中的break，</br>
 在for循环中语法为：`Exit For`，在do while循环中为：`Exit Do`，也可以利用`GoTo`语句
 跳出本次循环，详见：[1.5.3 GoTo语句](#1.5.3)</br>
 ```vba
@@ -1060,7 +1074,7 @@ Function defSort(rgs) As Variant
 
                     Debug.Print "大于50的"; i; j; tmp ' 程序运行过程中在立即窗口显示执行内容，用于调试程序
                 End If
-            Else If arr(i) <= 50 And arr(j) <= 50 Then ' 小于50的正序排列
+            ElseIf arr(i) <= 50 And arr(j) <= 50 Then ' 小于50的正序排列
                 If arr(i) > arr(j) Then
                     tmp = arr(i)
                     arr(i) = arr(j)
@@ -1422,6 +1436,7 @@ End Sub
 - `Rtrim(string)` 去掉 string 右端空白
 - `Len(string)` 计算 string 长度
 - `Lcase(string)` 和 `Ucase(string)` 转换为小写和大写
+- `IsEmpty` 判断是否为空
 
 
 <a name="excel-option"></a>
@@ -1579,6 +1594,13 @@ End Function
 End If
 ```
 
+
+12. 单元格复制/剪切
+
+`Range("A1").Copy`
+`Range("A1").CopyRange("B1")`   将A1复制到B1单元格
+`Range("A1").Cut`
+`Range("A1").CutRange("B1")`   将A1复制到B1单元格
 
 
 
@@ -2645,6 +2667,99 @@ DateAdd("m",-1,"31-Jan-01")   ' 12/31/2000
 - [10.11 CSng](type-conversion-functions.md#CSng-function-example)
 - [10.12 CStr](type-conversion-functions.md#CStr-function-example)
 - [10.13 CVar](type-conversion-functions.md#CVar-function-example)
+
+
+<a name="10.1"></a>
+### 10.1 取整函数的使用
+
+
+VBA取整函数有好几个，用法也不同，有的还可以在工作表中使用，下面根据需求分别说明：
+
+**1、四舍五入取整，一般用于取近似数**
+
+（1）CInt：只能在VBA中使用
+
+```
+    CInt(12.56) = 13
+    CInt(12.46) = 12
+    CInt(-12.56) = -13
+    CInt(-12.46) = -12
+```
+
+（2）Round：在VBA中使用和CInt相同
+
+```
+Round(12.56)=13
+Round(12.46)=12
+Round(-12.56)=-13
+Round(-12.46)=-12
+```
+
+此函数实际上有两个参数，第二个参数表示取小数的位数，或略表示取整，即小数位数为0。该函数还可以在工作表中使用，使用时两个参数必须写全，即：
+
+```
+Round(12.56,0)=13
+Round(12.56,1)=12.6
+```
+
+**2、取整数部分，小数舍弃，常用于取整数和余数**
+
+（1）Fix：只能在VBA中使用
+
+```
+    Fix(12.56)=12
+    Fix(12.46)=12
+    Fix(-12.56)=-12
+    Fix(-12.46)=-12
+```
+
+（2）Int：在VBA和工作表中都可以使用
+
+此函数取正数时和Fix相同，负数时往绝对值高的方向取，就是说，取小于其值得整数，
+
+```
+Int(12.56)=12
+Int(12.46)=12
+Int(-12.56)=-13
+Int(-12.46)=-13
+```
+
+举例：买50个鸡蛋，12个鸡蛋一盒，那么需要Fix(50/12)=4盒，零头50 mod 12=2个</br>
+
+**3、往上取整，只要有小数，整数部分就加1，常用于资费计算**
+
+邮件资费定价时常用不足500g按500g计算，即501g相当于2个500g计算资费。本功能VBA没有专门的函数，可以使用 `-(Int(-x))` 实现，例如：
+
+```
+-(Int(-12.56))  ' = 13
+-(Int(-12.46))  ' = 13
+-(Int(-12.01))  ' = 13
+-(Int(-12))     ' = 12
+
+```
+
+不过，工作表中还是有一个Ceiling函数可以实现这个功能，Ceiling(12.01, 1)=13，第二个参数1表示舍入到最近的整数。VBA中可以用下列方式引用：
+
+```
+a = Application.Ceiling(12.06, 1)         ' a = 13
+```
+
+Ceiling函数功能比较复杂，这儿就不详细介绍了。
+
+
+**4、关于Round函数进行四舍五入**
+
+VBA中Round函数进行四舍五入并不是逢5就入，例如：
+
+`round(0.5)=0`、 `round(1.5)=2` 、 `round(2.5)=2` 、`round(3.5)= 4` 、`round(4.5)=4`，难到还分奇偶？答案是确实分奇偶，在VBA中Round函数是采用“银行家舍入”，建议大家在VBA中慎重使用Round函数来四舍五入。什么是“银行家舍入”呢，定义如下：
+“四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一”。这个四舍五入法是一个国际标准，大部分的编程软件都使用的是这种方法，据说国际上一般都是用这种方法的。</br>
+如果在Excel VBA中进行四舍五入处理，也可以直接调用Excel工作表函数，达到直接四舍五入的目的Application.Round(A, B)，例如，下面例句可以看出运行效果：
+
+```
+    a = Application.Round(12.5, 0)      'a=13
+    b = Round(12.5)                     'b=12
+```
+
 
 
 <a name="0x90"></a>
