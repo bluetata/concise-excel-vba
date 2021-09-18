@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/18/2021 15:15
+Last update date：09/18/2021 21:21
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -300,18 +300,40 @@ Sub Resize2D()
     varArray(1, 2) = "Doctor"
 
     ReDim Preverve varArray(1, 3)    ' 重新定义二维数组，变成两行四列
-   'populate the array with additional values
+    'populate the array with additional values
     varArray(0, 3) = "Rob Barnes"
     varArray(1, 3) = "Plumber"
 End Sub
 ```
 
-**注意：** 在动态二维数组中，第一维（行）在第一次扩容的时候就定死了，以后只能修改第二维（列）。
+**注意：** 在动态二维数组中，第一维在第一次扩容的时候就定死了，以后只能修改第二维。
 再次扩容第二维的时候，记得加 `Preserve` 关键字，否则数组中的原有数据就会丢失。
 
 
 <a name="1.3.3"></a>
-#### 1.3.3 循环遍历数组的两种方式
+#### 1.3.3 数组维数的转换（Transpose）
+
+1. 一维转二维
+```
+Sub arr_tranpose1()
+    arr = Array(10, "bluetata", 2, "blue", 3)
+    arr1 = Application.Transpose(arr)
+    MsgBox arr1(2, 1) '转换后的数组是1列多行的二维数组
+End Sub
+```
+
+2. 二维数组转一维 '注意:在转置时只有1列N行的数组才能直接转置成一维数组
+```
+Sub arr_tranpose2()
+    arr2 = Range("A1:B5")
+    arr3 = Application.Transpose(Application.Index(arr2, , 2)) '取得arr2第2列数据并转置成1维数组
+    MsgBox arr3(4)
+End Sub
+```
+
+
+<a name="1.3.4"></a>
+#### 1.3.4 循环遍历数组的两种方式
 
 ```
 ' 循环遍历Variant数组方法1：
@@ -334,6 +356,30 @@ Arr = Array(1, 2, 3, 4, 5)
 For Each i In Arr
     Debug.Print i
 Next i
+```
+
+动态数组的循环：
+```
+Function FnTwoDimentionDynamic()
+
+    Dim arrTwoD()    
+    Dim intRows
+    Dim intCols
+
+    intRows = Sheet9.UsedRange.Rows.Count
+    intCols = Sheet9.UsedRange.Columns.Count
+
+    ReDim Preserve arrTwoD(1 To intRows, 1 To intCols)
+
+    For i = 1 To UBound(arrTwoD, 1)
+        For j = 1 To UBound(arrTwoD, 2)
+            arrTwoD(i, j) = Sheet9.Cells(i, j)            
+        Next
+    Next
+
+   MsgBox "The value is B5 is " & arrTwoD(5, 2)
+
+End Function
 ```
 
 
@@ -372,8 +418,8 @@ Redim Preserve arr(1 to 2, 1 to k1) ' 重新定义数组的大小，又可以保
 动态数组中用Redim改变数组最后一维的大小，但是如果数组中已经有了数据，如果只用Redim的形式的话，数组中原有的数组就会丢失，为了保留数据，就需要加 `Preserve` 关键字。
 
 
-<a name="1.3.4"></a>
-#### 1.3.4 其他数组函数
+<a name="1.3.5"></a>
+#### 1.3.5 其他数组函数
 
 | 函数 | 函数说明 | 参数说明 |
 |----|----|----|
