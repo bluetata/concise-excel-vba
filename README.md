@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/17/2021 19:06
+Last update date：09/18/2021 15:15
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -234,7 +234,7 @@ Dim v4
 
 除了用`Dim`做常规的数组的声明，还有下面这些声明数组的方式:
 ```vba
-    ' 使用Array函数将已知的数据常量放到数组里
+    ' 使用`Array`函数将已知的数据常量放到数组里
     Dim arr As Variant        ' 定义arr为变体类型
     arr = Array(1, 1, 2, 3, 5, 8, 13, 21) ' 将整数存储到arr中,索引默认从0开始
 
@@ -249,8 +249,60 @@ Dim v4
     Range("A4:C6").Value= arr3    ' 将arr3中的数据写入到A4:C6中的区域
 ```
 
-#### 循环遍历数组的两种方式：
 
+#### 二维数组：
+
+定义：
+
+1. 使用 `Variant` 定义二维数组：</br>
+
+```
+Dim ArrTD(3, 3) As Variant    ' 定义一个 `4 x 4`的 4行4列的二维数组 等价于：ArrTD(0 To 3, 0 To 3)
+Dim ArrTD(1 To 3, 1 To 4)     ' 创建一个可以容下3行4列的数组空间
+```
+2.  动态创建二维数组（参照如下动态传进方法）
+
+    参照如下：
+
+**静态和动态数组**
+
+**静态数组** 是具有确定大小的数组。静态数组的大小是在数组的声明语句里确定的。</br>
+**动态数组** 是大小可以改变的数组。如果数组的大小每次都由程序运行而决定的话，就使用动态数组。
+
+
+```
+'---------------------------------------------'
+' 定义动态数组的步骤：
+Dim arr()
+Redim arr(1 to 3, 1 to 1)
+Redim Preserve arr(1 to 3, 1 to 5)
+'---------------------------------------------'
+
+' 举例：
+Sub Resize2D()
+
+    Dim varArray() as Variant       ' 初始化数组
+
+    ReDim varArray(1, 2)            ' 定义一个两行三列的二维数组
+    varArray(0, 0) = "Mel Smith"
+    varArray(0, 1) = "Fred Buckle"
+    varArray(0, 2) = "Jane Eyre"
+    varArray(1, 0) = "Accountant"
+    varArray(1, 1) = "Secretary"
+    varArray(1, 2) = "Doctor"
+
+    ReDim Preverve varArray(1, 3)    ' 重新定义二维数组，变成两行四列
+   'populate the array with additional values
+    varArray(0, 3) = "Rob Barnes"
+    varArray(1, 3) = "Plumber"
+End Sub
+```
+
+**注意：** 在动态二维数组中，第一维（行）在第一次扩容的时候就定死了，以后只能修改第二维（列）。
+再次扩容第二维的时候，记得加 `Preserve` 关键字，否则数组中的原有数据就会丢失。
+
+
+#### 循环遍历数组的两种方式：
 
 ```
 ' 循环遍历Variant数组方法1：
