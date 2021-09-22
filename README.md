@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/18/2021 21:21
+Last update date：09/22/2021 18:28
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -19,8 +19,9 @@ Last update date：09/18/2021 21:21
     - [1.3 数组](#1.3)
         - [1.3.1 数组的基本定义](#1.3.1)
         - [1.3.2 二维数组](#1.3.2)
-        - [1.3.3 循环遍历数组的两种方式](#1.3.3)
-        - [1.3.4 其他数组函数](#1.3.4)
+        - [1.3.3 数组维数的转换（Transpose）](#1.3.3)
+        - [1.3.4 循环遍历数组的两种方式](#1.3.3)
+        - [1.3.5 其他数组函数](#1.3.4)
     - [1.4 运算符](#1.4)
     - [1.5 语句结构](#1.5)
         - [1.5.1 选择语句](#1.5.1)
@@ -206,7 +207,7 @@ Dim v4
     adj. 明确的，清楚的; 直言的; 详述的; 不隐瞒的;  
     ---------------------------------------------
 
-另外在 **工具** →　**选项**　中勾选 "要求变量声明(Require Variable Declaration)"，那么新插入一个模块时，就会在第一行显示这句代码，强制要求程序中要声明变量（如下图）。
+另外在 **工具** → **选项** 中勾选 "要求变量声明(Require Variable Declaration)"，那么新插入一个模块时，就会在第一行显示这句代码，强制要求程序中要声明变量（如下图）。
 
 ![Alt text](doc/source/images/require_variable_declaration.jpg)
 
@@ -1225,7 +1226,7 @@ End Sub
 ### 2.1 整体界面说明
 
 （点击图片查看大图）   
-![Alt text](/doc/source/images/1505749555407.png)
+![Alt text](./doc/source/images/1505749555407.png)
 
 <a name="2.2"></a>
 ### 2.2 工程资源管理器（Project Explore）说明
@@ -1233,7 +1234,7 @@ End Sub
 显示快捷键：`Ctrl + R`，也可以点击菜单栏 View -> <u>P</u>roject Explore 显示。
 在一个VBA项目中，实际可以在5个代码模块中书写VBA代码，如下图所示：
 
-![Alt text](/doc/source/images/vba_code_modules.png)
+![Alt text](./doc/source/images/vba_code_modules.png)
 
 1. Code Modules – Code Modules是我们存储宏的最常见的地方。
 模块位于工作簿中的 `Modules` 文件夹中。
