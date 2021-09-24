@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/22/2021 18:28
+Last update date：09/24/2021 18:33
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -36,7 +36,7 @@ Last update date：09/22/2021 18:28
     - [1.8 注释（Comments code）](#1.8)
     - [1.9 补充](#1.9)
     - [1.10 示例](#1.10)
-    - [1.11 转义](#1.11)
+    - [1.11 VBA中的转义](#1.11)
 - [x] [0x02 VBA界面介绍](#layout) (done)
     - [2.1 整体界面说明](#2.1)
     - [2.2 工程资源管理器（Project Explore）说明](#2.2)
@@ -984,6 +984,37 @@ Function ExtractNumber(str As String) As String
 End Function
 ```
 
+
+```
+' 从一个字符串中提取年份
+Public Function GetFescalYearByRegExp(ByVal strCheckedString As String) As String
+
+    Dim regEx, matches As Object
+    Set regEx = CreateObject("vbscript.regexp")  ' Create RegExp object by Late binding
+    With regEx
+        .Global = True
+        .MultiLine = False
+        .IgnoreCase = True
+        .Pattern = STR_PATTERN_FESCAL_YEAR
+    End With
+
+
+    If regEx.Test(strCheckedString) Then
+        Set matches = regEx.Execute(strCheckedString)
+        GetFescalYearByRegExp = matches(0).Value    ' Return value.
+    Else
+        MsgBox ("Could NOT Find Any Fescal Year Flag")
+        End
+    End If
+
+    Set regEx = Nothing
+
+End Function
+```
+
+
+
+
 <a name="1.8"></a>
 ### 1.8 注释（Comments code）
 > 个人觉得代码注释起着非常重要的作用。 --  *bluetata* 11/28/2018 18:40
@@ -1115,6 +1146,7 @@ Sub AssignString()
 EndSub
 ```
 
+
 <a name="1.10"></a>
 ### 1.10 示例
 
@@ -1217,6 +1249,26 @@ Sub main()
     Next i
 End Sub
 ```
+
+
+<a name="1.11"></a>
+### 1.11 VBA中的转义
+
+1. "" 有转义规则
+
+`"""` 相当于 `"`
+`""""` 相当于 `"`
+`"内部的"" 内部其他"`   显示结果为  `内部的"内部其他`
+
+
+2. 符号常数生效
+
+`chr(32)`   "空格
+`chr(34)`   "双引号
+`chr(39)`   "单引号
+`chr(10)`   "换行  等同 vblf
+
+
 
 
 <a name="layout"></a>
@@ -1449,7 +1501,7 @@ Private Sub Constant_demo_Click()
 End Sub
 ```
 
-利用Instr判断字符串中是否包含另外一个字符串：
+利用Instr判断字符串中是否包含另外一个字符串(字符串比较)：
 ```
 Sub test()
     strList = "中华人民很行"
@@ -1547,6 +1599,21 @@ End Sub
 - `Lcase(string)` 和 `Ucase(string)` 转换为小写和大写
 - `IsEmpty` 判断是否为空
 
+```
+' 判断字符串是否为空
+Public Function IsNullOrEmpty(ByVal judgeString As String) As Boolean
+
+    If IsNull(judgeString) Or IsEmpty(judgeString) Or "" = judgeString Then
+        IsNullOrEmpty = True
+    Else
+        IsNullOrEmpty = False
+    End If
+
+End Function
+```
+
+
+
 
 <a name="excel-option"></a>
 ## 0x05 Excel 相关常用操作
@@ -1570,16 +1637,58 @@ Range("1:1, 3:3, 8:8")  ' 第 1、3 和 8 行
 Range("A:A, C:C, F:F")  ' A 、C 和 F 列
 ```
 
-1. 单元格Bi 可以使用以下3中表示方法
-Range("B" & i )    
-Cells( i , 2 )    
-Cells( i , "B") （当列号较大、不易计算时，如“H"、”AD"，我们可以直接用双引号加列标作为第二参数）
-使用Range、Cells是比较常用的写法，方便，易记，规律性较好！对单元格访问，速度最快的的是 Cells(1,1) ,其次是 Range("A1"), 最慢是 [A1]，    Cells() 快于 Range()  快于 []，因此多循环中建议使用 Cells()。Range("B" & i )
-Cells( i , 2 )
-Cells( i , "B") （当列号较大、不易计算时，如“H"、”AD"，我们可以直接用双引号加列标作为第二参数）
-使用Range、Cells是比较常用的写法，方便，易记，规律性较好！对单元格访问，速度最快的的是 Cells(1,1) ,其次是 Range("A1"), 最慢是 [A1]，    Cells() 快于 Range()  快于 []，因此多循环中建议使用 Cells()。
+Cells转Range：
+
+```
+根据Cell坐标式（x, y）动态声明Range对象
+Dim celCurCell   Range
+Set celCurCell = Range(Cells(i, strCheckedColName).Address)
+```
 
 
+Excel中range和cells的详解</br>
+原文链接：https://blog.csdn.net/Yaroo/article/details/78773414
+
+1.1 单元格Bi 可以使用以下3中表示方法</br>
+Range("B" & i )</br>
+Cells( i , 2 )</br>
+Cells( i , "B") （当列号较大、不易计算时，如“H"、”AD"，我们可以直接用双引号加列标作为第二参数）</br>
+使用Range、Cells是比较常用的写法，方便，易记，规律性较好！对单元格访问，速度最快的的是 Cells(1,1) ,其次是 Range("A1"), 最慢是 [A1]，    Cells() 快于 Range()  快于 []，因此多循环中建议使用 Cells()。Range("B" & i )</br>
+Cells( i , 2 )</br>
+Cells( i , "B") （当列号较大、不易计算时，如“H"、”AD"，我们可以直接用双引号加列标作为第二参数）</br>
+使用Range、Cells是比较常用的写法，方便，易记，规律性较好！对单元格访问，速度最快的的是 Cells(1,1) ,其次是 Range("A1"), 最慢是 [A1]，    Cells() 快于 Range()  快于 []，因此多循环中建议使用 Cells()。</br>
+
+1.2 Range、Cells都可以表达单元格/区域</br>
+Range 中文意思是“区域”，Cells 中文意思是“单元(格)”，所以，用Cells()可以表达一个单元格区域吗？</br>
+比如说，我们想表示A2:D3这个区域，用Cells()可以实现吗？那么，用Range()呢？</br>
+因此，单独用Cells()只能表示某个单元格，而不能表示一个区域。</br>
+显然，Range是可以兼容Cells的表达方式，但Range更倾向于区域有“固定”因素时使用，当代码里要使用行、列参数都是变量的单元格时，  直接用Range来表达的话，就显得有心有力了……   而Cells()在这时候，就是最好的选择。所以我们要适时选择其一，或者用Range(Cells(),Cells())的联合方式，总之让自己方便，让代码高效……
+
+1.3 各个代码所表示的单元格</br>
+① Range("C4")(2,3)  ＝ E5</br>
+② Range("C5")(-2,1)    ＝C2</br>
+③ Cells(2,3)(2.5)       ＝ C3</br>
+④  Cells(2,3)(3.5)        ＝C5</br>
+⑤ Range("A1:A5").Item(2)  ＝A2</br>
+⑥ Range("B2:B5").Range("A2")  ＝ B3</br>
+如果不知道规则，那可以用VBA代码测试，比如说我们可以用Range("C4")(2,3).Select 根据运行后选择的单元格来判断结果，    也可以用Debug.Print Range("C4").Item(2, 3).Address(0, 0)来获得地址，Address后面的参数省略的话可以得到绝对地址，是一样的。</br>
+
+1.4 为什么会有像Range("C4")(2,3)这种表达方式呢，表示的又是什么意思呢？</br>
+上面的代码，其实就是Range("C4").Item(2, 3)简化掉中间的“Item”得到的，指的就是以C4单元格为中心，按一定偏移量所得到的单元格。帮助文件的说法：表达式.Item(RowIndex, ColumnIndex)  而表达式 就是指一个代表 Range 对象的变量。如果 RowIndex 指定为 1，则返回区域内第一行中的单元格，而非工作表的第一行。例如，如果选定区域为单元格 C3，则 Selection.Cells(2, 2) 返回单元格 D4（使用 Item 属性可在原始区域之外进行索引）。即：表达式前面指定的单元格，将作为偏移原点，而原点的坐标是（1，1），跟我们日常接触的（0，0）有所差别，具体坐标如下图所示，因为坐标原点不是0，所以计算时比较容易搞混，因此这种方法较少用，通常都会使用OFFSET()，因为OFFSET()的偏移量是按增量，容易计算。</br>
+
+1.5 为什么Cells(2,3)(2.5) 跟 Cells(2,3)(3.5) 一个是C3、一个是C5相差2个单元格之多？</br>
+首先，2.5与3.5，会由内部先取整，然后再如上面的偏移方式进行计算，但VBA内部，默认的取整方式，跟我们通常意义的四舍五入有点差别，跟VB一样，这里是遵循“四舍六入、五取偶”的方式，也称为“四舍六入，逢五奇进偶舍”，即当进位的下一位为5时，则统一向偶数靠拢。比如说2.5，取整则为2（舍），3.5取整为4（进），所以上面的两个Cells会相差两个单元格，VBA里的Round()函数也是遵循这一规则，跟Excel函数Round()也是有区别的。</br>
+
+1.6 Range.Range、Range.Cells等的理解。</br>
+上面的第一个Range指的是一块区域，我们可以称为“母对象”，第二个Range指的是一块区域里的第几个单元格，可以理解为“子对象”；我们日常用的Range、Cells其实也有一个母对象，那就是“全部单元格”，如果这个理解了，那上面的也就比较容易掌握。 如Range("B2:B5").Range("A2")，就是指B2:B5单元格区域里第1列，第2行的那个单元格，即（B3）；这种单元格表达方式比较不常用，因为计算方法也比较复杂，所以较少用得上，即使是区域循环，也会用For Each in ... Next 来解决，因此，大家理解及了解有这种表达方式即可。</br>
+
+1.7 什么时候可以省略.Value，什么时候不可以呢？</br>
+很多人都说，其实.Value是Range的默认属性，所以可以省略，但当我们有时候省略时，又会出错，这是怎么一回事呢？</br>
+可以这么说，即使Range的默认属性是.Value，当我们没有明确指定时，编译时就需要进行“自动类型适应”的过程，如果过程进行不下去，就会有错误发生，如：  i = Range("A1")    或   Range("A1") = 256，因为有一种“默认”及“适应”性，所以不会把A1的 Address属性 ($A$1) 赋给 i ，也不会把256 赋给A1的Height属性，而是赋给了.Value。</br>
+下面说说无法适应的问题，比如说，我们A1单元格存储了另外一个工作表的名称，假设为“工作表2”，也就是说Range("A1") = "工作表2",</br>
+我们现在想删除A1单元格所指定的工作表，用 Sheets(Range("A1")).Delete 会怎么样呢？答案是：会报错——“运行错误'13'，类型不匹配”。但稍作修改，比如说将A1单元格的内容修改为2，那么仍然是用Sheets(Range("A1")).Delete这代码，运行后会怎么样呢？答案是：不会出错。</br>
+那么，A1仍然是“工作表2”，而是将代码改为Sheets(CStr(Range("A1"))).Delete，结果又怎么样呢？答案是：正常运行！</br>
+这说明什么问题呢？首先，Sheets()指的是某个对象，括号里可以用数字、也可以用文本作为参数来表示某个工作表，从上面不难看出来，其默认处理方式是数值格式，也就是表示工作表的序号，当我们使用“工作表2”这个文本想进入其默认处理方式时，就会存在无法匹配的问题，因此报错，而当我们用Cstr()函数，将A1的值，强制转换为文本类型然后再提供给Sheets()，这时候就是让其接受文本值，也理所当然会按工作表名来接收，所以顺利进行。</br>
 
 
 2. 行列相关
@@ -1697,8 +1806,9 @@ End Function
 
 
 12. VBA中如何终止整个程序的执行
-```If endFlag = 1 Then
-　　  msgbox “错误退出”
+```
+If endFlag = 1 Then
+    msgbox “错误退出”
 　　End
 End If
 ```
@@ -2581,6 +2691,8 @@ End Sub
 ```
 
 
+
+
 <a name="0x07"></a>
 ## 0x07 日期和时间 相关函数
 
@@ -2672,11 +2784,13 @@ CDate与DateValue的举例：
 d1 = "April 22, 2001"
 d2 = "6:15:45 PM"
 d3 = "2014-07-24 15:43:06"
+d4 = "29-Jan-21"
 
 If IsDate(d1) And IsDate(d2) And IsDate(d3) Then
     MsgBox CDate(d1)      ' 22/04/2020
     MsgBox CDate(d2)      ' 18:15:45
     MsgBox CDate(d3)      ' 24/07/2014 15:43:06
+    MsgBox CDate(d4)      ' 29/01/2021
 
     MsgBox DateValue(d1)  ' 22/04/2020
     MsgBox DateValue(d2)  ' 00:00:00
@@ -2698,6 +2812,14 @@ MsgBox DateValue(43972)         ' Throws a Type mismatch error(Run-time error 13
 * 从上述 *举例1* 代码结果总结出，`DateValue` 只返回一个Date类型结果，而`CDate`返回结果将保留日期和时间，当参数为一个时间类型的时候，`DateValue` 只能返回一个 `00:00:00`的结果。
 
 * 从上述 *举例2* 代码结果总结出，另外，`DateValue` (或`TimeValue`)只接受 `String` 类型的参数，而 `CDate` 也可以处理 **数字** 。可使用`CDate(Int(num))`和`CDate(num - Int(num))`函数。
+
+
+**注意（09/23/2021 16:46 Sekito Lv 追加）：** 如果无法使用`CDate`进行处理日期字符串的时候，又要返回Date类型日期，需要使用 `DateSerial`、结合`Mid`、`Right`或者`Left` 进行字符串处理。</br>
+
+举例如下：
+```
+Range("E" & i).Value = DateSerial(Mid(Range("E" & i).Value, 7, 4), Mid(Range("E" & i).Value, 4, 2), Left(Range("E" & i).Value, 2))
+```
 
 
 <a name="7.4"></a>
