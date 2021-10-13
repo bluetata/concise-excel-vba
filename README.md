@@ -38,6 +38,7 @@ Last update date：09/24/2021 18:33
     - [1.10 示例](#1.10)
     - [1.11 VBA中的转义](#1.11)
 - [x] [0x02 VBA界面介绍](#layout) (done)
+    - [2.x VBA开发工具的选择](#2.x)
     - [2.1 整体界面说明](#2.1)
     - [2.2 工程资源管理器（Project Explore）说明](#2.2)
     - [2.3 设置VBA Macro Project 密码保护](#2.3)
@@ -86,6 +87,7 @@ Last update date：09/24/2021 18:33
     - [91.09 解决办法：复位Excel到A1单元格，锁定缩放比例85%](#91.9)
     - [91.10 解决办法：编译错误 找不到工程或库](#91.10)
     - [91.11 解决办法：错误的参数号或无效的属性赋值](#91.11)
+    - [91.12 解决办法：无法打开`xlsm`文件，一直加载`FUNCRES.XLAM`插件](#91.12)
 - [x] [0x92 VBA示例代码](#0x92) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
@@ -1274,11 +1276,26 @@ End Sub
 <a name="layout"></a>
 ## 0x02 VBA界面介绍
 
+
+
+<a name="2.x"></a>
+### 2.x VBA开发工具的选择
+
+有同学会问，进行VBA开发使用什么IDE，现在为止，VBA进行调试开发只能在微软Excel自带的开发窗口进行开发，既按`Alt+F11`操作界面，具体可以参照 [2.1 整体界面说明](#2.1)</br>
+如果是单纯的进行开发，不做调试，可以使用VS Code，需要安装`VSCode VBA`插件。</br>
+![VSCode VBA插件](./doc/source/images/VSCode-VBA-plugin.png)
+
+安装完后的操作界面如下图：
+因为在VSCode中安装完插件后，有代码高亮和相关提示，进行单文件coding的时候会舒服很多</br>
+![VSCode VBA插件](./doc/source/images/VSCode-VBA-plugin-2.PNG)
+
+
 <a name="2.1"></a>
 ### 2.1 整体界面说明
 
 （点击图片查看大图）   
 ![Alt text](./doc/source/images/1505749555407.png)
+
 
 <a name="2.2"></a>
 ### 2.2 工程资源管理器（Project Explore）说明
@@ -3198,18 +3215,18 @@ Excel VBA默认的5个引用类库（英文）
 <a name="91.11"></a>
 ### 91.11 解决办法：错误的参数号或无效的属性赋值
 
-    英文版本错误：Wrong number or arguments or invalid property assignmeng
+    英文版本错误：ERROR : Wrong number of arguments or invalid property assignment
 
-问题原因： 所运行的函数的名称和系统函数名**重名**
-解决办法： 更改自定义的函数名，**避免** 与系统函数名同名
+问题原因：使用している引数の数が正しくないか、引数の 1 つのタイプが想定したものと違う可能性があります。 これは、使用するコマンドに引数が複数あり、その 1 つを指定し忘れた場合によく発生します。 / 使用的函数参数引用错误，可能函数有多个参数，但是实际调用的时候参数数量匹配不对。
+
+解决办法：コマンド、メソッド、イベント、またはプロパティの構文を再度確認してください。 / 检查方法参数是否能够匹配。
 
 
 <a name="91.12"></a>
-### 91.11 解决办法：无法打开`xlsm`文件，一直加载`FUNCRES.XLAM`插件
+### 91.12 解决办法：无法打开`xlsm`文件，一直加载`FUNCRES.XLAM`插件
 
-    英文版本错误：Wrong number or arguments or invalid property assignmeng
-
-问题原因： 所运行的函数的名称和系统函数名**重名**
+如果遇到打开带有宏的excel的时候，一直处于卡主状态，那么参照如下解决</br>
+问题原因： 所运行的函数的名称和系统函数名**重名** </br>
 解决办法： 更改自定义的函数名，**避免** 与系统函数名同名
 
 
@@ -3220,14 +3237,20 @@ Excel VBA默认的5个引用类库（英文）
 VBA示例代码查看：[点击这里](SampleCode.bas)。
 
 
+
+
 <a name="0x93"></a>
 ## 0x93 Excel-VBA 快捷键
 Excel-VBA 快捷键相关 查看：[点击这里](ShortcutKey.md)。
 
 
+
+
 <a name="0x94"></a>
 ## 0x94 Excel-VBA Debug调试
 Excel-VBA Debug调试相关 查看：[点击这里](Debug.md)。
+
+
 
 
 <a name="docslist"></a>
@@ -3244,9 +3267,13 @@ Excel-VBA Debug调试相关 查看：[点击这里](Debug.md)。
 - [VBA入门参考，英文](http://analystcave.com/vba-cheat-sheet/)
 
 
+
+
 <a name="license"></a>
 ## 开源许可
 本Repository除特殊注明外，均采用 Creative Commons [BY-NC-ND 4.0](LICENSE)（自由转载-保持署名-非商用-禁止演绎）协议发布。
+
+
 
 
 ## 鸣谢列表
