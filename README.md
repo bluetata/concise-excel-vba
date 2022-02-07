@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：09/24/2021 18:33
+Last update date：02/07/2022 21:31
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -91,6 +91,8 @@ Last update date：09/24/2021 18:33
 - [x] [0x92 VBA示例代码](#0x92) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
+- [ ] [0x95 VBA封装共通函数](#0x95) (doing)
+    - [95.01 VBA生成UUID/GUID](#95.01)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 <!-- /TOC -->
@@ -3249,6 +3251,72 @@ Excel-VBA 快捷键相关 查看：[点击这里](ShortcutKey.md)。
 <a name="0x94"></a>
 ## 0x94 Excel-VBA Debug调试
 Excel-VBA Debug调试相关 查看：[点击这里](Debug.md)。
+
+
+
+
+<a name="0x95"></a>
+## 0x95 VBA封装共通函数
+
+
+<a name="95.01"></a>
+### 95.01 VBA 生成GUID/UUID
+
+```vba
+' 方法1：
+Private Type GUID
+    Data1 As Long
+    Data2 As Integer
+    Data3 As Integer
+    Data4(0 To 7) As Byte
+End Type
+
+Private Declare Function CoCreateGuid Lib "ole32" (pguid As GUID) As Long
+Private Declare Function StringFromGUID2 Lib "ole32" ( _
+    rguid As GUID, ByVal lpsz As Long, ByVal cchMax As Long) As Long
+
+Public Function CreateGUID() As String
+    Dim NewGUID As GUID
+    CoCreateGuid NewGUID
+    CreateGUID = Space$(38)
+    StringFromGUID2 NewGUID, StrPtr(CreateGUID), 39
+End Function
+
+```
+
+
+```vba
+' 方法2：
+Private Type GUID
+    Data1 As Long
+    Data2 As Integer
+    Data3 As Integer
+    Data4(7) As Byte
+End Type
+
+Private Declare Function CoCreateGuid Lib "OLE32.DLL" (pGuid As GUID) As Long
+
+Public Function GetGUID() As String
+
+    Dim udtGUID As GUID
+
+    If (CoCreateGuid(udtGUID) = 0) Then
+        GetGUID = _
+            String(8 - Len(Hex$(udtGUID.Data1)), "0") & Hex$(udtGUID.Data1) & _
+            String(4 - Len(Hex$(udtGUID.Data2)), "0") & Hex$(udtGUID.Data2) & _
+            String(4 - Len(Hex$(udtGUID.Data3)), "0") & Hex$(udtGUID.Data3) & _
+            IIf((udtGUID.Data4(0) < &H10), "0", "") & Hex$(udtGUID.Data4(0)) & _
+            IIf((udtGUID.Data4(1) < &H10), "0", "") & Hex$(udtGUID.Data4(1)) & _
+            IIf((udtGUID.Data4(2) < &H10), "0", "") & Hex$(udtGUID.Data4(2)) & _
+            IIf((udtGUID.Data4(3) < &H10), "0", "") & Hex$(udtGUID.Data4(3)) & _
+            IIf((udtGUID.Data4(4) < &H10), "0", "") & Hex$(udtGUID.Data4(4)) & _
+            IIf((udtGUID.Data4(5) < &H10), "0", "") & Hex$(udtGUID.Data4(5)) & _
+            IIf((udtGUID.Data4(6) < &H10), "0", "") & Hex$(udtGUID.Data4(6)) & _
+            IIf((udtGUID.Data4(7) < &H10), "0", "") & Hex$(udtGUID.Data4(7))
+    End If
+
+End Function
+```
 
 
 
