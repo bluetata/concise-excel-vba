@@ -72,6 +72,8 @@ Last update date：02/15/2022 17:34
     - [7.2 日期函数：Year, Month, Day](#7.2)
     - [7.3 CDate 和 DateValue 函数](#7.3)
     - [7.4 IsDate 函数](#7.4)
+    - [7.5 DateAdd 函数](#7.5)
+    - [7.6 Sleep 函数](#7.6)
 - [x] [0x10 VBA 转换函数一览](#0x10) (done) (*English Version*)
     - [10.1 取整函数的使用](#10.1)
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
@@ -211,7 +213,7 @@ Dim v4
     adj. 明确的，清楚的; 直言的; 详述的; 不隐瞒的;  
     ---------------------------------------------
 
-另外在 **工具** → **选项** 中勾选 "要求变量声明(Require Variable Declaration)"，那么新插入一个模块时，就会在第一行显示这句代码，强制要求程序中要声明变量（如下图）。
+另外在 **工具** → **选项** 中勾选 "要求变量声明(*Require Variable Declaration*)"，那么新插入一个模块时，就会在第一行显示这句代码，强制要求程序中要声明变量（如下图）。
 
 ![Alt text](doc/source/images/require_variable_declaration.jpg)
 
@@ -2898,6 +2900,42 @@ DateAdd("m",-1,"31-Jan-01")   ' 12/31/2000
 如果 *number* 不是 Long 值，则在计算之前将其 **四舍五入** 到最接近的整数。
 
 **另外：** 在使用“w”时间间隔（包括一周的所有天，从星期日到星期六）向日期添加天数时，DateAdd 函数会向日期添加您指定的总天数，而不是像您预期的那样仅向日期添加工作日（从星期一到星期五）数。
+
+
+<a name="7.6"></a>
+### 7.6 Sleep 函数
+VBA中同样有类似Java中的线程等待函数`Sleep`。同样Sleep中的参数为毫秒，也就是如果你想在程序中停顿10秒，那么参数应该传递10000。
+
+使用`Sleep`前，要在代码前引用 **32位动态链接库文件(`kernel32`)**。
+
+```
+#If VBA7 Then
+    Public Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As LongPtr)
+'For 64-Bit versions of Excel
+#Else
+    Public Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
+'For 32-Bit versions of Excel
+#End If
+```
+
+使用`Sleep`函数示例：
+
+```
+Sub SleepExample()
+
+    Dim StartTime As String
+    Dim EndTime As String
+
+    StartTime = Time
+    MsgBox StartTime
+
+    Sleep (10 * 1000)
+
+    EndTime = Time
+    MsgBox EndTime
+
+End Sub
+```
 
 
 <a name="0x10"></a>
