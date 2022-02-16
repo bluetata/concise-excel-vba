@@ -95,6 +95,7 @@ Last update date：02/15/2022 17:34
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
 - [ ] [0x95 VBA封装共通函数](#0x95) (doing)
     - [95.01 VBA生成GUID/UUID](#95.01)
+    - [95.02 VBA程序进度条(Process Bar)](#95.01)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 <!-- /TOC -->
@@ -3357,6 +3358,7 @@ Public Function GetGUID() As String
 End Function
 ```
 
+
 #### Excel公式直接生成GUID/UUID
 
 1、Excel生成guid，uuid  格式：`34f732b4-6ab5-46ff-9e19-9835626c4515`
@@ -3381,6 +3383,39 @@ End Function
 ```
 ==CONCATENATE(DEC2HEX(RANDBETWEEN(0,POWER(16,8)),8),"",DEC2HEX(RANDBETWEEN(0,POWER(16,4)),4),"","4",DEC2HEX(RANDBETWEEN(0,POWER(16,3)),3),"-",DEC2HEX(RANDBETWEEN(8,11)),DEC2HEX(RANDBETWEEN(0,POWER(16,3)),3),"",DEC2HEX(RANDBETWEEN(0,POWER(16,8)),8),DEC2HEX(RANDBETWEEN(0,POWER(16,4)),4))
 ```
+
+
+<a name="95.02"></a>
+### 95.02 VBA程序进度条(Process Bar)
+
+进图条式样如下图：
+
+![Alt text](doc/source/images/95/process_bar.gif)
+
+```
+Sub ProcessBarUpdater(intCurrent As Integer, intLast As Integer, strTopic As String)
+
+    Dim intCurrentStatus As Integer
+    Dim intNumberOfBars As Integer
+    Dim intPercentDone As Integer
+
+    '(Step 1) Display your Status Bar
+    intNumberOfBars = 50
+    'Application.StatusBar = "[" & Space(intNumberOfBars) & "]"
+
+    '(Step 2) Periodically update your Status Bar
+    intCurrentStatus = Int((intCurrent / intLast) * intNumberOfBars)
+    intPercentDone = Round(intCurrentStatus / intNumberOfBars * 100, 0)
+    Application.StatusBar = strTopic & " [" & String(intCurrentStatus, "|") & _
+                            Space(intNumberOfBars - intCurrentStatus) & "]" & _
+                            " " & intPercentDone & "% Complete"
+
+    '(Step 3) Clear the Status Bar when you're done
+    If intCurrent = intLast Then Application.StatusBar = ""
+
+End Sub
+```
+
 
 
 
