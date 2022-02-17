@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：02/15/2022 17:34
+Last update date：02/17/2022 17:41
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -2779,6 +2779,15 @@ MsgBox Day(exampleDate)   ' 19
 5. 返回季度公式五：
 
     `=LEN(2^MONTH(A2))`
+
+
+**Excel Formula 显示当前日期时分秒**
+
+```
+# 显示格式为：02/17/2022 11:17:21
+
+=TEXT(NOW(),"mm/dd/yyyy hh:mm:ss")
+```
 
 
 <a name="7.3"></a>
