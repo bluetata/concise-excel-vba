@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：02/17/2022 17:41
+Last update date：02/17/2022 17:55
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -3402,6 +3402,9 @@ End Function
 ![Alt text](doc/source/images/95/process_bar.gif)
 
 ```
+
+Call ProcessBarUpdater(i, 100, " Process Running: ")
+
 Sub ProcessBarUpdater(intCurrent As Integer, intLast As Integer, strTopic As String)
 
     Dim intCurrentStatus As Integer
