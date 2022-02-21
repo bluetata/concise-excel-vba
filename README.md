@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：02/17/2022 17:55
+Last update date：02/21/2022 15:52
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -3397,7 +3397,7 @@ End Function
 <a name="95.02"></a>
 ### 95.02 VBA程序进度条(Process Bar)
 
-进图条式样如下图：
+进图条式样1及其代码如下图：
 
 ![Alt text](doc/source/images/95/process_bar.gif)
 
@@ -3429,6 +3429,109 @@ End Sub
 ```
 
 
+进图条式样2及其代码如下图：
+
+![Alt text](doc/source/images/95/process_bar2-1.png)
+
+    
+![Alt text](doc/source/images/95/process_bar2-2.gif)
+
+
+代码：
+
+```
+============== This code goes in Module1 ============
+       
+Sub ShowProgress()
+    UserForm1.Show
+End Sub
+
+============== Module1 Code Block End =============
+
+```
+
+
+Create a Button on a Worksheet; map button to "ShowProgress" macro
+
+Create a UserForm1 with 2 Command Buttons and 3 Labels so you get the following objects
+
+
+| Element | Purpose | Properties to set |
+|---------|---------|-------------------|
+| `UserForm1` | canvas to hold other 5 elements | | 
+| `CommandButton1` | Close UserForm1 | Caption: "Close" |
+| `CommandButton2` | Run Progress Bar Code | Caption: "Run" |
+| `Bar1` (label) | Progress bar graphic | BackColor: Blue |
+| `BarBox` (label) | Empty box to frame Progress Bar | BackColor: White |
+| `Counter` (label) | Display the integers used to drive the progress bar | |
+
+Then add this code to UserForm1:
+
+```
+======== Attach the following code to UserForm1 =========
+
+Option Explicit
+
+' This is used to create a delay to prevent memory overflow
+' remove after software testing is complete
+
+Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
+
+Private Sub UserForm_Initialize()
+    Bar1.Tag = Bar1.Width  ' Memorize initial/maximum width
+    Bar1.Width = 0
+End Sub
+
+Sub ProgressBarDemo()
+    Dim intIndex As Integer
+    Dim sngPercent As Single
+    Dim intMax As Integer
+    '==============================================
+    '====== Bar Length Calculation Start ==========
+    
+    '-----------------------------------------------'
+    ' This section is where you can use your own    '
+    ' variables to increase bar length.             '
+    ' Set intMax to your total number of passes     '
+    ' to match bar length to code progress.         '
+    ' This sample code automatically runs 1 to 100  '
+    '-----------------------------------------------'
+    intMax = 100
+    For intIndex = 1 To intMax
+        sngPercent = intIndex / intMax
+        Bar1.Width = Int(Bar1.Tag * sngPercent)
+        Counter.Caption = intIndex
+
+    
+    '======= Bar Length Calculation End ===========
+    '==============================================
+
+
+DoEvents
+        '------------------------
+        ' Your production code would go here and cycle
+        ' back to pass through the bar length calculation
+        ' increasing the bar length on each pass.
+        '------------------------
+
+'this is a delay to keep the loop from overrunning memory
+'remove after testing is complete
+        Sleep 10
+
+    Next
+
+End Sub
+
+Private Sub CommandButton1_Click() 'CLOSE button
+    Unload Me
+End Sub
+
+Private Sub CommandButton2_Click() 'RUN button    
+    ProgressBarDemo
+End Sub
+
+================= UserForm1 Code Block End =====================
+```
 
 
 
