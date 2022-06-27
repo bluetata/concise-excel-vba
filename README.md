@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：02/21/2022 15:52
+Last update date：06/27/2022 13:46
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -1292,7 +1292,7 @@ End Sub
 
 安装完后的操作界面如下图：
 因为在VSCode中安装完插件后，有代码高亮和相关提示，进行单文件coding的时候会舒服很多</br>
-![VSCode VBA插件](./doc/source/images/VSCode-VBA-plugin-2.PNG)
+![VSCode VBA插件](./doc/source/images/VSCode-VBA-plugin-2.png)
 
 
 <a name="2.1"></a>
