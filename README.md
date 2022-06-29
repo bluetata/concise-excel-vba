@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：06/27/2022 13:46
+Last update date：06/29/2022 17:36
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -77,7 +77,7 @@ Last update date：06/27/2022 13:46
 - [x] [0x10 VBA 转换函数一览](#0x10) (done) (*English Version*)
     - [10.1 取整函数的使用](#10.1)
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
-- [ ] [0x08 Trouble shooting](#0x08) (doing)
+- [ ] [0x91 Trouble shooting](#0x91) (doing)
     - [91.01 消除Excel保存时警告（Privacy Warning:this document contains macros...）](#19.1)
     - [91.02 清除Excel数据透视表中过滤器缓存（旧项目）](#91.2)
     - [91.03 解决办法：The macros in this project are disabled. Please refer to ...](#91.3)
@@ -96,6 +96,7 @@ Last update date：06/27/2022 13:46
 - [ ] [0x95 VBA封装共通函数](#0x95) (doing)
     - [95.01 VBA生成GUID/UUID](#95.01)
     - [95.02 VBA程序进度条(Process Bar)](#95.02)
+- [x] [Excel VBA代码加密方案汇总（如何尽可能的保护VBA代码？）](#0x96) (done)
 - [x] [0xFF 学习资源列表](#docslist) (done)
 
 <!-- /TOC -->
@@ -1283,6 +1284,7 @@ End Sub
 
 
 
+
 <a name="2.x"></a>
 ### 2.x VBA开发工具的选择
 
@@ -1372,8 +1374,15 @@ cells(1, 1) = 1
 也就是说，模块（Modules）是公共的地方。
 
 
+
+
 <a name="2.3"></a>
 ### 2.3 设置VBA Macro Project 密码保护
+
+
+本章节介绍了VBA自带的两种密码保护设置方法，更多的密码保护方法可以参照本文的
+[Excel VBA代码加密方案汇总（如何尽可能的保护VBA代码？）](#0x96)
+
 
 #### 2.3.1 利用密码保护工作表或者sheet
 
@@ -3086,7 +3095,7 @@ to reduce the amount of scrolling.
 
 **More reference:** [VBA Code Guidelines/Best-practices](CodingStandards.md)
 
-<a name="0x08"></a>
+<a name="0x91"></a>
 ## 0x91 Trouble shooting
 
 
@@ -3394,6 +3403,8 @@ End Function
 ```
 
 
+
+
 <a name="95.02"></a>
 ### 95.02 VBA程序进度条(Process Bar)
 
@@ -3532,6 +3543,112 @@ End Sub
 
 ================= UserForm1 Code Block End =====================
 ```
+
+
+
+
+<a name="0x96"></a>
+## 0x96 Excel VBA代码加密方案汇总（如何尽可能的保护VBA代码？）
+
+> 该章节大部分内容学习摘自于：www.iaspnetcore.com
+
+
+
+
+### 1.VBAProject工程设置密码
+
+该功能是有微软官方提供，用于对VBA代码设置密码保护，设置方法参照：[2.3 设置VBA Macro Project 密码保护](#2.3)。
+
+
+### 2.vbaProject.bin 破坏性锁定
+使用UltraEdit软件打开vbaProject.bin文件，并使用Ctrl+F打开查找对话框，输入id=，定位到需要修改的位置。只要将id后大括号中的位元组随便修改一下即可。保存vbaProject.bin文件；
+
+
+### 3.Unviewable + VBA
+
+通过软件Unviewable + VBA加密的VBA效果最好。国内使用该软件加密的还不多，但国外很多使用该软件对其的VBA代码进行加密。
+
+作者网址
+
+http://www.spreadsheet1.com/unviewable-vba-project-app-for-excel.html
+
+https://zhuanlan.zhihu.com/p/28203940
+
+
+### 4.用VB6把VBA代码写成DLL
+
+一般用VB6把VBA代码写成DLL不过麻烦，使用VB封装为dll进行调用的确可以。
+
+    VBA code for Excel can only be written inside Excel using the VBA IDE. VBA projects are stored as part of the Excel file and cannot be loaded into Visual Studio.
+
+具体实现源代码：
+
+https://www.iaspnetcore.com/blog/blogpost/60a0d285b8d10f0221c4b424/encapsulate-vba-operations-into-dll-components-and-invoke-them-in-excel
+
+
+### 5.通过VBE外接插件完成VBA代码的动态生成
+
+通过外接插件完成VBA代码的动态生成，动态解密，实时运行，完毕删除这一系列保护代码的动作。
+
+参见：http://club.excelhome.net/thread-1368804-1-1.html
+
+
+### 6.VBA编辑器隐藏VBA代码
+
+参见：https://github.com/outflanknl/EvilClippy
+
+
+### 7.Use Excel Compiler, VBA Compiler 
+
+Excel Compiler, VBA Compiler – software for Excel workbook copy protection
+
+You can compile an Excel spreadsheet into an EXE application with securely protected formulas in binary format and protected VBA code.
+
+参见：https://doneex.com/?option=com_content&task=section&id=10&Itemid=43&gclid=CKSepamRi6cCFQlPgwodbSTAeA
+
+
+
+### 8.VBA Compiler for Excel
+
+How the VBA Compiler works
+The DoneEx VbaCompiler transforms source VBA code into C-code and, in the final stage, the C-language code is compiled into a native Windows DLL file.
+
+It's easier and faster than converting your VBA code to C by hand. VBA Compiler website has a simple 10-step guide on how to compile VBA code into a Windows DLL file https://vbacompiler.com/how-to-compile/ and it doesn’t even require any knowledge of C or C++.
+
+During compilation, the transformation of the source VBA code goes through several stages:
+
+    Stage 1. VbaCompiler parses and analyses the source VBA code.
+    Stage 2. The product generates object code based on results of stage 1.
+    Stage 3. The product generates C-language code from the object code generated in 
+    Stage 4. The VbaCompiler runs a C-compiler to compile the C-language code (which was generated in Stage 3) into a Windows DLL.
+    Stage 5. The final stage of compilation – the VbaCompiler removes compiled VBA code from the file and generates connective VBA code where all compiled DLL functions are called instead of original VBA code.
+
+参见：https://vbacompiler.com/
+
+
+
+
+### 9.动态增加，删除，修改VBA代码
+
+动态增加，删除，修改VBA代码是这种加密方式的核心价值。
+
+VBA开发者可以提供给用户A数据，代码注册通过之后，动态生成B数据完成核心功能。或者根据程序流程，动态修改运行分支，这样使用者永远也不知道程序的真正运行流程，达到保密效果。
+
+参见：http://club.excelhome.net/thread-1368804-1-1.html
+
+
+### 总结
+
+建核心代码库（函数名字典+密文代码+代码混淆）+ 动态解释 + 动态执行可以隐藏核心代码，处理好api和参数传递就可以了，不过没必要花那个功夫研究，VBA本身就是自用方便，能值得保密的商用程序有几个用vba写.
+
+真正的加密只有源代码的加密，不是加个密码打不开就完了。
+有的东西没法细说。大概说一下：
+
+青铜：vba自带密码。   
+黄金：借助网上的工具加密。其实还是设了密码，你能下到的工具，别人也能下到。不说了   
+钻石：用源代码加密，动态调用。不限制你打开，但人眼不可识别，基本都是乱码，却不影响编译运行。   
+王者：无招胜有招。无需任何加密，可以打得开，也都看的见源代码（非乱码），但是调用之错综复杂，语句之光怪琉璃，除了本人基本没人能看得懂。   
+
 
 
 
