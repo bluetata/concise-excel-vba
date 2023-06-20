@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：06/29/2022 17:36
+Last update date：06/20/2023 18:45
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -1153,6 +1153,10 @@ Sub AssignString()
     Set strB = "hello"  ' 错误写法/Compile error
 EndSub
 ```
+
+
+#### 1.9.2 
+
 
 
 <a name="1.10"></a>
@@ -2957,6 +2961,101 @@ End Sub
 ```
 
 
+
+
+
+
+<a name="0x08"></a>
+## 0x07 消息框的函数 MsgBox 
+
+VBA 中的 MsgBox 函数用于显示消息框，允许你向用户显示文本信息，并接收用户的响应。以下是 MsgBox 函数的常见用法和参数：
+
+```
+MsgBox(prompt, [buttons], [title], [helpfile], [context])
+```
+* prompt：必需参数，表示要显示的文本消息。可以是一个字符串表达式或变量。
+* buttons：可选参数，用于指定消息框的按钮类型。可以使用以下常量之一或它们的组合：
+    * vbOKOnly：只显示 "确定" 按钮。
+    * vbOKCancel：显示 "确定" 和 "取消" 按钮。
+    * vbAbortRetryIgnore：显示 "中止"、"重试" 和 "忽略" 按钮。
+    * vbYesNoCancel：显示 "是"、"否" 和 "取消" 按钮。
+    * vbYesNo：显示 "是" 和 "否" 按钮。
+    * vbRetryCancel：显示 "重试" 和 "取消" 按钮。
+* title：可选参数，表示消息框的标题栏文本。如果省略，则不显示标题。
+* helpfile：可选参数，表示与消息框相关的帮助文件的名称。如果省略，则不显示帮助按钮。
+* context：可选参数，表示与帮助文件相关的上下文 ID。如果 helpfile 参数不为空，则 context 参数必须提供。
+
+MsgBox 函数的返回值是一个整数，表示用户的响应或按钮的标识符。常用的返回值（按钮标识符）常量包括：
+
+* vbOK：表示用户点击了 "确定" 按钮。
+* vbCancel：表示用户点击了 "取消" 按钮。
+* vbYes：表示用户点击了 "是" 按钮。
+* vbNo：表示用户点击了 "否" 按钮。
+* vbRetry：表示用户点击了 "重试" 按钮。
+* vbAbort：表示用户点击了 "中止" 按钮。
+* vbIgnore：表示用户点击了 "忽略" 按钮。
+
+根据你的需求，你可以根据提示文本、按钮类型和其他选项定制消息框的外观和行为。
+
+请注意，VBA 中的 MsgBox 函数是一个简单的消息框显示功能，如果需要更高级的用户界面交互功能，可以考虑使用用户窗体或自定义用户界面控件。
+
+
+下面进行几个常见举例：    
+
+1. 显示简单的消息框：    
+
+```
+MsgBox "Hello, World!" ' 显示消息框并显示 "Hello, World!"
+```
+
+2. 显示带有标题的消息框：    
+
+```
+MsgBox "操作成功！", vbInformation, "提示" ' 显示一个带有标题 "提示" 的消息框，并显示 "操作成功！"
+```
+
+3. 显示带有按钮和图标的消息框，并根据用户的选择执行不同的操作：    
+
+```
+Dim result As Integer
+result = MsgBox("是否保存更改？", vbYesNoCancel + vbQuestion, "确认") ' 显示一个带有 Yes、No 和 Cancel 按钮以及问号图标的消息框，并带有标题 "确认"
+If result = vbYes Then
+    ' 用户选择了 "是" 按钮
+    ' 执行保存操作
+    MsgBox "保存成功！", vbInformation, "提示"
+ElseIf result = vbNo Then
+    ' 用户选择了 "否" 按钮
+    ' 执行其他操作
+    MsgBox "操作已取消。", vbInformation, "提示"
+ElseIf result = vbCancel Then
+    ' 用户选择了 "取消" 按钮
+    ' 执行取消操作
+    MsgBox "操作已取消。", vbInformation, "提示"
+End If
+
+```
+
+4. 显示带有默认按钮和返回值的消息框：    
+
+```
+Dim response As Integer
+response = MsgBox("请选择一个选项:", vbYesNoCancel + vbQuestion + vbDefaultButton2, "选择")
+If response = vbYes Then
+    ' 用户选择了 "是" 按钮
+    MsgBox "您选择了 '是'。", vbInformation, "提示"
+ElseIf response = vbNo Then
+    ' 用户选择了 "否" 按钮
+    MsgBox "您选择了 '否'。", vbInformation, "提示"
+ElseIf response = vbCancel Then
+    ' 用户选择了 "取消" 按钮
+    MsgBox "您选择了 '取消'。", vbInformation, "提示"
+End If
+
+```
+
+
+
+
 <a name="0x10"></a>
 ## 0x10 VBA 转换函数一览
 
@@ -3559,10 +3658,14 @@ End Sub
 
 该功能是有微软官方提供，用于对VBA代码设置密码保护，设置方法参照：[2.3 设置VBA Macro Project 密码保护](#2.3)。
 
+  
+<br />
 
 ### 2.vbaProject.bin 破坏性锁定
 使用UltraEdit软件打开vbaProject.bin文件，并使用Ctrl+F打开查找对话框，输入id=，定位到需要修改的位置。只要将id后大括号中的位元组随便修改一下即可。保存vbaProject.bin文件；
 
+  
+<br />
 
 ### 3.Unviewable + VBA
 
@@ -3574,6 +3677,8 @@ http://www.spreadsheet1.com/unviewable-vba-project-app-for-excel.html
 
 https://zhuanlan.zhihu.com/p/28203940
 
+  
+<br />
 
 ### 4.用VB6把VBA代码写成DLL
 
@@ -3585,6 +3690,8 @@ https://zhuanlan.zhihu.com/p/28203940
 
 https://www.iaspnetcore.com/blog/blogpost/60a0d285b8d10f0221c4b424/encapsulate-vba-operations-into-dll-components-and-invoke-them-in-excel
 
+  
+<br />
 
 ### 5.通过VBE外接插件完成VBA代码的动态生成
 
@@ -3592,11 +3699,15 @@ https://www.iaspnetcore.com/blog/blogpost/60a0d285b8d10f0221c4b424/encapsulate-v
 
 参见：http://club.excelhome.net/thread-1368804-1-1.html
 
+  
+<br />
 
 ### 6.VBA编辑器隐藏VBA代码
 
 参见：https://github.com/outflanknl/EvilClippy
 
+  
+<br />
 
 ### 7.Use Excel Compiler, VBA Compiler 
 
@@ -3606,7 +3717,8 @@ You can compile an Excel spreadsheet into an EXE application with securely prote
 
 参见：https://doneex.com/?option=com_content&task=section&id=10&Itemid=43&gclid=CKSepamRi6cCFQlPgwodbSTAeA
 
-
+  
+<br />
 
 ### 8.VBA Compiler for Excel
 
@@ -3625,8 +3737,8 @@ During compilation, the transformation of the source VBA code goes through sever
 
 参见：https://vbacompiler.com/
 
-
-
+  
+<br />
 
 ### 9.动态增加，删除，修改VBA代码
 
@@ -3636,6 +3748,8 @@ VBA开发者可以提供给用户A数据，代码注册通过之后，动态生�
 
 参见：http://club.excelhome.net/thread-1368804-1-1.html
 
+  
+<br />
 
 ### 总结
 
@@ -3647,10 +3761,11 @@ VBA开发者可以提供给用户A数据，代码注册通过之后，动态生�
 青铜：vba自带密码。   
 黄金：借助网上的工具加密。其实还是设了密码，你能下到的工具，别人也能下到。不说了   
 钻石：用源代码加密，动态调用。不限制你打开，但人眼不可识别，基本都是乱码，却不影响编译运行。   
-王者：无招胜有招。无需任何加密，可以打得开，也都看的见源代码（非乱码），但是调用之错综复杂，语句之光怪琉璃，除了本人基本没人能看得懂。   
+王者：无招胜有招。无需任何加密，可以打得开，也都看的见源代码（非乱码），但是调用之错综复杂，语句之光怪陆离，除了本人基本没人能看得懂。   
 
 
-
+  
+<br />
 
 <a name="docslist"></a>
 ## 0xFF VBA学习资源列表
