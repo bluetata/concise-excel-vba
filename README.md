@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：06/20/2023 18:45
+Last update date：06/20/2023 18:53
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -67,13 +67,14 @@ Last update date：06/20/2023 18:45
     - [6.2 文件相关操作](#6.2)
     - [6.3 文件夹相关操作](#6.3)
     - [6.4 其他操作（获取文件名等）](#6.4)
-- [ ] [0x07 日期和时间 相关函数](#0x07) (done)
+- [x] [0x07 日期和时间 相关函数](#0x07) (done)
     - [7.1 Date, Time, Now 函数](#7.1)
     - [7.2 日期函数：Year, Month, Day](#7.2)
     - [7.3 CDate 和 DateValue 函数](#7.3)
     - [7.4 IsDate 函数](#7.4)
     - [7.5 DateAdd 函数](#7.5)
     - [7.6 Sleep 函数](#7.6)
+- [x] [0x08 消息框的函数 MsgBox](#0x08) (done)
 - [x] [0x10 VBA 转换函数一览](#0x10) (done) (*English Version*)
     - [10.1 取整函数的使用](#10.1)
 - [x] [0x90 VBA Best Practices（VB代码规范/开发规约）](#0x90) (English Version)
@@ -2966,7 +2967,7 @@ End Sub
 
 
 <a name="0x08"></a>
-## 0x07 消息框的函数 MsgBox 
+## 0x08 消息框的函数 MsgBox 
 
 VBA 中的 MsgBox 函数用于显示消息框，允许你向用户显示文本信息，并接收用户的响应。以下是 MsgBox 函数的常见用法和参数：
 
