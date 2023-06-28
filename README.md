@@ -26,7 +26,8 @@ Last update date：06/20/2023 18:53
     - [1.5 语句结构](#1.5)
         - [1.5.1 选择语句](#1.5.1)
         - [1.5.2 循环语句](#1.5.2)
-        - [1.5.3 GoTo语句](#1.5.3)
+        - [1.5.3 GoTo 语句](#1.5.3)
+        - [1.5.4 Exit 语句](#1.5.4)
     - [1.6 过程(Sub)和函数(Function)](#1.6)
       - [1.6.1 Sub 过程](#1.6.1)
       - [1.6.2 Function 函数](#1.6.2)
@@ -770,6 +771,46 @@ With WorkSheets("表1").Range("A1").Font
     .ColorIndex =3
 End With
 ```
+
+
+<a name="1.5.4"></a>
+#### 1.5.4 Exit 语句
+
+Exit 可以退出过程或块并立即将控制转移到过程调用或块定义之后的语句。   
+
+语法：   
+
+```
+Exit { Do | For | Function | Property | Select | Sub | Try | While }
+```
+
+举例：   
+
+
+```
+Dim index As Integer = 0
+Do While index <= 100
+    If index > 10 Then
+        Exit Do
+    End If
+
+    Debug.Write(index.ToString & " ")
+    index += 1
+Loop
+
+Debug.WriteLine("")
+' Output: 0 1 2 3 4 5 6 7 8 9 10
+
+
+Function MyFunction(ByVal j As Integer) As Double
+    MyFunction = 3.87 * j
+    Exit Function
+End Function
+
+
+```
+
+
 
 
 <a name="1.6"></a>
