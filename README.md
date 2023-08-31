@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：06/20/2023 18:53
+Last update date：08/31/2023 19:59
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -92,6 +92,7 @@ Last update date：06/20/2023 18:53
     - [91.10 解决办法：编译错误 找不到工程或库](#91.10)
     - [91.11 解决办法：错误的参数号或无效的属性赋值](#91.11)
     - [91.12 解决办法：无法打开`xlsm`文件，一直加载`FUNCRES.XLAM`插件](#91.12)
+    - [91.13 解决办法：公式不更新刷新，在excel中生成的worksheet，公式不自动计算更新](#91.13)
 - [x] [0x92 VBA示例代码](#0x92) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
@@ -3426,8 +3427,86 @@ Excel VBA默认的5个引用类库（英文）
 ### 91.12 解决办法：无法打开`xlsm`文件，一直加载`FUNCRES.XLAM`插件
 
 如果遇到打开带有宏的excel的时候，一直处于卡主状态，那么参照如下解决</br>
-问题原因： 所运行的函数的名称和系统函数名**重名** </br>
-解决办法： 更改自定义的函数名，**避免** 与系统函数名同名
+**问题原因**： 所运行的函数的名称和系统函数名**重名** </br>
+**解决办法**： 更改自定义的函数名，**避免** 与系统函数名同名
+
+
+<a name="91.13"></a>
+### 91.13 解决办法：公式不更新刷新，在excel中生成的worksheet，公式不自动计算更新
+
+> How to Fix Excel Formulas that are Not Calculating or Updating
+
+**分析问题的原因**
+
+**原因1**：现在个人已知的是，如果你的公式所在的单元格内，数据类型不对，可能会造成你的公式不自动计算或者更新。
+
+参照：https://club.excelhome.net/thread-1336666-1-1.html
+
+**原因2**：可能是你的excel设置了手动计算，或者关闭保存前计算。
+
+参照：https://blog.csdn.net/weixin_39609822/article/details/109843749 或 https://www.excelcampus.com/functions/formulas-not-calculating/
+
+**特殊情况**：排除上述两种情况，你写的公式或者 VBA 设置`Formula`后，依然不自动更新，只有鼠标放在公式所在的单元格后，点击回车按钮才会更新公式的计算结果。针对这种情况的解决办法：
+
+```
+' 封装下面的方法，或者直接调用方法内的整体逻辑
+' 其主要功能是查找并循环某个worksheet内的所有带公式的cell，并且模拟按 Enter 键
+Sub RefreshAllFormulasManually()
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    
+    ' 指定目标工作表
+    Set ws = ThisWorkbook.Worksheets("Sheet1") ' 替换为目标工作表的名称
+    
+    ' 在整个工作表中查找包含公式的单元格
+    On Error Resume Next
+    Set rng = ws.Cells.SpecialCells(xlCellTypeFormulas)
+    On Error GoTo 0
+    
+    ' 如果找到公式单元格，则模拟按下回车键来刷新计算
+    If Not rng Is Nothing Then
+        For Each cell In rng
+            Dim formula As String
+            formula = cell.Formula
+            cell.Formula = formula
+        Next cell
+    Else
+        MsgBox "没有找到包含公式的单元格。"
+    End If
+End Sub
+
+```
+
+如果要循环处理不连续的公式的表格，可以使用下面的代码进行处理：
+
+```
+Sub RefreshDiscontinuousFormulasManually()
+    Dim ws As Worksheet
+    Dim formulaCells As Range
+    Dim cell As Range
+    
+    ' 指定目标工作表
+    Set ws = ThisWorkbook.Worksheets("Sheet1") ' 替换为目标工作表的名称
+    
+    ' 在整个工作表中查找包含公式的单元格
+    On Error Resume Next
+    Set formulaCells = ws.Cells.SpecialCells(xlCellTypeFormulas)
+    On Error GoTo 0
+    
+    ' 循环处理每个不连续的公式单元格
+    If Not formulaCells Is Nothing Then
+        For Each cell In formulaCells
+            Dim formula As String
+            formula = cell.Formula
+            cell.Formula = formula
+        Next cell
+    Else
+        MsgBox "没有找到包含公式的单元格。"
+    End If
+End Sub
+
+```
 
 
 
