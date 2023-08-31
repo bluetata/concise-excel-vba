@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：08/31/2023 19:59
+Last update date：08/31/2023 20:15
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -3913,6 +3913,6 @@ VBA开发者可以提供给用户A数据，代码注册通过之后，动态生�
 
 ## 鸣谢列表
 ### Code Contributors
-| <img src="https://avatars0.githubusercontent.com/u/25427352" alt="bluetata" width="100px" height="100px"/> |<img src="https://avatars2.githubusercontent.com/u/46813661" alt="chromeheart" width="100px" height="100px"/> |<img src="https://avatars3.githubusercontent.com/u/3829140" alt="BobBJSun" width="100px" height="100px"/> | | | | |
+| <img src="https://avatars0.githubusercontent.com/u/25427352" alt="bluetata" width="100px" height="100px"/> |<img src="https://avatars2.githubusercontent.com/u/46813661" alt="chromeheart" width="100px" height="100px"/> |<img src="https://avatars3.githubusercontent.com/u/3829140" alt="BobBJSun" width="100px" height="100px"/> | <img src="https://avatars0.githubusercontent.com/u/31558169" alt="Martin Leduc" width="100px" height="100px"/> | | | |
 | :----: |:----: |:----: |:----: |:----: |:----: |:----: |
-| [bluetata](https://github.com/bluetata) |[chromeheart](https://github.com/chromeheart) |[BobBJSun](https://github.com/BobBJSun) | | | | |
+| [bluetata](https://github.com/bluetata) |[chromeheart](https://github.com/chromeheart) |[BobBJSun](https://github.com/BobBJSun) | [Martin Leduc](https://github.com/DecimalTurn) | | | |
