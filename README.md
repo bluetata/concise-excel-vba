@@ -922,8 +922,6 @@ End Function
 
 ![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
 
-![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
-
 3. 使用 `ByVal`替换`ByRef`:
 
 ```
@@ -935,8 +933,6 @@ Triple = x
 End Function
 ```
 当点击 command button 的时候显示如下结果为：
-
-![Alt text](/doc/source/images/ByRefandByVal/byref-result.png)
 
 ![Alt text](/doc/source/images/ByRefandByVal/byval-result-2.png)
 
