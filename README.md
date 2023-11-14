@@ -44,6 +44,7 @@ Last update date：08/31/2023 20:15
     - [2.2 工程资源管理器（Project Explore）说明](#2.2)
     - [2.3 设置VBA Macro Project 密码保护](#2.3)
     - [2.4 常用快捷栏及窗口设置](#2.4)
+    - [2.5 VBA 中导入 Macro 类库，或者.bas文件](#2.5)
 - [x] [0x03 对象操作说明](#object-option) (done)
     - [3.1 对象简述](#3.1)
     - [3.2 Application对象](#3.2)
@@ -1478,6 +1479,17 @@ Immediate window（立即窗口）：类似其他IDE的console控制台。</br>
 #### 2.4.3 更改编辑区域默认字体
 点击菜单栏的 Tools，选择Options，选择 Editor Format，鼠标光标放在在字体栏，按键盘翻页键选择字体，
 注意一定不要直接粘贴字体名字到字体栏，可能不生效。
+
+
+<a name="2.5"></a>
+### 2.5 VBA 中导入 Macro 类库，或者.bas文件
+
+在控制台窗口，依次点击：File --> Import File --> 选择所要导入的文件 --> 点击 Open 文件即可。
+
+操作如下图所示：
+
+![Alt text](/doc/source/images/0x02/import-basfile.gif)
+
 
 <a name="object-option"></a>
 ## 0x03 对象操作说明
