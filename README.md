@@ -1,6 +1,6 @@
 
 # 简明Excel VBA
-Last update date：08/31/2023 20:15
+Last update date：11/14/2023 16:47
 
 > `VBA` 缩写于 *Visual Basic for Applications*。
 
@@ -813,8 +813,6 @@ End Function
 ```
 
 
-
-
 <a name="1.6"></a>
 ### 1.6 过程(Sub)和函数(Function)
 
@@ -1065,8 +1063,6 @@ End Function
 ```
 
 
-
-
 <a name="1.8"></a>
 ### 1.8 注释（Comments code）
 > 个人觉得代码注释起着非常重要的作用。 --  *bluetata* 11/28/2018 18:40
@@ -1076,6 +1072,7 @@ End Function
 `Rem` 举例：`Rem 定义全局变量`；只能单独一行
 
 以下列举出了不同级别的注释代码，也可以[点击这里](SampleCode.bas)查看 VBA Sample Code。
+
 
 #### 1. 源码概要注释/Source version Comments Code</br>
 在每个source文件的最开头
@@ -1088,6 +1085,7 @@ End Function
 ' Tested on Excel 2016
 '--------------------------------------
 ```
+
 
 #### 2. 区块注释/Use Title Blocks Comments code for Each Macro</br>
 在每个Function或者Sub上下，根据个人风格，可以在紧贴在函数上面一行处，
@@ -1116,6 +1114,7 @@ End Function
 Sub DoMemoData(wbkReport As Workbook, oStopRow As Long)
 ```
 
+
 #### 3. 行内注释/Use In-Line Comments
 ```vba
 ' If this routine was called by the batch routine...
@@ -1136,8 +1135,11 @@ If g_bCalledByBatch Then
 Else
 ```
 
+
 #### 4. 函数列表注释/List of Function Comments</br>
+
 一般紧挨着源码概要注释下面，与其空一行到两行
+
 ```vba
 '-------------------------------------
 ' List of functions :
@@ -1149,6 +1151,7 @@ Else
 ' - 6  - PrevWorkingDay
 '-------------------------------------
 ```
+
 
 <a name="1.9"></a>
 ### 1.9 补充
@@ -1200,7 +1203,6 @@ EndSub
 
 
 #### 1.9.2 
-
 
 
 <a name="1.10"></a>
@@ -1331,8 +1333,6 @@ End Sub
 ## 0x02 VBA界面介绍
 
 
-
-
 <a name="2.x"></a>
 ### 2.x VBA开发工具的选择
 
@@ -1422,14 +1422,14 @@ cells(1, 1) = 1
 也就是说，模块（Modules）是公共的地方。
 
 
-
-
 <a name="2.3"></a>
 ### 2.3 设置VBA Macro Project 密码保护
 
 
 本章节介绍了VBA自带的两种密码保护设置方法，更多的密码保护方法可以参照本文的
 [Excel VBA代码加密方案汇总（如何尽可能的保护VBA代码？）](#0x96)
+
+
 
 
 #### 2.3.1 利用密码保护工作表或者sheet
@@ -1442,6 +1442,8 @@ cells(1, 1) = 1
 在弹出界面选择 `Projection`，勾选 `Lock project for viewing`后，输入密码，如下图所示：
 
 ![Alt text](/doc/source/images/password_protect_setting_2.png)
+
+
 
 
 #### 2.3.2 Macro执行时密码保护
@@ -1466,15 +1468,18 @@ End Select
 ### 2.4 常用快捷栏及窗口设置
 默认情况下某些常用的窗口VBA界面是不显示的，比如立即窗口，编辑操作捷栏（批量注释取消等）
 
+
 #### 2.4.1 显示编辑栏
 鼠标右键点击空白的快捷栏位置，勾选 `Edit` 选项会显示出如下快捷栏
 
 ![Alt text](/doc/source/images/toolbars_edit_setting.png)
 
+
 #### 2.4.2 显示立即窗口(Immediate window)
 Immediate window（立即窗口）：类似其他IDE的console控制台。</br>
 显示快捷键：`Ctrl + G`，也可以点击菜单栏 View -> <u>I</u>mmediate window 显示。</br>
 当在调试debug的时候，可以使用`Debug.Print "xxxlog"`的时候可以在该窗口直接显示打印结果。
+
 
 #### 2.4.3 更改编辑区域默认字体
 点击菜单栏的 Tools，选择Options，选择 Editor Format，鼠标光标放在在字体栏，按键盘翻页键选择字体，
@@ -1626,11 +1631,13 @@ End Sub
 
 <a name="4.4"></a>
 ### 4.4 Left 和 Right
+
 `Left` 和 `Right` 截取字符串，从左或者从右开始。</br>
 语法：Left(String, Length)</br>
 参数：
    - String - 必需的参数。 输入从左侧返回指定数量的字符的字符串。
    - Length - 必需的参数。 一个整数，指定要返回的字符数。
+
 ```vba
 Private Sub Constant_demo_Click()
     Dim var as Variant
@@ -1648,6 +1655,7 @@ End Sub
 
 <a name="4.5"></a>
 ### 4.5 Replace 函数
+
 `Replace` 函数 将一个字符串替换另一个字符串，可指定的次数。</br>
 语法：Replace(string, findString, replaceWith[, start[, count[, compare]]])</br>
 参数：
@@ -1681,6 +1689,7 @@ End Sub
 
 <a name="4.7"></a>
 ### 4.7 其他字符串函数
+
 - `&` 字符串连接操作，在VBA中连个字符串连接使用`&`进行连接
 - `+` 也能进行字符串连接，但是对于数字会进行`加法`操作，`&` 无论是否为数字，都会强制进行字符串拼接操作。
 - `Ltrim(string)` 去掉 string 左端空白
@@ -1904,13 +1913,14 @@ End If
 ```
 
 
-12. 单元格复制/剪切
+13. 单元格复制/剪切
 
+```
 `Range("A1").Copy`
 `Range("A1").CopyRange("B1")`   将A1复制到B1单元格
 `Range("A1").Cut`
 `Range("A1").CutRange("B1")`   将A1复制到B1单元格
-
+```
 
 
 <a name="5.2"></a>
@@ -3018,8 +3028,6 @@ End Sub
 
 
 
-
-
 <a name="0x08"></a>
 ## 0x08 消息框的函数 MsgBox 
 
@@ -3222,7 +3230,6 @@ VBA中Round函数进行四舍五入并不是逢5就入，例如：
 ```
 
 
-
 <a name="0x90"></a>
 ## 0x90 VBA Best Practices
 1. Always have Option Explicit at the top of your code modules to
@@ -3248,6 +3255,7 @@ to reduce the amount of scrolling.
 12. Never use the Option Base or Option Compare statements.
 
 **More reference:** [VBA Code Guidelines/Best-practices](CodingStandards.md)
+
 
 <a name="0x91"></a>
 ## 0x91 Trouble shooting
@@ -3607,6 +3615,8 @@ Public Function GetGUID() As String
 
 End Function
 ```
+
+
 
 
 #### Excel公式直接生成GUID/UUID
