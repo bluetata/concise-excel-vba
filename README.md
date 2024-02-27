@@ -682,7 +682,7 @@ Dim i As Integer
 i = 1
 Do
     i = i + 1
-Loop While i < 5 ' 循环3次  # 感谢`WANG Cheng`的指正 2020年7月16日 下午4:57
+Loop While i < 5 ' 循环4次  # 感谢`WANG Cheng`的指正 2020年7月16日 下午4:57
 ```
 
 4. Do Until 直到...循环</br>
