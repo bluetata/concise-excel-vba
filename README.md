@@ -94,6 +94,7 @@ Last update date：11/14/2023 16:47
     - [91.11 解决办法：错误的参数号或无效的属性赋值](#91.11)
     - [91.12 解决办法：无法打开`xlsm`文件，一直加载`FUNCRES.XLAM`插件](#91.12)
     - [91.13 解决办法：公式不更新刷新，在excel中生成的worksheet，公式不自动计算更新](#91.13)
+    - [91.14 安全风险 Micosoft已阻止宏运行，因为此文件的来源不受信任 Excel vba无法运行](#91.14)
 - [x] [0x92 VBA示例代码](#0x92) (done)
 - [ ] [0x93 Excel-VBA 快捷键](#0x93) (doing)
 - [x] [0x94 Excel-VBA Debug调试](#0x94) (done)
@@ -3528,6 +3529,20 @@ End Sub
 
 ```
 
+
+
+
+<a name="91.14"></a>
+### 91.13 解决办法：安全风险 Micosoft已阻止宏运行，因为此文件的来源不受信任 Excel vba无法运行
+
+解决出现错误：BLOCKED CONTENT Macros in this document have been disabled by your enterprise administrator for security reasons
+
+错误信息一般为：
+
+![Alt text](doc/source/images/trouble-shootings/macro_be_disabled/macro_was_disabled_1.jpg)
+
+
+解决办法：[troubleshootings/MacroWasDisabled.md](troubleshootings/MacroWasDisabled.md)
 
 
 
