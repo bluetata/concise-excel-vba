@@ -14,14 +14,14 @@ https://learn.microsoft.com/zh-cn/deployoffice/security/internet-macros-blocked
 
 对于单个文件（例如从 Internet 位置下载的文件或用户已保存到其本地设备的电子邮件附件），取消阻止宏的最简单方法是删除 Web 标记。 若要删除，请右键单击该文件，选择 “属性”，然后在“常规”选项卡上选择 “解除锁定”复选框。
 
-![Alt text](doc/source/images/trouble-shootings/macro_be_disabled/macro_was_disabled_2.jpg)
+![Alt text](../doc/source/images/trouble-shootings/macro_be_disabled/macro_was_disabled_2.jpg)
 
 
 ### Step2：添加受信任位置 对多个文件一起起作用
 
 1. 选项里打开受信任位置面板
 
-![Alt text](doc/source/images/trouble-shootings/macro_be_disabled/macro_was_disabled_3.jpg)
+![Alt text](../doc/source/images/trouble-shootings/macro_be_disabled/macro_was_disabled_3.jpg)
 
 
 2. 添加受信任位置
@@ -31,7 +31,7 @@ https://learn.microsoft.com/zh-cn/deployoffice/security/internet-macros-blocked
 也可以添加局域网共享位置 
 
 
-![Alt text](doc/source/images/trouble-shootings/macro_be_disabled/macro_was_disabled_4.jpg)
+![Alt text](../doc/source/images/trouble-shootings/macro_be_disabled/macro_was_disabled_4.jpg)
 
 
 完成所有设置后 重启excel再打开文件
